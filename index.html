@@ -1,67 +1,977 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>FinRisk Insights</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinRisk Insights | AML, Compliance & Financial Risk</title>
+  <meta
+    name="description"
+    content="Structured insights in AML, compliance, and financial risk."
+  />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f5f5f5;
+      --text: #0b0b0b;
+      --muted: #646464;
+      --line: #e8e8e8;
+      --shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
+      --radius: 24px;
+      --radius-lg: 34px;
+      --container: min(1180px, calc(100% - 40px));
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0b1320;
-      color: white;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-    header {
-      padding: 30px;
-      border-bottom: 1px solid #1f2a44;
+
+    .page-shell {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at top left, rgba(0, 0, 0, 0.03), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.04), transparent 28%);
+      z-index: -1;
     }
-    section {
-      padding: 60px;
-      max-width: 900px;
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
-    .card {
-      border: 1px solid #1f2a44;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 10px;
+
+    .container {
+      width: var(--container);
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(232, 232, 232, 0.9);
+    }
+
+    .nav {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .brand-mark img {
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .brand-name {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .brand-sub {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .desktop-nav {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .desktop-nav a {
+      font-size: 0.95rem;
+      color: #3f3f3f;
+      position: relative;
+    }
+
+    .desktop-nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 1.5px;
+      background: #0b0b0b;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+
+    .desktop-nav a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .menu-btn {
+      display: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .menu-btn span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 5px auto;
+      background: #111;
+      transition: 0.25s ease;
+    }
+
+    .mobile-menu {
+      display: none;
+      border-top: 1px solid var(--line);
+      padding: 10px 20px 18px;
+      background: #fff;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 10px 0;
+      color: #333;
+    }
+
+    .section {
+      padding: 110px 0;
+    }
+
+    .section-band {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero {
+      padding: 70px 0 120px;
+      min-height: calc(100vh - 84px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .eyebrow-light {
+      color: #bdbdbd;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #0b0b0b;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3rem, 6vw, 5.75rem);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      max-width: 860px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.07;
+      letter-spacing: -0.04em;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 1.22rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-lead,
+    .section-lead,
+    .about-copy p,
+    .card p,
+    .dark-card p,
+    .insight-card p,
+    .team-card p,
+    .contact-copy p,
+    .hero-statement p {
+      color: #565656;
+    }
+
+    .hero-lead {
+      margin: 24px 0 0;
+      font-size: 1.14rem;
+      max-width: 720px;
+    }
+
+    .hero-actions,
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      min-height: 52px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 0.96rem;
+      transition: transform 0.18s ease, box-shadow 0.22s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-primary {
+      background: #0b0b0b;
+      color: #fff;
+    }
+
+    .btn-secondary {
+      border: 1px solid #0b0b0b;
+      color: #0b0b0b;
+      background: #fff;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 30px;
+      max-width: 700px;
+    }
+
+    .metric-card {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .metric-label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #757575;
+      margin-bottom: 8px;
+    }
+
+    .hero-panel-inner {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+      border-radius: 32px;
+      padding: 26px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+    }
+
+    .panel-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #7a7a7a;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-statement {
+      padding: 22px 0 6px;
+    }
+
+    .hero-statement h2 {
+      font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    .signal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .signal-card {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 22px;
+      padding: 18px;
+    }
+
+    .signal-index,
+    .card-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: #0c0c0c;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 46px;
+      align-items: start;
+    }
+
+    .about-copy {
+      font-size: 1.03rem;
+    }
+
+    .section-top {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card,
+    .insight-card,
+    .team-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-dark {
+      background: #0c0c0c;
+      color: #fff;
+    }
+
+    .dark-card {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 28px;
+      padding: 26px;
+    }
+
+    .dark-card p {
+      color: #cfcfcf;
+    }
+
+    .insight-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: #7a7a7a;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 14px;
+    }
+
+    .text-link {
+      display: inline-block;
+      margin-top: 16px;
+      font-weight: 600;
+      color: #0b0b0b;
+    }
+
+    .role {
+      color: #7a7a7a;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-top: -2px;
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 26px;
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+      padding: 34px;
+      box-shadow: var(--shadow);
+      align-items: end;
+    }
+
+    .contact-copy h2 {
+      font-size: clamp(2rem, 3.8vw, 3.1rem);
+      line-height: 1.06;
+      letter-spacing: -0.045em;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0 42px;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .footer-row strong {
+      display: block;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 {
+      transition-delay: 0.08s;
+    }
+
+    .delay-2 {
+      transition-delay: 0.16s;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .about-grid,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 56px 0 90px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .desktop-nav {
+        display: none;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .mobile-menu.open {
+        display: block;
+      }
+
+      .section {
+        padding: 86px 0;
+      }
+
+      .hero {
+        padding: 42px 0 72px;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 12vw, 3.8rem);
+      }
+
+      .grid-3,
+      .signal-grid,
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="page-shell"></div>
 
-<header>
-  <h1>FinRisk Insights</h1>
-  <p>Independent insights on AML, compliance, and financial risk.</p>
-</header>
+  <header class="site-header" id="top">
+    <div class="container nav">
+      <a class="brand-wrap" href="#top" aria-label="FinRisk Insights home">
+        <div class="brand-mark">
+          <img src="logo.jpeg" alt="FinRisk Insights Logo" />
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">FinRisk Insights</span>
+          <span class="brand-sub">Financial Risk, AML & Compliance Insights</span>
+        </div>
+      </a>
 
-<section>
-  <h2>About</h2>
-  <p>FinRisk Insights delivers structured insights in AML, compliance, and financial risk.</p>
-</section>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span>
+      </button>
 
-<section>
-  <h2>Focus Areas</h2>
+      <nav class="desktop-nav">
+        <a href="#about">About</a>
+        <a href="#focus">Focus</a>
+        <a href="#insights">Insights</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
 
-  <div class="card">
-    <h3>AML</h3>
-    <p>Anti-money laundering risk and controls.</p>
-  </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about">About</a>
+      <a href="#focus">Focus</a>
+      <a href="#insights">Insights</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
 
-  <div class="card">
-    <h3>Compliance</h3>
-    <p>Regulatory frameworks and expectations.</p>
-  </div>
+  <main>
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">
+            <span class="dot"></span>
+            Independent Initiative
+          </div>
 
-  <div class="card">
-    <h3>Financial Risk</h3>
-    <p>Risk analysis and financial systems.</p>
-  </div>
-</section>
+          <h1>Structured insights in AML, compliance, and financial risk.</h1>
 
-<section>
-  <h2>Team</h2>
-  <p><strong>Bhishek Shibdeen</strong> — Founder & Director</p>
-  <p><strong>Adeline Juhel</strong> — Marketing & Operations Associate</p>
-</section>
+          <p class="hero-lead">
+            FinRisk Insights delivers clear, practical analysis that simplifies complex regulatory environments and supports informed decision-making.
+          </p>
 
+          <div class="hero-actions">
+            <a href="#insights" class="btn btn-primary">Explore Insights</a>
+            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric-card">
+              <span class="metric-label">Positioning</span>
+              <strong>AML • Compliance • Risk</strong>
+            </div>
+
+            <div class="metric-card">
+              <span class="metric-label">Approach</span>
+              <strong>Clarity • Relevance • Integrity</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-panel reveal delay-1">
+          <div class="hero-panel-inner">
+            <div class="panel-top">
+              <span>Strategic Profile</span>
+              <span>Future Advisory Direction</span>
+            </div>
+
+            <div class="hero-statement">
+              <h2>Built like a premium research-led platform.</h2>
+              <p>
+                FinRisk Insights is being shaped to evolve from a structured analytical initiative into a credible boutique advisory brand focused on AML, compliance, and financial risk.
+              </p>
+            </div>
+
+            <div class="signal-grid">
+              <article class="signal-card">
+                <span class="signal-index">01</span>
+                <h3>Research-Led Thinking</h3>
+                <p>Structured interpretation of financial risk topics and regulatory developments.</p>
+              </article>
+
+              <article class="signal-card">
+                <span class="signal-index">02</span>
+                <h3>Advisory Potential</h3>
+                <p>A digital presence intentionally aligned for future consulting and strategic services.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-band" id="about">
+      <div class="container about-grid">
+        <div class="section-heading reveal">
+          <p class="eyebrow">About</p>
+          <h2>A platform built for clarity, relevance, and long-term credibility.</h2>
+        </div>
+
+        <div class="about-copy reveal delay-1">
+          <p>
+            FinRisk Insights is an independent initiative focused on delivering structured analysis in anti-money laundering (AML), compliance, and financial risk.
+          </p>
+          <p>
+            The initiative is designed to simplify complex regulatory frameworks and translate them into clear, practical insights aligned with evolving global standards.
+          </p>
+          <p>
+            As the platform develops, it is intended to evolve into a credible advisory-led brand operating at the intersection of research, financial risk analysis, and consulting.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="focus">
+      <div class="container">
+        <div class="section-top reveal">
+          <p class="eyebrow">Areas of Focus</p>
+          <h2>Core areas shaping the initiative.</h2>
+          <p class="section-lead">
+            The website is positioned to present FinRisk Insights as a serious, research-driven platform with clear domain depth and future commercial potential.
+          </p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card reveal">
+            <div class="card-number">01</div>
+            <h3>Anti-Money Laundering</h3>
+            <p>
+              Structured perspectives on AML frameworks, typologies, and financial crime trends across evolving regulatory environments.
+            </p>
+          </article>
+
+          <article class="card reveal delay-1">
+            <div class="card-number">02</div>
+            <h3>Compliance Frameworks</h3>
+            <p>
+              Clear breakdowns of regulatory expectations, control environments, and practical compliance considerations.
+            </p>
+          </article>
+
+          <article class="card reveal delay-2">
+            <div class="card-number">03</div>
+            <h3>Financial Risk Analysis</h3>
+            <p>
+              Insight-driven commentary on risk exposure, regulatory developments, and broader financial system vulnerabilities.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark">
+      <div class="container">
+        <div class="section-top reveal">
+          <p class="eyebrow eyebrow-light">Approach</p>
+          <h2>How FinRisk Insights is positioned today.</h2>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="dark-card reveal">
+            <h3>Structured Analysis</h3>
+            <p>
+              Grounded in clarity, relevance, and clean interpretation of complex financial and regulatory topics.
+            </p>
+          </article>
+
+          <article class="dark-card reveal delay-1">
+            <h3>Practical Framing</h3>
+            <p>
+              Designed to turn technical frameworks into accessible insight that supports stronger understanding.
+            </p>
+          </article>
+
+          <article class="dark-card reveal delay-2">
+            <h3>Future Advisory Direction</h3>
+            <p>
+              Built to support a longer-term transition into consulting, strategic analysis, and boutique advisory work.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+        <section class="section" id="insights">
+      <div class="container">
+        <div class="section-top reveal">
+          <p class="eyebrow">Insights</p>
+          <h2>A growing body of analysis and commentary.</h2>
+          <p class="section-lead">
+            This section can feature structured posts, explainers, analytical notes, and future publications across AML, compliance, and financial risk.
+          </p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="insight-card reveal">
+            <div class="insight-meta">
+              <span>Insight 01</span>
+              <span>KYC / CDD</span>
+            </div>
+            <h3>Understanding KYC and CDD in practical terms</h3>
+            <p>
+              A strong starter topic that introduces your analytical style and demonstrates clarity in explaining regulated processes.
+            </p>
+            <a href="#" class="text-link">Coming soon</a>
+          </article>
+
+          <article class="insight-card reveal delay-1">
+            <div class="insight-meta">
+              <span>Insight 02</span>
+              <span>AML Trends</span>
+            </div>
+            <h3>AML trends shaping global financial systems</h3>
+            <p>
+              A macro-level piece that strengthens your positioning as a platform able to interpret broader risk developments.
+            </p>
+            <a href="#" class="text-link">Coming soon</a>
+          </article>
+
+          <article class="insight-card reveal delay-2">
+            <div class="insight-meta">
+              <span>Insight 03</span>
+              <span>Compliance</span>
+            </div>
+            <h3>Compliance frameworks and evolving risk expectations</h3>
+            <p>
+              A practical piece showing how institutions can better understand regulatory pressure and control environments.
+            </p>
+            <a href="#" class="text-link">Coming soon</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-band" id="team">
+      <div class="container">
+        <div class="section-top reveal">
+          <p class="eyebrow">Team</p>
+          <h2>A developing team supporting a long-term vision.</h2>
+          <p class="section-lead">
+            FinRisk Insights is built with clearly defined roles to support growth, structure, and credibility as the initiative evolves.
+          </p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="team-card reveal">
+            <h3>Bhishek Shibdeen</h3>
+            <p class="role">Founder & Director</p>
+            <p>
+              Leads the strategic direction of FinRisk Insights and oversees research, positioning, and analytical output across AML, compliance, and financial risk.
+            </p>
+          </article>
+
+          <article class="team-card reveal delay-1">
+            <h3>Adeline Juhel</h3>
+            <p class="role">Business Development Associate</p>
+            <p>
+              Supports strategic outreach, relationship-building, and growth initiatives aligned with the initiative’s focus areas.
+            </p>
+          </article>
+
+          <article class="team-card reveal delay-2">
+            <h3>Adele Taracharane</h3>
+            <p class="role">Communications & Content Associate</p>
+            <p>
+              Supports content development, digital communication, and brand visibility across FinRisk Insights’ platforms.
+            </p>
+          </article>
+
+          <article class="team-card reveal">
+            <h3>Vince Amboule</h3>
+            <p class="role">AML Analyst Associate</p>
+            <p>
+              Contributes to structured analysis of anti-money laundering frameworks, financial crime trends, and risk indicators, supporting the development of clear and practical AML insights.
+            </p>
+          </article>
+
+          <article class="team-card reveal delay-1">
+            <h3>Douglas Gerval</h3>
+            <p class="role">Risk & Advisory Associate</p>
+            <p>
+              Provides strategic and analytical support to strengthen research direction, frameworks, and content quality.
+            </p>
+          </article>
+
+          <article class="team-card reveal delay-2">
+            <h3>Hoshil Ragoo</h3>
+            <p class="role">UK Market Associate</p>
+            <p>
+              Contributes international perspective through UK-related market insight and cross-border regulatory awareness.
+            </p>
+          </article>
+
+          <article class="team-card reveal">
+            <h3>Theodore</h3>
+            <p class="role">Legal Associate</p>
+            <p>
+              Provides legal perspective on AML, compliance, and regulatory frameworks, ensuring alignment with evolving standards and supporting the integrity of analytical outputs.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div class="contact-copy">
+            <p class="eyebrow">Contact</p>
+            <h2>Open to discussions, collaborations, and future advisory opportunities.</h2>
+            <p>
+              FinRisk Insights is being developed with a long-term vision to contribute meaningfully to AML, compliance, and financial risk dialogue through research, structured insights, and future consulting-led work.
+            </p>
+          </div>
+
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="mailto:contact@finriskinsights.com">contact@finriskinsights.com</a>
+            <a
+              class="btn btn-secondary"
+              href="https://www.linkedin.com/company/finrisk-insights/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn Page
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div>
+        <strong>FinRisk Insights</strong>
+        <p>Financial Risk, AML & Compliance Insights</p>
+      </div>
+      <p>© <span id="year"></span> FinRisk Insights. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const year = document.getElementById("year");
+
+    if (year) {
+      year.textContent = new Date().getFullYear();
+    }
+
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener("click", () => {
+        const open = mobileMenu.classList.toggle("open");
+        menuBtn.setAttribute("aria-expanded", String(open));
+      });
+
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+          menuBtn.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+
+    const revealItems = document.querySelectorAll(".reveal");
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.14 }
+    );
+
+    revealItems.forEach((item) => io.observe(item));
+  </script>
 </body>
 </html>
