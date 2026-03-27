@@ -528,7 +528,101 @@
     .delay-2 {
       transition-delay: 0.16s;
     }
+.simulation-showcase {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 28px;
+  align-items: stretch;
+}
 
+.simulation-points {
+  display: grid;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.simulation-point-card {
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.simulation-point-card strong {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.simulation-point-card p {
+  margin: 0;
+  color: #565656;
+}
+
+.simulation-panel {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+  border-radius: 32px;
+  padding: 26px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+}
+
+.simulation-panel-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #7a7a7a;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+
+.simulation-panel-body {
+  padding-top: 22px;
+}
+
+.simulation-logo-box {
+  margin-bottom: 18px;
+}
+
+.simulation-panel-body h3 {
+  margin-bottom: 10px;
+}
+
+.simulation-panel-body p {
+  color: #565656;
+}
+
+.simulation-mini-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.simulation-mini-card {
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 20px;
+  padding: 18px;
+}
+
+@media (max-width: 1024px) {
+  .simulation-showcase {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .simulation-mini-grid {
+    grid-template-columns: 1fr;
+  }
+}
     @media (max-width: 1024px) {
       .hero-grid,
       .about-grid,
@@ -607,6 +701,7 @@
         <a href="#about">About</a>
         <a href="#focus">Focus</a>
         <a href="#insights">Insights</a>
+        <a href="#simulation">Simulation</a>
         <a href="#team">Team</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -616,6 +711,7 @@
       <a href="#about">About</a>
       <a href="#focus">Focus</a>
       <a href="#insights">Insights</a>
+      <a href="#simulation">Simulation</a>
       <a href="#team">Team</a>
       <a href="#contact">Contact</a>
     </div>
@@ -826,7 +922,73 @@
         </div>
       </div>
     </section>
+<section class="section" id="simulation">
+  <div class="container">
+    <div class="simulation-showcase">
+      <div class="simulation-copy reveal">
+        <p class="eyebrow">Simulation</p>
+        <h2>Interactive AML advisory simulation built for strategic decision-making.</h2>
+        <p class="section-lead">
+          Step into the role of a risk consultant advising an AI-driven fintech entering African markets.
+          Assess market-entry risk, KYC design, transaction monitoring, and governance decisions through a
+          structured interactive experience developed by FinRisk Insights.
+        </p>
 
+        <div class="simulation-points">
+          <div class="simulation-point-card">
+            <strong>Market Entry</strong>
+            <p>Test jurisdictional risk judgement and phased expansion logic.</p>
+          </div>
+
+          <div class="simulation-point-card">
+            <strong>KYC & UBO</strong>
+            <p>Evaluate onboarding choices, customer segmentation, and beneficial ownership controls.</p>
+          </div>
+
+          <div class="simulation-point-card">
+            <strong>Monitoring & Governance</strong>
+            <p>Assess transaction-risk logic, escalation routes, and scalable compliance oversight.</p>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="simulation.html" class="btn btn-primary">Launch Simulation</a>
+        </div>
+      </div>
+
+      <div class="simulation-panel reveal delay-1">
+        <div class="simulation-panel-top">
+          <span>FinRisk Advisory Tool</span>
+          <span>Interactive Experience</span>
+        </div>
+
+        <div class="simulation-panel-body">
+          <div class="brand-mark simulation-logo-box">
+            <img src="logo.jpeg" alt="FinRisk Insights Logo" />
+          </div>
+
+          <h3>Structured like a premium advisory product.</h3>
+          <p>
+            The simulation is designed to demonstrate practical AML decision-making across expansion,
+            customer risk, transaction monitoring, and governance scenarios.
+          </p>
+
+          <div class="simulation-mini-grid">
+            <div class="simulation-mini-card">
+              <span class="metric-label">Format</span>
+              <strong>Interactive MCQ</strong>
+            </div>
+
+            <div class="simulation-mini-card">
+              <span class="metric-label">Focus</span>
+              <strong>AML / Risk / Governance</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
     <section class="section section-band" id="team">
       <div class="container">
         <div class="section-top reveal">
