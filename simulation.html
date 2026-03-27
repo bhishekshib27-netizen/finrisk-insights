@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinRisk Advisory Simulation</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .shell {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 28px;
+      box-shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
+      overflow: hidden;
+    }
+
+    .start-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+
+    .start-left {
+      background: #0a0a0a;
+      color: #ffffff;
+      padding: 36px;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .start-right {
+      padding: 36px;
+      background: #ffffff;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      object-fit: cover;
+      background: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .brand-kicker {
+      margin: 0;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      font-weight: 700;
+    }
+
+    .brand-title {
+      margin: 8px 0 0;
+      font-size: 38px;
+      line-height: 1.08;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .tag {
+      padding: 10px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      color: #d1d5db;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      background: rgba(255, 255, 255, 0.04);
+      white-space: nowrap;
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 680px;
+      color: #d1d5db;
+      font-size: 18px;
+      line-height: 1.85;
+    }
+
+    .start-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .metric-dark {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .metric-dark .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+      margin: 0 0 10px;
+      font-weight: 700;
+    }
+
+    .metric-dark .value {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .scenario-box {
+      margin-top: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .scenario-box h3 {
+      margin: 0 0 10px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #d1d5db;
+    }
+
+    .scenario-box p {
+      margin: 0;
+      color: #d1d5db;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .panel {
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      border-radius: 24px;
+      padding: 22px;
+    }
+
+    .panel h3,
+    .panel h4 {
+      margin: 0 0 14px;
+    }
+
+    .panel h3 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #6b7280;
+    }
+
+    .test-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      border-radius: 18px;
+      margin-bottom: 12px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #111827;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .test-item p {
+      margin: 0;
+      color: #374151;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .mini-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 22px;
+      padding: 18px;
+      background: #ffffff;
+    }
+
+    .mini-card p:first-child {
+      margin: 0;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .mini-card p:last-child {
+      margin: 10px 0 0;
+      color: #111827;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .button {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 22px;
+      padding: 15px 22px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .button-dark {
+      background: #111827;
+      color: #ffffff;
+    }
+
+    .button-dark:hover {
+      opacity: 0.92;
+    }
+
+    .button-light {
+      background: #ffffff;
+      color: #374151;
+      border: 1px solid #d1d5db;
+    }
+
+    .button-light:hover {
+      border-color: #9ca3af;
+    }
+
+    .button-full {
+      width: 100%;
+      margin-top: 18px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .small-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 1px solid #e5e7eb;
+      background: white;
+    }
+
+    .topbar-left .text p {
+      margin: 0;
+    }
+
+    .topbar-left .text p:first-child {
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #6b7280;
+      font-weight: 700;
+    }
+
+    .topbar-left .text p:last-child {
+      margin-top: 6px;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #111827;
+    }
+
+    .pill-wrap {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border: 1px solid #e5e7eb;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #4b5563;
+      font-size: 14px;
+      box-shadow: 0 6px 18px rgba(17, 24, 39, 0.04);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #111827;
+      width: 0%;
+      transition: width 0.35s ease;
+      border-radius: 999px;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 2.1fr;
+      gap: 20px;
+    }
+
+    .sidebar,
+    .main-panel {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 28px;
+      padding: 26px;
+      box-shadow: 0 8px 24px rgba(17, 24, 39, 0.04);
+    }
+
+    .sub-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 22px;
+      padding: 18px;
+      background: #f9fafb;
+      margin-bottom: 14px;
+    }
+
+    .sub-card h4 {
+      margin: 0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #6b7280;
+    }
+
+    .sub-card .big {
+      margin: 10px 0 0;
+      font-size: 26px;
+      font-weight: 700;
+      color: #111827;
+      line-height: 1.3;
+    }
+
+    .sub-card .small {
+      margin: 8px 0 0;
+      color: #6b7280;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .risk-meter-track {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+      margin: 12px 0;
+    }
+
+    .risk-meter-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .badge {
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #4b5563;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+    }
+
+    .question-title {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: #111827;
+    }
+
+    .question-sub {
+      margin: 12px 0 0;
+      color: #6b7280;
+      font-size: 14px;
+      line-height: 1.8;
+      max-width: 760px;
+    }
+
+    .options {
+      margin-top: 24px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .option {
+      width: 100%;
+      text-align: left;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 18px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .option:hover {
+      border-color: #9ca3af;
+      transform: translateY(-1px);
+    }
+
+    .option-content {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .option-letter {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #4b5563;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .option-text {
+      color: #374151;
+      line-height: 1.8;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .option.selected {
+      border-color: #111827;
+      background: #111827;
+      box-shadow: 0 10px 24px rgba(17, 24, 39, 0.12);
+    }
+
+    .option.selected .option-letter {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: white;
+    }
+
+    .option.selected .option-text {
+      color: white;
+    }
+
+    .option.correct {
+      border-color: #86efac;
+      background: #ecfdf5;
+    }
+
+    .option.correct .option-letter {
+      border-color: #86efac;
+      background: white;
+      color: #047857;
+    }
+
+    .option.correct .option-text {
+      color: #065f46;
+    }
+
+    .option.wrong {
+      border-color: #fda4af;
+      background: #fff1f2;
+    }
+
+    .option.wrong .option-letter {
+      border-color: #fda4af;
+      background: white;
+      color: #be123c;
+    }
+
+    .option.wrong .option-text {
+      color: #9f1239;
+    }
+
+    .option.muted {
+      background: #f9fafb;
+      color: #9ca3af;
+    }
+
+    .option.muted .option-letter {
+      color: #9ca3af;
+      background: white;
+    }
+
+    .option.muted .option-text {
+      color: #9ca3af;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .feedback {
+      margin-top: 24px;
+      border-radius: 26px;
+      padding: 22px;
+      border: 1px solid transparent;
+    }
+
+    .feedback.good {
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+    }
+
+    .feedback.bad {
+      background: #fff1f2;
+      border-color: #fecdd3;
+    }
+
+    .feedback-head {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .feedback-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .feedback.good .feedback-icon {
+      background: #d1fae5;
+      color: #047857;
+    }
+
+    .feedback.bad .feedback-icon {
+      background: #ffe4e6;
+      color: #be123c;
+    }
+
+    .feedback-kicker {
+      margin: 0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-weight: 700;
+    }
+
+    .feedback.good .feedback-kicker {
+      color: #047857;
+    }
+
+    .feedback.bad .feedback-kicker {
+      color: #be123c;
+    }
+
+    .feedback-text {
+      margin: 8px 0 0;
+      color: #374151;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .explain-box {
+      border: 1px solid rgba(255,255,255,0.65);
+      background: rgba(255,255,255,0.78);
+      border-radius: 20px;
+      padding: 18px;
+      margin-top: 14px;
+    }
+
+    .explain-box h5 {
+      margin: 0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #4b5563;
+    }
+
+    .explain-box p {
+      margin: 10px 0 0;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #1f2937;
+    }
+
+    .result-wrap {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 32px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(17,24,39,0.06);
+    }
+
+    .result-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .result-top .left {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .result-title-wrap p {
+      margin: 0;
+    }
+
+    .result-title-wrap p:first-child {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #6b7280;
+      font-weight: 700;
+    }
+
+    .result-title-wrap p:last-child {
+      margin-top: 8px;
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .result-status {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #4b5563;
+      font-size: 14px;
+    }
+
+    .result-main {
+      border-radius: 28px;
+      padding: 28px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .result-main h3 {
+      margin: 0;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+    }
+
+    .result-main h2 {
+      margin: 12px 0 0;
+      font-size: 34px;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
+
+    .result-main p {
+      margin: 14px 0 0;
+      font-size: 15px;
+      line-height: 1.9;
+      color: #374151;
+      max-width: 760px;
+    }
+
+    .result-grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 20px;
+    }
+
+    .stat-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .stat-card {
+      border: 1px solid rgba(255,255,255,0.65);
+      background: rgba(255,255,255,0.8);
+      border-radius: 22px;
+      padding: 18px;
+    }
+
+    .stat-card p:first-child {
+      margin: 0;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .stat-card p:last-child {
+      margin: 10px 0 0;
+      font-size: 32px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .category-grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .category-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 22px;
+      background: #f9fafb;
+      padding: 18px;
+    }
+
+    .category-card p {
+      margin: 0;
+    }
+
+    .category-card p:first-child {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    .category-card p:nth-child(2) {
+      margin-top: 10px;
+      font-size: 28px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .category-card p:last-child {
+      margin-top: 6px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .takeaway,
+    .next-actions-box {
+      margin-top: 20px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      border-radius: 24px;
+      padding: 22px;
+    }
+
+    .takeaway h4,
+    .next-actions-box h4 {
+      margin: 0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #4b5563;
+    }
+
+    .takeaway p {
+      margin: 12px 0 0;
+      color: #374151;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .next-actions {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .next-actions li {
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      background: #ffffff;
+      padding: 14px 16px;
+      color: #1f2937;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .result-actions {
+      margin-top: 22px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hide {
+      display: none !important;
+    }
+
+    .green-bg {
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+    }
+
+    .amber-bg {
+      background: #fffbeb;
+      border-color: #fde68a;
+    }
+
+    .rose-bg {
+      background: #fff1f2;
+      border-color: #fecdd3;
+    }
+
+    .red-bg {
+      background: #fef2f2;
+      border-color: #fca5a5;
+    }
+
+    .green-text { color: #047857; }
+    .amber-text { color: #b45309; }
+    .rose-text { color: #be123c; }
+    .red-text { color: #b91c1c; }
+
+    .green-meter { background: #059669; }
+    .amber-meter { background: #d97706; }
+    .rose-meter { background: #e11d48; }
+    .red-meter { background: #dc2626; }
+
+    @media (max-width: 980px) {
+      .start-grid,
+      .main-grid,
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding: 20px 12px;
+      }
+
+      .start-left,
+      .start-right,
+      .sidebar,
+      .main-panel,
+      .result-wrap {
+        padding: 20px;
+      }
+
+      .brand-title,
+      .question-title,
+      .result-title-wrap p:last-child,
+      .result-main h2 {
+        font-size: 28px;
+      }
+
+      .start-metrics,
+      .mini-grid,
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .page {
+        padding: 0;
+      }
+
+      #startScreen,
+      #simulationScreen .topbar,
+      #simulationScreen .actions,
+      #simulationScreen .sidebar,
+      .result-actions,
+      .print-hide {
+        display: none !important;
+      }
+
+      .result-wrap,
+      .result-main,
+      .takeaway,
+      .next-actions-box,
+      .category-card,
+      .stat-card {
+        box-shadow: none !important;
+      }
+
+      .result-wrap {
+        border: none;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="shell">
+
+      <section id="startScreen" class="card">
+        <div class="start-grid">
+          <div class="start-left">
+            <div class="brand-row">
+              <div class="brand-box">
+                <img src="logo.jpeg" alt="FinRisk Insights Logo" class="brand-logo">
+                <div>
+                  <p class="brand-kicker">FinRisk Insights</p>
+                  <h1 class="brand-title">Advisory Simulation</h1>
+                </div>
+              </div>
+              <div class="tag">Interactive</div>
+            </div>
+
+            <p class="lead">
+              Step into the role of an AML consultant advising an AI-driven fintech expanding into African markets.
+              Each decision shapes the business’s compliance strength, regulatory resilience, and strategic future.
+            </p>
+
+            <div class="start-metrics">
+              <div class="metric-dark">
+                <p class="label">Questions</p>
+                <p class="value">12</p>
+              </div>
+              <div class="metric-dark">
+                <p class="label">Format</p>
+                <p class="value" style="font-size:20px;">Strategic MCQ</p>
+              </div>
+              <div class="metric-dark">
+                <p class="label">Focus</p>
+                <p class="value" style="font-size:20px;">AML Decisioning</p>
+              </div>
+            </div>
+
+            <div class="scenario-box">
+              <h3>Client Scenario</h3>
+              <p>
+                <strong style="color:white;">NovaPay AI</strong> is a hypothetical fintech offering cross-border
+                payments and digital wallet services. Your mandate is to assess AML exposure, guide market entry,
+                and help build a scalable control framework before expansion.
+              </p>
+            </div>
+          </div>
+
+          <div class="start-right">
+            <div class="panel">
+              <h3>What this tests</h3>
+
+              <div class="test-item">
+                <div class="dot"></div>
+                <p>Jurisdictional and market-entry judgement</p>
+              </div>
+
+              <div class="test-item">
+                <div class="dot"></div>
+                <p>KYC, UBO and onboarding decisions</p>
+              </div>
+
+              <div class="test-item">
+                <div class="dot"></div>
+                <p>Transaction monitoring logic</p>
+              </div>
+
+              <div class="test-item">
+                <div class="dot"></div>
+                <p>Governance, oversight and control design</p>
+              </div>
+            </div>
+
+            <div class="mini-grid">
+              <div class="mini-card">
+                <p>End Result</p>
+                <p>Strategic Outcome</p>
+              </div>
+              <div class="mini-card">
+                <p>Assessment Lens</p>
+                <p>Risk-Based Thinking</p>
+              </div>
+            </div>
+
+            <button id="startBtn" class="button button-dark button-full">Launch Simulation</button>
+            <p style="margin:14px 0 0; font-size:12px; line-height:1.8; color:#6b7280; text-align:center;">
+              Built for FinRisk Insights — advisory-style AML decision simulation
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="simulationScreen" class="hide">
+        <div class="topbar">
+          <div class="topbar-left">
+            <img src="logo.jpeg" alt="FinRisk Insights Logo" class="small-logo">
+            <div class="text">
+              <p>FinRisk Insights</p>
+              <p>Advisory Simulation</p>
+            </div>
+          </div>
+
+          <div class="pill-wrap">
+            <div class="pill">Question <strong id="questionCount">1</strong> of <strong id="totalCount">12</strong></div>
+            <div class="pill">Score <strong id="scoreTop">0</strong></div>
+          </div>
+        </div>
+
+        <div class="progress-track">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+
+        <div class="main-grid">
+          <aside class="sidebar">
+            <div class="sub-card">
+              <h4>Current Category</h4>
+              <p id="categoryName" class="big">Market Entry Strategy</p>
+            </div>
+
+            <div class="sub-card">
+              <h4>Accuracy Trend</h4>
+              <p id="accuracyTrend" class="big">—</p>
+              <p class="small">Based on submitted answers</p>
+            </div>
+
+            <div class="sub-card">
+              <div style="display:flex; justify-content:space-between; gap:12px; align-items:center;">
+                <h4 style="margin:0;">Risk Meter</h4>
+                <span id="riskLabel" style="font-size:14px; color:#1f2937; font-weight:700;">Critical Risk</span>
+              </div>
+              <div class="risk-meter-track">
+                <div id="riskMeterFill" class="risk-meter-fill red-meter"></div>
+              </div>
+              <p class="small">Your decisions shape the residual risk profile of the business.</p>
+            </div>
+
+            <div class="sub-card">
+              <h4>Advisory Lens</h4>
+              <p class="small" style="margin-top:12px;">• Jurisdictional readiness</p>
+              <p class="small" style="margin-top:6px;">• KYC proportionality</p>
+              <p class="small" style="margin-top:6px;">• Monitoring effectiveness</p>
+              <p class="small" style="margin-top:6px;">• Governance resilience</p>
+            </div>
+          </aside>
+
+          <main class="main-panel">
+            <div class="badge-row">
+              <div id="questionBadgeCategory" class="badge">Market Entry Strategy</div>
+              <div class="badge">Executive Decision Point</div>
+            </div>
+
+            <h2 id="questionTitle" class="question-title"></h2>
+            <p class="question-sub">
+              Select the response that best reflects a risk-based AML advisory approach.
+            </p>
+
+            <div id="optionsWrap" class="options"></div>
+
+            <div id="actionButtons" class="actions">
+              <button id="submitBtn" class="button button-dark">Submit Decision</button>
+              <button id="restartBtn1" class="button button-light">Restart</button>
+            </div>
+
+            <div id="feedbackBox" class="feedback hide">
+              <div class="feedback-head">
+                <div id="feedbackIcon" class="feedback-icon">✓</div>
+                <div>
+                  <p id="feedbackKicker" class="feedback-kicker">Correct Decision</p>
+                  <p id="feedbackText" class="feedback-text"></p>
+                </div>
+              </div>
+
+              <div id="correctFlowBox" class="explain-box hide">
+                <h5>Correct Decision Flow</h5>
+                <p id="correctFlowText"></p>
+              </div>
+
+              <div class="explain-box">
+                <h5>Why This Matters</h5>
+                <p id="explanationText"></p>
+              </div>
+
+              <div class="actions" style="margin-top:18px;">
+                <button id="nextBtn" class="button button-dark">Continue Simulation</button>
+                <button id="restartBtn2" class="button button-light">Restart</button>
+              </div>
+            </div>
+          </main>
+        </div>
+      </section>
+
+      <section id="resultScreen" class="hide">
+        <div class="result-wrap">
+          <div class="result-top">
+            <div class="left">
+              <img src="logo.jpeg" alt="FinRisk Insights Logo" class="small-logo">
+              <div class="result-title-wrap">
+                <p>FinRisk Insights</p>
+                <p>Final Advisory Outcome</p>
+              </div>
+            </div>
+
+            <div class="result-status">Strategic AML Readiness Assessment</div>
+          </div>
+
+          <div id="resultMain" class="result-main green-bg">
+            <div class="result-grid">
+              <div>
+                <h3 id="resultOutcomeKicker" class="green-text">Outcome</h3>
+                <h2 id="resultLabel" class="green-text">Strong Compliance Framework</h2>
+                <p id="resultSummary">
+                  The business enters new markets with a credible AML framework, controlled expansion strategy,
+                  and stronger regulatory resilience.
+                </p>
+
+                <div style="margin-top:18px;">
+                  <div style="display:flex; justify-content:space-between; gap:12px; font-size:14px; color:#4b5563;">
+                    <span>Risk posture</span>
+                    <strong id="resultRiskLabel" style="color:#111827;">Low Residual Risk</strong>
+                  </div>
+                  <div class="risk-meter-track" style="margin-top:10px; background:rgba(255,255,255,0.7);">
+                    <div id="resultMeter" class="risk-meter-fill green-meter" style="width:0%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stat-grid">
+                <div class="stat-card">
+                  <p>Score</p>
+                  <p id="resultScore">0/12</p>
+                </div>
+
+                <div class="stat-card">
+                  <p>Accuracy</p>
+                  <p id="resultAccuracy">0%</p>
+                </div>
+
+                <div class="stat-card">
+                  <p>Assessment</p>
+                  <p style="font-size:20px;">Advisory Simulation Result</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="categoryGrid" class="category-grid"></div>
+
+          <div class="takeaway">
+            <h4>Advisory Takeaway</h4>
+            <p>
+              Stronger outcomes in emerging-market fintech expansion usually depend on four things:
+              disciplined jurisdictional assessment, proportional KYC, robust monitoring, and governance
+              that scales with growth. This simulation is designed to reinforce exactly that.
+            </p>
+          </div>
+
+          <div class="next-actions-box">
+            <h4>Recommended Next Actions</h4>
+            <ul id="nextActionsList" class="next-actions"></ul>
+          </div>
+
+          <div class="result-actions print-hide">
+            <button id="restartBtn3" class="button button-dark">Restart Simulation</button>
+            <button id="printBtn" class="button button-light">Download / Print Result</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        id: 1,
+        category: "Market Entry Strategy",
+        question: "Which market-entry approach is most appropriate from an AML risk perspective?",
+        options: [
+          "Enter the fastest-growing market immediately to secure first-mover advantage",
+          "Prioritise jurisdictions with stronger regulatory maturity and perform phased entry",
+          "Target the least regulated market to reduce operational friction",
+          "Expand equally into all shortlisted markets at the same time"
+        ],
+        correctAnswer: 1,
+        explanation: "A risk-based market-entry approach should prioritise regulatory maturity, supervisory quality, and control readiness. A phased entry reduces exposure and allows the business to calibrate AML controls before wider expansion."
+      },
+      {
+        id: 2,
+        category: "Market Entry Strategy",
+        question: "What should be completed before selecting a target jurisdiction?",
+        options: [
+          "A jurisdictional risk assessment using FATF, regulatory, and internal risk indicators",
+          "A competitor pricing review only",
+          "A social media popularity scan of the region",
+          "A revenue projection without compliance input"
+        ],
+        correctAnswer: 0,
+        explanation: "Before market selection, a firm should evaluate jurisdictional risk using recognised AML/CFT indicators, enforcement quality, sanctions exposure, and internal risk appetite considerations."
+      },
+      {
+        id: 3,
+        category: "Customer Risk",
+        question: "Which KYC model is most appropriate for a fintech onboarding diverse customer types?",
+        options: [
+          "One identical KYC standard for every customer regardless of risk",
+          "No onboarding checks for low-value users",
+          "A tiered KYC model aligned to customer profile, product use, and transaction limits",
+          "Manual checks only after suspicious activity occurs"
+        ],
+        correctAnswer: 2,
+        explanation: "A tiered KYC model supports proportionality. It allows the firm to apply enhanced controls where risk is higher while maintaining efficiency for lower-risk segments."
+      },
+      {
+        id: 4,
+        category: "Customer Risk",
+        question: "How should the firm approach complex ownership structures?",
+        options: [
+          "Accept the declared ownership at face value",
+          "Request only a company registration certificate",
+          "Verify ultimate beneficial ownership and understand control layers",
+          "Delay review until after onboarding"
+        ],
+        correctAnswer: 2,
+        explanation: "Complex legal structures create opacity risk. The firm should verify UBOs, understand who exercises control, and assess jurisdictional and source-of-funds exposure."
+      },
+      {
+        id: 5,
+        category: "Transaction Monitoring",
+        question: "What type of transaction monitoring framework is most effective?",
+        options: [
+          "Static thresholds only",
+          "Scenario-based monitoring with risk triggers and behavioural indicators",
+          "No monitoring for low-value transactions",
+          "Monitoring only when regulators request it"
+        ],
+        correctAnswer: 1,
+        explanation: "Scenario-based monitoring is stronger because it captures patterns such as structuring, rapid movement of funds, unusual corridors, and behavioural anomalies that static thresholds may miss."
+      },
+      {
+        id: 6,
+        category: "Transaction Monitoring",
+        question: "How should cross-border transaction exposure be assessed?",
+        options: [
+          "Only by the customer’s country of residence",
+          "By reviewing transaction corridors, routing, counterparties, and destination exposure",
+          "By currency alone",
+          "Only after transaction volumes become material"
+        ],
+        correctAnswer: 1,
+        explanation: "Cross-border risk is not defined only by where the customer sits. It also depends on where funds move, through whom, and into which jurisdictions or counterparties."
+      },
+      {
+        id: 7,
+        category: "Product & Channel Risk",
+        question: "What is the best control approach for digital onboarding?",
+        options: [
+          "Basic sign-up only",
+          "Enhanced identity verification with fraud controls and review triggers",
+          "No verification until withdrawal",
+          "Reliance on customer self-declaration only"
+        ],
+        correctAnswer: 1,
+        explanation: "Digital onboarding can increase impersonation and synthetic identity risk. Enhanced verification, layered checks, and escalation triggers strengthen control effectiveness."
+      },
+      {
+        id: 8,
+        category: "Product & Channel Risk",
+        question: "How should the firm treat third-party agent or distribution networks?",
+        options: [
+          "Assume they follow local law and proceed",
+          "Conduct due diligence, define accountability, and monitor performance continuously",
+          "Use as many agents as possible to scale quickly",
+          "Allow them to onboard customers without oversight"
+        ],
+        correctAnswer: 1,
+        explanation: "Third parties can create indirect exposure. A firm should assess them before onboarding, define responsibilities clearly, and monitor them on an ongoing basis."
+      },
+      {
+        id: 9,
+        category: "Governance & Controls",
+        question: "What is the strongest governance model during expansion?",
+        options: [
+          "Growth team leads all compliance decisions",
+          "Central compliance oversight with local market input and escalation channels",
+          "No formal governance until the first year ends",
+          "Outsource everything and avoid internal oversight"
+        ],
+        correctAnswer: 1,
+        explanation: "A scalable framework usually combines central governance with local intelligence. This improves consistency while ensuring market-specific risks are not ignored."
+      },
+      {
+        id: 10,
+        category: "Governance & Controls",
+        question: "What role should AI play in AML decision-making?",
+        options: [
+          "Full autonomy with no human oversight",
+          "Supportive analytical role with human review over material risk decisions",
+          "No role at all in monitoring or analytics",
+          "Only a marketing tool for the fintech"
+        ],
+        correctAnswer: 1,
+        explanation: "AI can improve speed and pattern detection, but material compliance decisions still require governance, accountability, and human oversight."
+      },
+      {
+        id: 11,
+        category: "Governance & Controls",
+        question: "What is the best approach to high-risk customers?",
+        options: [
+          "Automatically reject all of them",
+          "Accept all of them if revenue potential is high",
+          "Apply enhanced due diligence and risk-based approval controls",
+          "Skip onboarding checks to avoid delays"
+        ],
+        correctAnswer: 2,
+        explanation: "High-risk customers are not always prohibited, but they require EDD, stronger approvals, deeper source-of-funds understanding, and more robust monitoring."
+      },
+      {
+        id: 12,
+        category: "Strategic Decision-Making",
+        question: "What should guide expansion decisions overall?",
+        options: [
+          "Growth first, controls later",
+          "Marketing momentum only",
+          "Risk-based growth supported by scalable compliance infrastructure",
+          "Lowest operational cost regardless of risk"
+        ],
+        correctAnswer: 2,
+        explanation: "Sustainable market entry requires growth to be supported by proportionate, scalable, and well-governed compliance infrastructure."
+      }
+    ];
+
+    let currentIndex = 0;
+    let selectedIndex = null;
+    let showFeedback = false;
+    let answers = [];
+
+    const startScreen = document.getElementById("startScreen");
+    const simulationScreen = document.getElementById("simulationScreen");
+    const resultScreen = document.getElementById("resultScreen");
+
+    const startBtn = document.getElementById("startBtn");
+    const progressFill = document.getElementById("progressFill");
+    const questionCount = document.getElementById("questionCount");
+    const totalCount = document.getElementById("totalCount");
+    const scoreTop = document.getElementById("scoreTop");
+    const categoryName = document.getElementById("categoryName");
+    const accuracyTrend = document.getElementById("accuracyTrend");
+    const riskLabel = document.getElementById("riskLabel");
+    const riskMeterFill = document.getElementById("riskMeterFill");
+    const questionBadgeCategory = document.getElementById("questionBadgeCategory");
+    const questionTitle = document.getElementById("questionTitle");
+    const optionsWrap = document.getElementById("optionsWrap");
+    const submitBtn = document.getElementById("submitBtn");
+    const restartBtn1 = document.getElementById("restartBtn1");
+    const restartBtn2 = document.getElementById("restartBtn2");
+    const restartBtn3 = document.getElementById("restartBtn3");
+    const nextBtn = document.getElementById("nextBtn");
+    const actionButtons = document.getElementById("actionButtons");
+    const feedbackBox = document.getElementById("feedbackBox");
+    const feedbackIcon = document.getElementById("feedbackIcon");
+    const feedbackKicker = document.getElementById("feedbackKicker");
+    const feedbackText = document.getElementById("feedbackText");
+    const correctFlowBox = document.getElementById("correctFlowBox");
+    const correctFlowText = document.getElementById("correctFlowText");
+    const explanationText = document.getElementById("explanationText");
+
+        const resultMain = document.getElementById("resultMain");
+    const resultLabel = document.getElementById("resultLabel");
+    const resultSummary = document.getElementById("resultSummary");
+    const resultRiskLabel = document.getElementById("resultRiskLabel");
+    const resultMeter = document.getElementById("resultMeter");
+    const resultScore = document.getElementById("resultScore");
+    const resultAccuracy = document.getElementById("resultAccuracy");
+    const categoryGrid = document.getElementById("categoryGrid");
+    const nextActionsList = document.getElementById("nextActionsList");
+    const printBtn = document.getElementById("printBtn");
+
+    totalCount.textContent = questions.length;
+
+    function scoreValue() {
+      return answers.filter(a => a.isCorrect).length;
+    }
+
+    function accuracyValue() {
+      return Math.round((scoreValue() / questions.length) * 100);
+    }
+
+    function trendValue() {
+      if (answers.length === 0) return "—";
+      return Math.round((scoreValue() / answers.length) * 100) + "%";
+    }
+
+    function getOutcome(score, total) {
+      const pct = (score / total) * 100;
+
+      if (pct >= 85) {
+        return {
+          label: "Strong Compliance Framework",
+          summary: "The business enters new markets with a credible AML framework, controlled expansion strategy, and stronger regulatory resilience.",
+          riskLabel: "Low Residual Risk",
+          bgClass: "green-bg",
+          textClass: "green-text",
+          meterClass: "green-meter"
+        };
+      }
+
+      if (pct >= 65) {
+        return {
+          label: "Moderate Risk Exposure",
+          summary: "The business shows some sound decisions, but control gaps remain. Expansion may proceed, though regulatory and operational risk would still be elevated.",
+          riskLabel: "Managed Risk",
+          bgClass: "amber-bg",
+          textClass: "amber-text",
+          meterClass: "amber-meter"
+        };
+      }
+
+      if (pct >= 40) {
+        return {
+          label: "High Financial Crime Risk",
+          summary: "Weak risk decisions increase exposure to onboarding failures, transaction monitoring gaps, and poor governance outcomes.",
+          riskLabel: "Elevated Risk",
+          bgClass: "rose-bg",
+          textClass: "rose-text",
+          meterClass: "rose-meter"
+        };
+      }
+
+      return {
+        label: "Regulatory Failure Scenario",
+        summary: "The business expands without adequate AML discipline, creating a high likelihood of regulatory intervention, financial crime exposure, and strategic failure.",
+        riskLabel: "Critical Risk",
+        bgClass: "red-bg",
+        textClass: "red-text",
+        meterClass: "red-meter"
+      };
+    }
+
+    function getNextActions(score, total) {
+      const pct = (score / total) * 100;
+
+      if (pct >= 85) {
+        return [
+          "Maintain phased market-entry discipline and reassess jurisdictional risk before each expansion milestone.",
+          "Scale transaction monitoring rules by corridor risk, customer profile, and behavioural anomalies.",
+          "Formalise local escalation channels while preserving strong central compliance governance.",
+          "Review third-party and agent relationships periodically to ensure controls remain proportionate and effective."
+        ];
+      }
+
+      if (pct >= 65) {
+        return [
+          "Strengthen controls in weaker decision areas before expanding into additional markets.",
+          "Improve governance documentation, escalation triggers, and approval discipline for higher-risk scenarios.",
+          "Refine transaction-monitoring scenarios to better capture structuring, routing, and destination exposure.",
+          "Tighten UBO verification and customer-risk segmentation so controls remain aligned to actual exposure."
+        ];
+      }
+
+      if (pct >= 40) {
+        return [
+          "Rebuild market-entry decisions around jurisdictional risk assessment rather than growth-first logic.",
+          "Implement a tiered KYC and EDD framework for higher-risk customers, structures, and geographies.",
+          "Introduce scenario-based monitoring and clearer review thresholds for cross-border transaction patterns.",
+          "Establish stronger governance ownership, accountability lines, and control escalation procedures."
+        ];
+      }
+
+      return [
+        "Pause expansion until foundational AML controls are redesigned and approved.",
+        "Implement immediate jurisdictional, customer, and transaction-risk assessment before any onboarding activity.",
+        "Create clear governance ownership with central oversight, local input, and formal escalation paths.",
+        "Deploy robust KYC, EDD, and transaction-monitoring controls before pursuing further market growth."
+      ];
+    }
+
+    function getCategoryStats() {
+      const stats = {};
+      answers.forEach(answer => {
+        if (!stats[answer.category]) {
+          stats[answer.category] = { correct: 0, total: 0 };
+        }
+        stats[answer.category].total += 1;
+        if (answer.isCorrect) stats[answer.category].correct += 1;
+      });
+      return stats;
+    }
+
+    function renderQuestion() {
+      const q = questions[currentIndex];
+      const score = scoreValue();
+      const accuracy = accuracyValue();
+      const outcome = getOutcome(score, questions.length);
+
+      questionCount.textContent = currentIndex + 1;
+      scoreTop.textContent = score;
+      categoryName.textContent = q.category;
+      questionBadgeCategory.textContent = q.category;
+      questionTitle.textContent = q.question;
+      accuracyTrend.textContent = trendValue();
+      riskLabel.textContent = outcome.riskLabel;
+      progressFill.style.width = ((currentIndex + 1) / questions.length) * 100 + "%";
+      riskMeterFill.style.width = Math.max(accuracy, 8) + "%";
+
+      riskMeterFill.className = "risk-meter-fill " + outcome.meterClass;
+
+      optionsWrap.innerHTML = "";
+      q.options.forEach((option, index) => {
+        const btn = document.createElement("button");
+        btn.className = "option";
+        btn.type = "button";
+
+        if (!showFeedback && selectedIndex === index) {
+          btn.classList.add("selected");
+        }
+
+        if (showFeedback) {
+          if (index === q.correctAnswer) {
+            btn.classList.add("correct");
+          } else if (selectedIndex === index && index !== q.correctAnswer) {
+            btn.classList.add("wrong");
+          } else {
+            btn.classList.add("muted");
+          }
+        }
+
+        btn.innerHTML = `
+          <div class="option-content">
+            <div class="option-letter">${String.fromCharCode(65 + index)}</div>
+            <p class="option-text">${option}</p>
+          </div>
+        `;
+
+        btn.addEventListener("click", () => {
+          if (showFeedback) return;
+          selectedIndex = index;
+          renderQuestion();
+        });
+
+        optionsWrap.appendChild(btn);
+      });
+
+      if (showFeedback) {
+        actionButtons.classList.add("hide");
+        feedbackBox.classList.remove("hide");
+
+        const isCorrect = selectedIndex === q.correctAnswer;
+        feedbackBox.className = "feedback " + (isCorrect ? "good" : "bad");
+        feedbackIcon.textContent = isCorrect ? "✓" : "!";
+        feedbackKicker.textContent = isCorrect ? "Correct Decision" : "Control Weakness Identified";
+        feedbackText.textContent = isCorrect
+          ? "This choice aligns with stronger advisory judgement and a more resilient AML framework."
+          : "This decision increases regulatory and financial crime exposure. A stronger control choice is needed.";
+
+        explanationText.textContent = q.explanation;
+
+        if (isCorrect) {
+          correctFlowBox.classList.add("hide");
+        } else {
+          correctFlowBox.classList.remove("hide");
+          correctFlowText.textContent = q.options[q.correctAnswer];
+        }
+
+        nextBtn.textContent = currentIndex === questions.length - 1 ? "View Final Outcome" : "Continue Simulation";
+      } else {
+        actionButtons.classList.remove("hide");
+        feedbackBox.classList.add("hide");
+      }
+    }
+
+    function submitAnswer() {
+      if (selectedIndex === null) return;
+
+      const q = questions[currentIndex];
+      answers.push({
+        questionId: q.id,
+        category: q.category,
+        selectedIndex,
+        correctIndex: q.correctAnswer,
+        isCorrect: selectedIndex === q.correctAnswer
+      });
+
+      showFeedback = true;
+      renderQuestion();
+    }
+
+    function nextQuestion() {
+      if (currentIndex === questions.length - 1) {
+        showResults();
+        return;
+      }
+
+      currentIndex += 1;
+      selectedIndex = null;
+      showFeedback = false;
+      renderQuestion();
+    }
+
+    function showResults() {
+      simulationScreen.classList.add("hide");
+      resultScreen.classList.remove("hide");
+
+      const score = scoreValue();
+      const accuracy = accuracyValue();
+      const outcome = getOutcome(score, questions.length);
+      const categoryStats = getCategoryStats();
+      const nextActions = getNextActions(score, questions.length);
+
+      resultMain.className = "result-main " + outcome.bgClass;
+      resultLabel.className = outcome.textClass;
+      document.getElementById("resultOutcomeKicker").className = outcome.textClass;
+      resultLabel.textContent = outcome.label;
+      resultSummary.textContent = outcome.summary;
+      resultRiskLabel.textContent = outcome.riskLabel;
+      resultScore.textContent = score + "/" + questions.length;
+      resultAccuracy.textContent = accuracy + "%";
+      resultMeter.className = "risk-meter-fill " + outcome.meterClass;
+      resultMeter.style.width = accuracy + "%";
+
+      categoryGrid.innerHTML = "";
+      Object.entries(categoryStats).forEach(([category, values]) => {
+        const card = document.createElement("div");
+        card.className = "category-card";
+        card.innerHTML = `
+          <p>${category}</p>
+          <p>${values.correct}/${values.total}</p>
+          <p>Correct decisions</p>
+        `;
+        categoryGrid.appendChild(card);
+      });
+
+      nextActionsList.innerHTML = "";
+      nextActions.forEach(action => {
+        const li = document.createElement("li");
+        li.textContent = action;
+        nextActionsList.appendChild(li);
+      });
+    }
+
+    function startSimulation() {
+      startScreen.classList.add("hide");
+      resultScreen.classList.add("hide");
+      simulationScreen.classList.remove("hide");
+
+      currentIndex = 0;
+      selectedIndex = null;
+      showFeedback = false;
+      answers = [];
+
+      renderQuestion();
+    }
+
+    function restartSimulation() {
+      startSimulation();
+    }
+
+    startBtn.addEventListener("click", startSimulation);
+    submitBtn.addEventListener("click", submitAnswer);
+    nextBtn.addEventListener("click", nextQuestion);
+    restartBtn1.addEventListener("click", restartSimulation);
+    restartBtn2.addEventListener("click", restartSimulation);
+    restartBtn3.addEventListener("click", restartSimulation);
+    printBtn.addEventListener("click", () => window.print());
+  </script>
+</body>
+</html>
