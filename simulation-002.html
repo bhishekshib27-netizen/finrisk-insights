@@ -817,822 +817,741 @@
           </main>
         </div>
       </section>
-      <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>FinRisk Insights | Simulation 002</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f3f4f6;
-      color: #111827;
-    }
-
-    .page {
-      min-height: 100vh;
-      padding: 40px 20px;
-    }
-
-    .shell {
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-
-    .card {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 28px;
-      box-shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
-      overflow: hidden;
-    }
-
-    .start-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-    }
-
-    .start-left {
-      background: #0a0a0a;
-      color: #ffffff;
-      padding: 36px;
-    }
-
-    .start-right {
-      padding: 36px;
-      background: #ffffff;
-    }
-
-    .brand-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 28px;
-    }
-
-    .brand-box {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .brand-logo {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      object-fit: cover;
-      background: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .brand-kicker {
-      margin: 0;
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #9ca3af;
-      font-weight: 700;
-    }
-
-    .brand-title {
-      margin: 8px 0 0;
-      font-size: 38px;
-      line-height: 1.08;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    .tag {
-      padding: 10px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 999px;
-      color: #d1d5db;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      background: rgba(255, 255, 255, 0.04);
-      white-space: nowrap;
-    }
-
-    .lead {
-      margin: 0;
-      max-width: 680px;
-      color: #d1d5db;
-      font-size: 18px;
-      line-height: 1.85;
-    }
-
-    .start-metrics {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .metric-dark {
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 22px;
-      padding: 18px;
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .metric-dark .label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #9ca3af;
-      margin: 0 0 10px;
-      font-weight: 700;
-    }
-
-    .metric-dark .value {
-      margin: 0;
-      font-size: 22px;
-      font-weight: 700;
-      color: #ffffff;
-    }
-
-    .scenario-box {
-      margin-top: 26px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 24px;
-      padding: 22px;
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .scenario-box h3 {
-      margin: 0 0 10px;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: #d1d5db;
-    }
-
-    .scenario-box p {
-      margin: 0;
-      color: #d1d5db;
-      line-height: 1.8;
-      font-size: 14px;
-    }
-
-    .panel {
-      border: 1px solid #e5e7eb;
-      background: #f9fafb;
-      border-radius: 24px;
-      padding: 22px;
-    }
-
-    .panel h3 {
-      margin: 0 0 14px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: #6b7280;
-    }
-
-    .test-item {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      padding: 14px;
-      border: 1px solid #e5e7eb;
-      background: #ffffff;
-      border-radius: 18px;
-      margin-bottom: 12px;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: #111827;
-      margin-top: 7px;
-      flex-shrink: 0;
-    }
-
-    .test-item p {
-      margin: 0;
-      color: #374151;
-      line-height: 1.7;
-      font-size: 14px;
-    }
-
-    .button {
-      appearance: none;
-      border: none;
-      cursor: pointer;
-      border-radius: 22px;
-      padding: 15px 22px;
-      font-size: 14px;
-      font-weight: 700;
-      transition: 0.2s ease;
-    }
-
-    .button-dark {
-      background: #111827;
-      color: #ffffff;
-    }
-
-    .button-light {
-      background: #ffffff;
-      color: #374151;
-      border: 1px solid #d1d5db;
-    }
-
-    .button-full {
-      width: 100%;
-      margin-top: 18px;
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .topbar-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .small-logo {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
-      object-fit: cover;
-      border: 1px solid #e5e7eb;
-      background: white;
-    }
-
-    .topbar-left .text p {
-      margin: 0;
-    }
-
-    .topbar-left .text p:first-child {
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #6b7280;
-      font-weight: 700;
-    }
-
-    .topbar-left .text p:last-child {
-      margin-top: 6px;
-      font-size: 30px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: #111827;
-    }
-
-    .pill-wrap {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .pill {
-      padding: 10px 14px;
-      border: 1px solid #e5e7eb;
-      border-radius: 999px;
-      background: #ffffff;
-      color: #4b5563;
-      font-size: 14px;
-      box-shadow: 0 6px 18px rgba(17, 24, 39, 0.04);
-    }
-
-    .progress-track {
-      width: 100%;
-      height: 12px;
-      border-radius: 999px;
-      background: #e5e7eb;
-      overflow: hidden;
-      margin-bottom: 18px;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: #111827;
-      width: 0%;
-      transition: width 0.35s ease;
-      border-radius: 999px;
-    }
-
-    .main-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 2.1fr;
-      gap: 20px;
-    }
-
-    .sidebar,
-    .main-panel {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 28px;
-      padding: 26px;
-      box-shadow: 0 8px 24px rgba(17, 24, 39, 0.04);
-    }
-
-    .sub-card {
-      border: 1px solid #e5e7eb;
-      border-radius: 22px;
-      padding: 18px;
-      background: #f9fafb;
-      margin-bottom: 14px;
-    }
-
-    .sub-card h4 {
-      margin: 0;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: #6b7280;
-    }
-
-    .sub-card .big {
-      margin: 10px 0 0;
-      font-size: 26px;
-      font-weight: 700;
-      color: #111827;
-      line-height: 1.3;
-    }
-
-    .sub-card .small {
-      margin: 8px 0 0;
-      color: #6b7280;
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .meter-track {
-      width: 100%;
-      height: 12px;
-      border-radius: 999px;
-      background: #e5e7eb;
-      overflow: hidden;
-      margin: 12px 0;
-    }
-
-    .meter-fill {
-      height: 100%;
-      width: 0%;
-      border-radius: 999px;
-      transition: width 0.35s ease;
-      background: #111827;
-    }
-
-    .badge-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-
-    .badge {
-      border: 1px solid #e5e7eb;
-      background: #f9fafb;
-      color: #4b5563;
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-weight: 700;
-    }
-
-    .question-title {
-      margin: 0;
-      font-size: 34px;
-      line-height: 1.2;
-      letter-spacing: -0.03em;
-      color: #111827;
-    }
-
-    .question-sub {
-      margin: 12px 0 0;
-      color: #6b7280;
-      font-size: 14px;
-      line-height: 1.8;
-      max-width: 760px;
-    }
-
-    .case-note {
-      margin-top: 18px;
-      border: 1px solid #e5e7eb;
-      background: #f9fafb;
-      border-radius: 22px;
-      padding: 18px;
-      color: #374151;
-      line-height: 1.8;
-      font-size: 14px;
-    }
-
-    .options {
-      margin-top: 24px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .option {
-      width: 100%;
-      text-align: left;
-      border: 1px solid #e5e7eb;
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 18px;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .option:hover {
-      border-color: #9ca3af;
-      transform: translateY(-1px);
-    }
-
-    .option-content {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-
-    .option-letter {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      background: #f9fafb;
-      color: #4b5563;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .option-text {
-      color: #374151;
-      line-height: 1.8;
-      font-size: 14px;
-      margin: 0;
-    }
-
-    .option.selected {
-      border-color: #111827;
-      background: #111827;
-      box-shadow: 0 10px 24px rgba(17, 24, 39, 0.12);
-    }
-
-    .option.selected .option-letter {
-      border-color: rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.08);
-      color: white;
-    }
-
-    .option.selected .option-text {
-      color: white;
-    }
-
-    .actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 24px;
-      flex-wrap: wrap;
-    }
-
-    .feedback {
-      margin-top: 24px;
-      border-radius: 26px;
-      padding: 22px;
-      border: 1px solid #e5e7eb;
-      background: #f9fafb;
-    }
-
-    .feedback-head {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      margin-bottom: 14px;
-    }
-
-    .feedback-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      flex-shrink: 0;
-      background: #111827;
-      color: #ffffff;
-    }
-
-    .feedback-kicker {
-      margin: 0;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      font-weight: 700;
-      color: #4b5563;
-    }
-
-    .feedback-text {
-      margin: 8px 0 0;
-      color: #374151;
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    .explain-box {
-      border: 1px solid #e5e7eb;
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 18px;
-      margin-top: 14px;
-    }
-
-    .explain-box h5 {
-      margin: 0;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: #4b5563;
-    }
-
-    .explain-box p {
-      margin: 10px 0 0;
-      font-size: 14px;
-      line-height: 1.8;
-      color: #1f2937;
-    }
-
-    .impact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .impact-card {
-      border: 1px solid #e5e7eb;
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 14px;
-    }
-
-    .impact-card span {
-      display: block;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #6b7280;
-      margin-bottom: 8px;
-      font-weight: 700;
-    }
-
-    .impact-card strong {
-      font-size: 20px;
-    }
-
-    .hide {
-      display: none !important;
-    }
-
-    @media (max-width: 980px) {
-      .start-grid,
-      .main-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .page {
-        padding: 20px 12px;
-      }
-
-      .start-left,
-      .start-right,
-      .sidebar,
-      .main-panel {
-        padding: 20px;
-      }
-
-      .brand-title,
-      .question-title {
-        font-size: 28px;
-      }
-
-      .start-metrics,
-      .impact-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="page">
-    <div class="shell">
-
-      <section id="startScreen" class="card">
-        <div class="start-grid">
-          <div class="start-left">
-            <div class="brand-row">
-              <div class="brand-box">
-                <img src="FinRisk.png" alt="FinRisk Insights Logo" class="brand-logo">
-                <div>
-                  <p class="brand-kicker">FinRisk Insights</p>
-                  <h1 class="brand-title">Simulation 002</h1>
-                </div>
-              </div>
-              <div class="tag">Risk Engine</div>
-            </div>
-
-            <p class="lead">
-              Step into a live AML monitoring environment. NovaPay AI has already launched.
-              Now transaction activity is changing, pressure is rising, and every decision affects the risk profile.
-            </p>
-
-            <div class="start-metrics">
-              <div class="metric-dark">
-                <p class="label">Format</p>
-                <p class="value">Scenario Decisions</p>
-              </div>
-              <div class="metric-dark">
-                <p class="label">Focus</p>
-                <p class="value">Monitoring & STR</p>
-              </div>
-              <div class="metric-dark">
-                <p class="label">Engine</p>
-                <p class="value">Risk Impact</p>
+            <section id="resultScreen" class="hide">
+        <div class="card" style="padding:30px;">
+          <div class="topbar">
+            <div class="topbar-left">
+              <img src="FinRisk.png" alt="FinRisk Insights Logo" class="small-logo">
+              <div class="text">
+                <p>FinRisk Insights</p>
+                <p>Final Risk Outcome</p>
               </div>
             </div>
 
-            <div class="scenario-box">
-              <h3>Scenario</h3>
-              <p>
-                <strong style="color:white;">NovaPay AI</strong> has completed its market-entry phase.
-                Four months later, unusual transaction patterns begin appearing across new corridors,
-                counterparties, and customer profiles. Your role is to assess whether this is growth —
-                or a financial crime risk pattern.
-              </p>
+            <div class="pill-wrap">
+              <div class="pill">Simulation 002</div>
+              <div class="pill">Transaction Monitoring</div>
             </div>
           </div>
 
-          <div class="start-right">
-            <div class="panel">
-              <h3>What this tests</h3>
-
-              <div class="test-item">
-                <div class="dot"></div>
-                <p>Suspicious transaction pattern recognition</p>
-              </div>
-
-              <div class="test-item">
-                <div class="dot"></div>
-                <p>Escalation judgement under commercial pressure</p>
-              </div>
-
-              <div class="test-item">
-                <div class="dot"></div>
-                <p>STR decision-making and control timing</p>
-              </div>
-
-              <div class="test-item">
-                <div class="dot"></div>
-                <p>Risk-based monitoring and relationship management</p>
+          <div id="resultMain" class="feedback">
+            <div class="feedback-head">
+              <div class="feedback-icon">✓</div>
+              <div>
+                <p class="feedback-kicker">Final Assessment</p>
+                <h2 id="resultLabel" class="question-title" style="margin-top:8px;"></h2>
+                <p id="resultSummary" class="feedback-text"></p>
               </div>
             </div>
 
-            <button id="startBtn" class="button button-dark button-full">
-              Launch Simulation 002
-            </button>
+            <div class="impact-grid">
+              <div class="impact-card">
+                <span>Final Risk Score</span>
+                <strong id="finalRiskScore">0/100</strong>
+              </div>
 
-            <p style="margin:14px 0 0; font-size:12px; line-height:1.8; color:#6b7280; text-align:center;">
-              Built for FinRisk Insights — transaction monitoring and escalation simulation.
-            </p>
+              <div class="impact-card">
+                <span>Escalation Quality</span>
+                <strong id="finalEscalation">0</strong>
+              </div>
+
+              <div class="impact-card">
+                <span>Red Flags Identified</span>
+                <strong id="finalFlags">0</strong>
+              </div>
+            </div>
+
+            <div class="explain-box">
+              <h5>Strategic Takeaway</h5>
+              <p id="finalTakeaway"></p>
+            </div>
+
+            <div class="explain-box">
+              <h5>Recommended Next Actions</h5>
+              <ul id="nextActionsList" style="margin:10px 0 0; padding-left:20px; line-height:1.8; color:#1f2937;"></ul>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="restartBtn3" class="button button-dark">Restart Simulation</button>
+            <button id="printBtn" class="button button-light">Download / Print Result</button>
+            <a href="index.html#simulation" class="button button-light" style="text-decoration:none;">Back to Hub</a>
           </div>
         </div>
       </section>
 
-      <section id="simulationScreen" class="hide">
-        <div class="topbar">
-          <div class="topbar-left">
-            <img src="FinRisk.png" alt="FinRisk Insights Logo" class="small-logo">
-            <div class="text">
-              <p>FinRisk Insights</p>
-              <p>Transaction Monitoring</p>
-            </div>
+    </div>
+  </div>
+
+  <script>
+    const decisions = [
+      {
+        stage: "Early Signals",
+        question: "Transaction volume increases 4x over 10 days in a newly launched corridor.",
+        note: "The business team says this is expected growth after a promotional campaign, but the increase is concentrated among a small group of new customers.",
+        options: [
+          {
+            text: "Accept the business explanation and continue standard monitoring.",
+            label: "Weak control response",
+            risk: 14,
+            escalation: 0,
+            flags: 0,
+            explanation: "Commercial explanations should not override unusual activity review. A concentrated spike requires at least enhanced monitoring."
+          },
+          {
+            text: "Apply enhanced monitoring and compare the activity against expected customer behaviour.",
+            label: "Strong monitoring response",
+            risk: -6,
+            escalation: 1,
+            flags: 1,
+            explanation: "This is proportionate. It recognises the signal without over-escalating before enough evidence is available."
+          },
+          {
+            text: "Immediately exit all customers active in the corridor.",
+            label: "Overcorrected response",
+            risk: 4,
+            escalation: 0,
+            flags: 1,
+            explanation: "Exiting without analysis may reduce exposure, but it is not a disciplined risk-based approach."
+          },
+          {
+            text: "Disable all cross-border payments until the pattern is fully reviewed.",
+            label: "Operationally heavy response",
+            risk: 2,
+            escalation: 1,
+            flags: 1,
+            explanation: "This may be appropriate only if the risk is severe. At this stage, targeted enhanced monitoring is more proportionate."
+          }
+        ]
+      },
+      {
+        stage: "Pattern Recognition",
+        question: "Several customers begin sending repeated transfers just below internal review thresholds.",
+        note: "The transactions are small individually, but frequent. They appear deliberately structured to avoid review triggers.",
+        options: [
+          {
+            text: "Leave the thresholds unchanged because no individual transaction breaches the limit.",
+            label: "Control failure",
+            risk: 18,
+            escalation: 0,
+            flags: 0,
+            explanation: "Structuring risk is often visible through patterns, not individual transaction size. Ignoring cumulative behaviour weakens monitoring."
+          },
+          {
+            text: "Create a behavioural rule to detect repeated sub-threshold activity.",
+            label: "Strong control enhancement",
+            risk: -10,
+            escalation: 1,
+            flags: 2,
+            explanation: "This addresses the pattern directly and improves the monitoring system instead of relying only on static limits."
+          },
+          {
+            text: "Raise all thresholds to reduce false positives.",
+            label: "Dangerous simplification",
+            risk: 16,
+            escalation: 0,
+            flags: 0,
+            explanation: "Raising thresholds during suspicious activity may reduce workload, but it also increases exposure."
+          },
+          {
+            text: "File an STR immediately on every customer using the corridor.",
+            label: "Premature blanket escalation",
+            risk: 3,
+            escalation: 1,
+            flags: 1,
+            explanation: "A blanket STR approach may be premature. The better response is targeted pattern review and escalation where suspicion is supported."
+          }
+        ]
+      },
+      {
+        stage: "Counterparty Risk",
+        question: "Funds repeatedly move to newly incorporated entities with limited public information.",
+        note: "Several counterparties were formed within the last six months and share similar addresses or directors.",
+        options: [
+          {
+            text: "Treat the counterparties as normal because they are legally registered.",
+            label: "Weak due diligence",
+            risk: 15,
+            escalation: 0,
+            flags: 0,
+            explanation: "Registration alone does not remove counterparty risk. Shared indicators and limited history require further review."
+          },
+          {
+            text: "Request counterparty information and review ownership, purpose, and transaction rationale.",
+            label: "Strong investigative response",
+            risk: -8,
+            escalation: 1,
+            flags: 2,
+            explanation: "This response tests legitimacy and seeks to understand whether the entities have genuine economic purpose."
+          },
+          {
+            text: "Block all transactions to newly incorporated entities permanently.",
+            label: "Overly rigid response",
+            risk: 2,
+            escalation: 0,
+            flags: 1,
+            explanation: "New companies can be legitimate. The better approach is enhanced review, not automatic exclusion."
+          },
+          {
+            text: "Ask the sales team whether the customers seem trustworthy.",
+            label: "Poor control reliance",
+            risk: 12,
+            escalation: 0,
+            flags: 0,
+            explanation: "Sales input can provide context, but it cannot replace independent AML review."
+          }
+        ]
+      },
+      {
+        stage: "Source of Funds Drift",
+        question: "Customer activity no longer matches the declared business model at onboarding.",
+        note: "A customer onboarded as a local services provider is now receiving large international inflows and forwarding funds within hours.",
+        options: [
+          {
+            text: "Treat it as normal business growth and wait for annual review.",
+            label: "Delayed response",
+            risk: 17,
+            escalation: 0,
+            flags: 0,
+            explanation: "Material profile changes should trigger event-driven review. Waiting for annual review leaves the institution exposed."
+          },
+          {
+            text: "Trigger an event-driven KYC refresh and request updated source-of-funds information.",
+            label: "Strong risk-based response",
+            risk: -9,
+            escalation: 1,
+            flags: 2,
+            explanation: "A KYC refresh aligns the customer profile with actual behaviour and supports informed monitoring decisions."
+          },
+          {
+            text: "Immediately close the relationship without gathering supporting information.",
+            label: "Possibly premature exit",
+            risk: 1,
+            escalation: 0,
+            flags: 1,
+            explanation: "Exit may become necessary, but the first step is usually to establish facts unless risk is extreme."
+          },
+          {
+            text: "Reduce monitoring because the customer has been active for several months.",
+            label: "Dangerous confidence bias",
+            risk: 20,
+            escalation: 0,
+            flags: 0,
+            explanation: "Customer age does not reduce risk when behaviour changes materially."
+          }
+        ]
+      },
+      {
+        stage: "Escalation Pressure",
+        question: "An analyst recommends escalation, but the business team says the client is high-value.",
+        note: "The client generates significant fee income and is being considered for expanded services.",
+        options: [
+          {
+            text: "Delay escalation until the relationship team gives approval.",
+            label: "Governance weakness",
+            risk: 16,
+            escalation: -1,
+            flags: 0,
+            explanation: "Commercial teams should not control AML escalation. This creates conflict-of-interest risk."
+          },
+          {
+            text: "Escalate through compliance channels and document the business pressure.",
+            label: "Strong governance response",
+            risk: -10,
+            escalation: 2,
+            flags: 1,
+            explanation: "This protects independence, creates an audit trail, and keeps risk decisions within the right governance structure."
+          },
+          {
+            text: "Ignore the analyst because revenue exposure is material.",
+            label: "High-risk failure",
+            risk: 22,
+            escalation: -2,
+            flags: 0,
+            explanation: "Ignoring internal risk concerns due to revenue pressure is a classic control failure."
+          },
+          {
+            text: "Ask the analyst to monitor quietly without formal escalation.",
+            label: "Weak documentation",
+            risk: 10,
+            escalation: 0,
+            flags: 1,
+            explanation: "Quiet monitoring without formal escalation may miss governance requirements and weakens auditability."
+          }
+        ]
+      },
+      {
+        stage: "Escalation Pressure",
+        question: "The customer refuses to provide updated source-of-funds documentation.",
+        note: "They state that the request is intrusive and threaten to move business elsewhere.",
+        options: [
+          {
+            text: "Withdraw the request to preserve the relationship.",
+            label: "Control surrender",
+            risk: 20,
+            escalation: -1,
+            flags: 0,
+            explanation: "Refusal to provide information is itself a risk indicator. Withdrawing the request undermines the control framework."
+          },
+          {
+            text: "Restrict activity pending review and escalate the refusal to compliance management.",
+            label: "Strong escalation response",
+            risk: -12,
+            escalation: 2,
+            flags: 2,
+            explanation: "Restricting activity while escalating is proportionate when a customer refuses required due diligence."
+          },
+          {
+            text: "Allow activity but schedule a review in six months.",
+            label: "Delayed control action",
+            risk: 18,
+            escalation: 0,
+            flags: 0,
+            explanation: "This leaves live exposure unmanaged and does not address the refusal."
+          },
+          {
+            text: "Immediately file an STR only because the customer was rude.",
+            label: "Weak suspicion basis",
+            risk: 4,
+            escalation: 1,
+            flags: 1,
+            explanation: "Tone alone is not enough. The refusal matters because it occurs alongside suspicious transaction behaviour."
+          }
+        ]
+      },
+      {
+        stage: "STR Decision",
+        question: "Multiple red flags now exist: structuring, unexplained inflows, fast movement of funds, and refusal to provide documentation.",
+        note: "The MLRO asks whether the available information supports suspicion or whether more monitoring is needed.",
+        options: [
+          {
+            text: "Recommend filing an STR based on the cumulative pattern and documented refusal.",
+            label: "Strong STR judgement",
+            risk: -14,
+            escalation: 2,
+            flags: 3,
+            explanation: "Suspicion is built cumulatively. The combination of behavioural, documentary, and transactional red flags supports escalation."
+          },
+          {
+            text: "Wait until law enforcement contacts the company.",
+            label: "Regulatory failure",
+            risk: 25,
+            escalation: -2,
+            flags: 0,
+            explanation: "AML reporting obligations are not dependent on law enforcement contact. Waiting creates major exposure."
+          },
+          {
+            text: "Ask the sales team to convince the customer to cooperate before deciding.",
+            label: "Poor independence",
+            risk: 14,
+            escalation: -1,
+            flags: 0,
+            explanation: "Sales involvement at this stage risks tipping-off and weakens compliance independence."
+          },
+          {
+            text: "Close the account silently and do not report.",
+            label: "Incomplete response",
+            risk: 12,
+            escalation: 0,
+            flags: 1,
+            explanation: "Exiting may be appropriate, but it does not remove the need to consider reporting where suspicion exists."
+          }
+        ]
+      },
+      {
+        stage: "Relationship Management",
+        question: "After escalation, the client asks why their account activity is being restricted.",
+        note: "The frontline team wants to explain that compliance has concerns about suspicious activity.",
+        options: [
+          {
+            text: "Tell the customer an STR is being considered.",
+            label: "Tipping-off risk",
+            risk: 24,
+            escalation: -2,
+            flags: 0,
+            explanation: "Disclosing suspicion or potential reporting can create tipping-off risk."
+          },
+          {
+            text: "Provide a neutral operational explanation and avoid disclosing suspicion.",
+            label: "Strong communication control",
+            risk: -8,
+            escalation: 1,
+            flags: 1,
+            explanation: "Customer communication should be controlled, neutral, and avoid revealing internal suspicion or reporting decisions."
+          },
+          {
+            text: "Ignore the customer completely.",
+            label: "Poor relationship handling",
+            risk: 6,
+            escalation: 0,
+            flags: 0,
+            explanation: "A response may still be needed, but it must be carefully controlled."
+          },
+          {
+            text: "Ask the relationship manager to handle it however they prefer.",
+            label: "Weak governance",
+            risk: 13,
+            escalation: -1,
+            flags: 0,
+            explanation: "Frontline messaging should be guided by compliance where suspicious activity is involved."
+          }
+        ]
+      },
+      {
+        stage: "Control Review",
+        question: "Post-case review shows the monitoring rules missed early signs for two weeks.",
+        note: "The issue was identified only after manual analyst review.",
+        options: [
+          {
+            text: "Treat the case as isolated and make no system changes.",
+            label: "Missed learning opportunity",
+            risk: 15,
+            escalation: 0,
+            flags: 0,
+            explanation: "A missed detection should trigger control review. Treating it as isolated prevents learning."
+          },
+          {
+            text: "Update monitoring scenarios and add typology indicators from the case.",
+            label: "Strong control improvement",
+            risk: -10,
+            escalation: 1,
+            flags: 2,
+            explanation: "Good AML systems improve from real cases by converting lessons into rules, scenarios, and analyst guidance."
+          },
+          {
+            text: "Blame the analyst for not catching it earlier.",
+            label: "Poor control culture",
+            risk: 12,
+            escalation: -1,
+            flags: 0,
+            explanation: "The issue is not only individual performance. Control design and monitoring effectiveness must be reviewed."
+          },
+          {
+            text: "Lower the volume of alerts to reduce workload.",
+            label: "Dangerous optimisation",
+            risk: 18,
+            escalation: 0,
+            flags: 0,
+            explanation: "Reducing alerts without improving precision may hide risk rather than manage it."
+          }
+        ]
+      },
+      {
+        stage: "Final Decision",
+        question: "What should be the final relationship decision?",
+        note: "The case includes unresolved source-of-funds concerns, refusal to cooperate, suspicious transaction patterns, and documented escalation.",
+        options: [
+          {
+            text: "Maintain the relationship with no restrictions because the client is profitable.",
+            label: "Commercial override",
+            risk: 25,
+            escalation: -2,
+            flags: 0,
+            explanation: "Profitability cannot justify unmanaged financial crime exposure."
+          },
+          {
+            text: "Maintain the relationship only under enhanced restrictions, senior approval, and ongoing monitoring.",
+            label: "Controlled continuation",
+            risk: -6,
+            escalation: 1,
+            flags: 1,
+            explanation: "This may be acceptable where risk appetite allows continuation under strict controls."
+          },
+          {
+            text: "Exit the relationship after completing reporting and internal governance steps.",
+            label: "Strong exit response",
+            risk: -14,
+            escalation: 2,
+            flags: 2,
+            explanation: "Where suspicion and non-cooperation are unresolved, exit may be appropriate after reporting and governance obligations are handled."
+          },
+          {
+            text: "Transfer the client to another team to avoid further conflict.",
+            label: "Avoidance response",
+            risk: 16,
+            escalation: -1,
+            flags: 0,
+            explanation: "Moving the client internally does not resolve risk and may weaken accountability."
+          }
+        ]
+      }
+    ];
+
+    let currentIndex = 0;
+    let selectedIndex = null;
+    let showFeedback = false;
+
+    let riskScore = 35;
+    let escalationQuality = 0;
+    let redFlags = 0;
+    let decisionHistory = [];
+
+    const startScreen = document.getElementById("startScreen");
+    const simulationScreen = document.getElementById("simulationScreen");
+    const resultScreen = document.getElementById("resultScreen");
+
+    const startBtn = document.getElementById("startBtn");
+    const progressFill = document.getElementById("progressFill");
+    const questionCount = document.getElementById("questionCount");
+    const totalCount = document.getElementById("totalCount");
+    const riskTop = document.getElementById("riskTop");
+    const redFlagTop = document.getElementById("redFlagTop");
+    const stageName = document.getElementById("stageName");
+    const stageBadge = document.getElementById("stageBadge");
+    const riskScoreSide = document.getElementById("riskScoreSide");
+    const riskMeterFill = document.getElementById("riskMeterFill");
+    const escalationSide = document.getElementById("escalationSide");
+    const redFlagSide = document.getElementById("redFlagSide");
+    const questionTitle = document.getElementById("questionTitle");
+    const caseNote = document.getElementById("caseNote");
+    const optionsWrap = document.getElementById("optionsWrap");
+    const submitBtn = document.getElementById("submitBtn");
+    const restartBtn1 = document.getElementById("restartBtn1");
+    const restartBtn2 = document.getElementById("restartBtn2");
+    const restartBtn3 = document.getElementById("restartBtn3");
+    const nextBtn = document.getElementById("nextBtn");
+    const actionButtons = document.getElementById("actionButtons");
+    const feedbackBox = document.getElementById("feedbackBox");
+    const feedbackIcon = document.getElementById("feedbackIcon");
+    const feedbackKicker = document.getElementById("feedbackKicker");
+    const feedbackText = document.getElementById("feedbackText");
+    const impactRisk = document.getElementById("impactRisk");
+    const impactEscalation = document.getElementById("impactEscalation");
+    const impactFlags = document.getElementById("impactFlags");
+    const explanationText = document.getElementById("explanationText");
+
+    const resultLabel = document.getElementById("resultLabel");
+    const resultSummary = document.getElementById("resultSummary");
+    const finalRiskScore = document.getElementById("finalRiskScore");
+    const finalEscalation = document.getElementById("finalEscalation");
+    const finalFlags = document.getElementById("finalFlags");
+    const finalTakeaway = document.getElementById("finalTakeaway");
+    const nextActionsList = document.getElementById("nextActionsList");
+    const printBtn = document.getElementById("printBtn");
+
+    totalCount.textContent = decisions.length;
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function getOutcome() {
+      if (riskScore <= 30 && escalationQuality >= 8 && redFlags >= 10) {
+        return {
+          label: "Controlled Escalation Outcome",
+          summary: "You identified the key red flags, escalated through appropriate channels, and reduced exposure through disciplined control decisions.",
+          takeaway: "Strong AML outcomes depend on recognising patterns early, documenting suspicion carefully, and resisting commercial pressure when risk indicators accumulate.",
+          actions: [
+            "Maintain scenario-based monitoring for structuring, rapid movement of funds, and counterparty risk.",
+            "Document all escalation decisions clearly for auditability.",
+            "Continue periodic control tuning based on typology learnings.",
+            "Keep frontline communication neutral to avoid tipping-off risk."
+          ]
+        };
+      }
+
+      if (riskScore <= 55 && escalationQuality >= 4) {
+        return {
+          label: "Managed Exposure Outcome",
+          summary: "You made several strong decisions, but some delays or weaker choices left moderate residual risk in the case.",
+          takeaway: "The framework is workable, but stronger timing and escalation discipline would reduce exposure.",
+          actions: [
+            "Review delayed decisions and strengthen escalation triggers.",
+            "Improve red flag aggregation so cumulative suspicion is identified earlier.",
+            "Refine customer communication controls around restricted activity.",
+            "Strengthen event-driven KYC refresh procedures."
+          ]
+        };
+      }
+
+      if (riskScore <= 75) {
+        return {
+          label: "High Risk Exposure Outcome",
+          summary: "Several risk indicators were missed or handled too slowly. The institution remains exposed to transaction monitoring, governance, and reporting weaknesses.",
+          takeaway: "AML failures often come from treating red flags separately instead of recognising the pattern they create together.",
+          actions: [
+            "Rebuild the monitoring framework around behavioural patterns, not only thresholds.",
+            "Escalate analyst concerns independently of business pressure.",
+            "Strengthen STR decision protocols and documentation.",
+            "Review governance ownership for high-risk customer relationships."
+          ]
+        };
+      }
+
+      return {
+        label: "Regulatory Failure Scenario",
+        summary: "Critical red flags were ignored, delayed, or commercially overridden. This creates serious financial crime and regulatory exposure.",
+        takeaway: "When commercial pressure overrides suspicious activity controls, the framework stops functioning as a defence system.",
+        actions: [
+          "Pause the relationship pending senior compliance review.",
+          "Conduct immediate retrospective transaction analysis.",
+          "Escalate to MLRO or equivalent reporting authority.",
+          "Redesign monitoring scenarios, thresholds, and escalation governance."
+        ]
+      };
+    }
+
+    function updateMeters() {
+      riskTop.textContent = riskScore;
+      redFlagTop.textContent = redFlags;
+      riskScoreSide.textContent = riskScore + "/100";
+      escalationSide.textContent = escalationQuality;
+      redFlagSide.textContent = redFlags;
+      riskMeterFill.style.width = riskScore + "%";
+    }
+
+    function renderDecision() {
+      const item = decisions[currentIndex];
+
+      questionCount.textContent = currentIndex + 1;
+      progressFill.style.width = ((currentIndex + 1) / decisions.length) * 100 + "%";
+
+      stageName.textContent = item.stage;
+      stageBadge.textContent = item.stage;
+      questionTitle.textContent = item.question;
+      caseNote.textContent = item.note;
+
+      updateMeters();
+
+      optionsWrap.innerHTML = "";
+
+      item.options.forEach((option, index) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "option";
+
+        if (!showFeedback && selectedIndex === index) {
+          btn.classList.add("selected");
+        }
+
+        btn.innerHTML = `
+          <div class="option-content">
+            <div class="option-letter">${String.fromCharCode(65 + index)}</div>
+            <p class="option-text">${option.text}</p>
           </div>
+        `;
 
-          <div class="pill-wrap">
-            <div class="pill">Decision <strong id="questionCount">1</strong> of <strong id="totalCount">10</strong></div>
-            <div class="pill">Risk Score <strong id="riskTop">35</strong></div>
-            <div class="pill">Red Flags <strong id="redFlagTop">0</strong></div>
-          </div>
-        </div>
+        btn.addEventListener("click", () => {
+          if (showFeedback) return;
+          selectedIndex = index;
+          renderDecision();
+        });
 
-        <div class="progress-track">
-          <div id="progressFill" class="progress-fill"></div>
-        </div>
+        optionsWrap.appendChild(btn);
+      });
 
-        <div class="main-grid">
-          <aside class="sidebar">
-            <div class="sub-card">
-              <h4>Current Stage</h4>
-              <p id="stageName" class="big">Early Signals</p>
-            </div>
+      if (showFeedback) {
+        const chosen = item.options[selectedIndex];
 
-            <div class="sub-card">
-              <h4>Risk Score</h4>
-              <p id="riskScoreSide" class="big">35/100</p>
-              <div class="meter-track">
-                <div id="riskMeterFill" class="meter-fill"></div>
-              </div>
-              <p class="small">Higher score means higher residual exposure.</p>
-            </div>
+        actionButtons.classList.add("hide");
+        feedbackBox.classList.remove("hide");
 
-            <div class="sub-card">
-              <h4>Escalation Quality</h4>
-              <p id="escalationSide" class="big">0</p>
-              <p class="small">Measures whether decisions move concerns through the right control channels.</p>
-            </div>
+        feedbackKicker.textContent = chosen.label;
+        feedbackText.textContent = chosen.risk <= 0
+          ? "This decision reduces exposure or strengthens control handling."
+          : "This decision increases exposure or leaves a control weakness unresolved.";
 
-            <div class="sub-card">
-              <h4>Red Flags Identified</h4>
-              <p id="redFlagSide" class="big">0</p>
-              <p class="small">Tracks suspicious patterns recognised during the scenario.</p>
-            </div>
-          </aside>
+        feedbackIcon.textContent = chosen.risk <= 0 ? "✓" : "!";
+        impactRisk.textContent = chosen.risk > 0 ? "+" + chosen.risk : chosen.risk;
+        impactEscalation.textContent = chosen.escalation > 0 ? "+" + chosen.escalation : chosen.escalation;
+        impactFlags.textContent = chosen.flags > 0 ? "+" + chosen.flags : chosen.flags;
+        explanationText.textContent = chosen.explanation;
 
-          <main class="main-panel">
-            <div class="badge-row">
-              <div id="stageBadge" class="badge">Early Signals</div>
-              <div class="badge">Live Decision Point</div>
-            </div>
+        nextBtn.textContent = currentIndex === decisions.length - 1
+          ? "View Final Outcome"
+          : "Continue Simulation";
+      } else {
+        actionButtons.classList.remove("hide");
+        feedbackBox.classList.add("hide");
+      }
+    }
 
-            <h2 id="questionTitle" class="question-title"></h2>
+    function submitDecision() {
+      if (selectedIndex === null) return;
 
-            <p class="question-sub">
-              Select the response that best reflects a risk-based AML monitoring and escalation approach.
-            </p>
+      const item = decisions[currentIndex];
+      const chosen = item.options[selectedIndex];
 
-            <div id="caseNote" class="case-note"></div>
+      riskScore = clamp(riskScore + chosen.risk, 0, 100);
+      escalationQuality += chosen.escalation;
+      redFlags += chosen.flags;
 
-            <div id="optionsWrap" class="options"></div>
+      decisionHistory.push({
+        stage: item.stage,
+        question: item.question,
+        choice: chosen.text,
+        label: chosen.label,
+        risk: chosen.risk,
+        escalation: chosen.escalation,
+        flags: chosen.flags
+      });
 
-            <div id="actionButtons" class="actions">
-              <button id="submitBtn" class="button button-dark">Submit Decision</button>
-              <button id="restartBtn1" class="button button-light">Restart</button>
-            </div>
+      showFeedback = true;
+      renderDecision();
+    }
 
-            <div id="feedbackBox" class="feedback hide">
-              <div class="feedback-head">
-                <div id="feedbackIcon" class="feedback-icon">!</div>
-                <div>
-                  <p id="feedbackKicker" class="feedback-kicker">Decision Impact</p>
-                  <p id="feedbackText" class="feedback-text"></p>
-                </div>
-              </div>
+    function nextDecision() {
+      if (currentIndex === decisions.length - 1) {
+        showResults();
+        return;
+      }
 
-              <div class="impact-grid">
-                <div class="impact-card">
-                  <span>Risk Impact</span>
-                  <strong id="impactRisk">+0</strong>
-                </div>
+      currentIndex += 1;
+      selectedIndex = null;
+      showFeedback = false;
+      renderDecision();
+    }
 
-                <div class="impact-card">
-                  <span>Escalation</span>
-                  <strong id="impactEscalation">+0</strong>
-                </div>
+    function showResults() {
+      simulationScreen.classList.add("hide");
+      resultScreen.classList.remove("hide");
 
-                <div class="impact-card">
-                  <span>Red Flags</span>
-                  <strong id="impactFlags">+0</strong>
-                </div>
-              </div>
+      const outcome = getOutcome();
 
-              <div class="explain-box">
-                <h5>Why this matters</h5>
-                <p id="explanationText"></p>
-              </div>
+      resultLabel.textContent = outcome.label;
+      resultSummary.textContent = outcome.summary;
+      finalRiskScore.textContent = riskScore + "/100";
+      finalEscalation.textContent = escalationQuality;
+      finalFlags.textContent = redFlags;
+      finalTakeaway.textContent = outcome.takeaway;
 
-              <div class="actions" style="margin-top:18px;">
-                <button id="nextBtn" class="button button-dark">Continue Simulation</button>
-                <button id="restartBtn2" class="button button-light">Restart</button>
-              </div>
-            </div>
-          </main>
-        </div>
-      </section>
+      nextActionsList.innerHTML = "";
+      outcome.actions.forEach(action => {
+        const li = document.createElement("li");
+        li.textContent = action;
+        nextActionsList.appendChild(li);
+      });
+    }
+
+    function startSimulation() {
+      startScreen.classList.add("hide");
+      resultScreen.classList.add("hide");
+      simulationScreen.classList.remove("hide");
+
+      currentIndex = 0;
+      selectedIndex = null;
+      showFeedback = false;
+
+      riskScore = 35;
+      escalationQuality = 0;
+      redFlags = 0;
+      decisionHistory = [];
+
+      renderDecision();
+    }
+
+    function restartSimulation() {
+      startSimulation();
+    }
+
+    startBtn.addEventListener("click", startSimulation);
+    submitBtn.addEventListener("click", submitDecision);
+    nextBtn.addEventListener("click", nextDecision);
+    restartBtn1.addEventListener("click", restartSimulation);
+    restartBtn2.addEventListener("click", restartSimulation);
+    restartBtn3.addEventListener("click", restartSimulation);
+    printBtn.addEventListener("click", () => window.print());
+  </script>
+</body>
+</html>
