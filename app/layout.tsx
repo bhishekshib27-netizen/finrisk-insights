@@ -22,7 +22,10 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://finriskinsight.com",
     siteName: "FinRisk Insights",
-    title: "FinRisk Insights — The Financial Platform of Mauritius",
+    verification: {
+    google: "gaV2yYf5x2JY-Mmj0WEZb3QQsY1uNMgdfRJ3s8IuYqE",
+  },
+  title: "FinRisk Insights — The Financial Platform of Mauritius",
     description: "FinRisk Insights is Mauritius's leading financial platform — live markets, FX rates, regulatory updates, research, compliance news, and finance jobs. All in one place.",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "FinRisk Insights" }],
   },
