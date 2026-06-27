@@ -14,7 +14,7 @@ export default function Home() {
         <section className="border-b border-neutral-200 bg-white">
           <div className="mx-auto max-w-5xl px-8 py-20 sm:px-12 md:py-32">
             <p className="text-xs font-semibold uppercase tracking-widest text-green-600">
-              Est. 2024 — Mauritius
+              Est. 2026 — Mauritius
             </p>
             <h1 className="mt-4 text-5xl font-bold leading-tight tracking-tight text-black sm:text-6xl xl:text-7xl">
               FinRisk Insights
