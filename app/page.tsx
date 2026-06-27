@@ -11,8 +11,8 @@ export default function Home() {
 
       {/* HERO */}
       <AnimatedLayout delay={0}>
-        <section className="border-b border-neutral-200 bg-white px-8 py-20 md:px-12 md:py-32">
-          <div className="mx-auto max-w-4xl">
+        <section className="border-b border-neutral-200 bg-white">
+          <div className="mx-auto max-w-5xl px-8 py-20 sm:px-12 md:py-32">
             <p className="text-xs font-semibold uppercase tracking-widest text-green-600">
               Est. 2024 — Mauritius
             </p>
@@ -38,8 +38,8 @@ export default function Home() {
 
       {/* ABOUT */}
       <AnimatedLayout delay={0.1}>
-        <section className="border-b border-neutral-200 bg-neutral-50 px-8 py-16 md:px-12">
-          <div className="mx-auto max-w-4xl">
+        <section className="border-b border-neutral-200 bg-neutral-50">
+          <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
             <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Who We Are</p>
@@ -49,7 +49,7 @@ export default function Home() {
               </div>
               <div>
                 <p className="text-base leading-relaxed text-neutral-600">
-                  FinRisk Insights is Mauritius's emerging financial intelligence platform, built for finance professionals, compliance officers, regulators, and investors. We deliver live market data, regulatory updates, research reports, and economic analysis — all in one place. Our mission is to make professional-grade financial intelligence accessible to everyone in Mauritius.
+                  FinRisk Insights is Mauritius's emerging financial intelligence platform, built for finance professionals, compliance officers, regulators, and investors. We deliver live market data, regulatory updates, research reports, and economic analysis — all in one place.
                 </p>
                 <div className="mt-6 grid grid-cols-3 gap-6 border-t border-neutral-200 pt-6">
                   <div>
@@ -73,13 +73,12 @@ export default function Home() {
 
       {/* WHAT WE DO */}
       <AnimatedLayout delay={0.15}>
-        <section className="border-b border-neutral-200 bg-white px-8 py-16 md:px-12">
-          <div className="mx-auto max-w-4xl">
+        <section className="border-b border-neutral-200 bg-white">
+          <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
             <p className="text-xs font-semibold uppercase tracking-widest text-green-600">What We Do</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-black sm:text-4xl">
               Intelligence across every dimension
             </h2>
-
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {[
                 { icon: <BarChart2 size={20} />, title: "Markets", description: "Live SEMDEX, FX rates, and economic indicators for Mauritius.", href: "/markets" },
@@ -103,8 +102,8 @@ export default function Home() {
 
       {/* LIVE MARKETS */}
       <AnimatedLayout delay={0.2}>
-        <section className="border-b border-neutral-200 bg-neutral-50 px-8 py-16 md:px-12">
-          <div className="mx-auto max-w-4xl">
+        <section className="border-b border-neutral-200 bg-neutral-50">
+          <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
             <div className="mb-8 flex items-center justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Live Data</p>
@@ -124,8 +123,8 @@ export default function Home() {
 
       {/* LATEST INSIGHTS */}
       <AnimatedLayout delay={0.25}>
-        <section className="border-b border-neutral-200 bg-white px-8 py-16 md:px-12">
-          <div className="mx-auto max-w-4xl">
+        <section className="border-b border-neutral-200 bg-white">
+          <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
             <div className="mb-8 flex items-center justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Intelligence</p>
@@ -135,7 +134,6 @@ export default function Home() {
                 View all →
               </Link>
             </div>
-
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 { category: "Markets", title: "SEMDEX closes higher amid strong banking performance", date: "Jun 25, 2026", readTime: "4 min", slug: "semdex-closes-higher-banking-performance" },
@@ -162,8 +160,8 @@ export default function Home() {
 
       {/* REGULATION */}
       <AnimatedLayout delay={0.3}>
-        <section className="border-b border-neutral-200 bg-neutral-50 px-8 py-16 md:px-12">
-          <div className="mx-auto max-w-4xl">
+        <section className="border-b border-neutral-200 bg-neutral-50">
+          <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
             <div className="mb-8 flex items-center justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Compliance</p>
@@ -173,7 +171,6 @@ export default function Home() {
                 View all →
               </Link>
             </div>
-
             <div className="space-y-3">
               {[
                 { text: "FSC issues updated guidance on AML/CFT compliance.", date: "Jun 2026", type: "warning" },
@@ -194,8 +191,8 @@ export default function Home() {
 
       {/* EVENTS */}
       <AnimatedLayout delay={0.35}>
-        <section className="border-b border-neutral-200 bg-white px-8 py-16 md:px-12">
-          <div className="mx-auto max-w-4xl">
+        <section className="border-b border-neutral-200 bg-white">
+          <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
             <div className="mb-8 flex items-center justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Calendar</p>
@@ -205,7 +202,6 @@ export default function Home() {
                 View all →
               </Link>
             </div>
-
             <div className="grid gap-4 sm:grid-cols-3">
               {[
                 { title: "Financial Crime Society Networking Night", date: "Jul 15, 2026", location: "Curtin Mauritius", type: "in-person" },
@@ -229,8 +225,8 @@ export default function Home() {
 
       {/* NEWSLETTER */}
       <AnimatedLayout delay={0.4}>
-        <section className="border-b border-neutral-200 bg-neutral-50 px-8 py-16 md:px-12">
-          <div className="mx-auto max-w-4xl">
+        <section className="border-b border-neutral-200 bg-neutral-50">
+          <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
             <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Weekly Briefing</p>
@@ -257,8 +253,8 @@ export default function Home() {
 
       {/* FOOTER CTA */}
       <AnimatedLayout delay={0.45}>
-        <section className="bg-black px-8 py-16 md:px-12">
-          <div className="mx-auto max-w-4xl text-center">
+        <section className="bg-black">
+          <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12 text-center">
             <h2 className="text-3xl font-bold text-white sm:text-4xl">
               The Financial Platform of Mauritius
             </h2>
