@@ -70,14 +70,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   if (!sanityPost && !hardcoded) notFound()
 
   const isSanity = !!sanityPost
-  const title = sanityPost?.title ?? hardcoded!.title
-  const excerpt = sanityPost?.excerpt ?? hardcoded!.excerpt
-  const category = sanityPost?.categories?.[0]?.title ?? hardcoded!.category
-  const author = sanityPost?.author?.name ?? hardcoded!.author
+  const title = sanityPost?.title ?? hardcoded?.title ?? ""
+  const excerpt = sanityPost?.excerpt ?? hardcoded?.excerpt ?? ""
+  const category = sanityPost?.categories?.[0]?.title ?? hardcoded?.category ?? "General"
+  const author = sanityPost?.author?.name ?? hardcoded?.author ?? "FinRisk Insights"
   const authorRole = hardcoded?.authorRole ?? "FinRisk Insights"
   const date = isSanity
     ? new Date(sanityPost!.publishedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })
-    : hardcoded!.date
+    : hardcoded?.date ?? ""
 
   return (
     <div className="mx-auto max-w-3xl px-8 sm:px-12 py-10 space-y-8">
