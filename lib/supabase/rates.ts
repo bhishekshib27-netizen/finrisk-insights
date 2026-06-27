@@ -1,6 +1,8 @@
 import { supabase, supabaseAdmin } from './client'
 
 export async function getRatesFromDB() {
+  if (!supabase) return null
+
   const { data, error } = await supabase
     .from('market_rates')
     .select('pair, value, source, updated_at')
@@ -13,8 +15,9 @@ export async function getRatesFromDB() {
 }
 
 export async function refreshRatesFromBoM() {
+  if (!supabaseAdmin) return false
+
   try {
-    // Frankfurter API for live FX (free, no key needed)
     const res = await fetch('https://api.frankfurter.app/latest?from=USD&to=MUR,EUR,GBP')
     const json = await res.json()
 
