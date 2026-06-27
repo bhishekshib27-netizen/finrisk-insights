@@ -1,4 +1,5 @@
 import "./globals.css";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import "@clerk/ui/themes/shadcn.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { shadcn } from "@clerk/ui/themes";
@@ -53,7 +54,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </main>
           <Footer />
-        </body>
+          <GoogleAnalytics />
+      </body>
       </html>
     </ClerkProvider>
   );
