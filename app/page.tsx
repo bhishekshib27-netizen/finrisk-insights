@@ -3,6 +3,7 @@ import FXRatesServer from "@/components/dashboard/FXRatesServer";
 import MarketChartServer from "@/components/charts/MarketChartServer";
 import AnimatedLayout from "@/components/dashboard/AnimatedLayout";
 import NewsletterSignup from "@/components/newsletter/NewsletterSignup";
+import SiteStats from "@/components/dashboard/SiteStats";
 import { ArrowRight, BarChart2, BookOpen, Shield, Zap, ArrowUpRight, Clock } from "lucide-react";
 
 export default function Home() {
@@ -51,20 +52,7 @@ export default function Home() {
                 <p className="text-base leading-relaxed text-neutral-600">
                   FinRisk Insights is Mauritius's emerging financial intelligence platform, built for finance professionals, compliance officers, regulators, and investors. We deliver live market data, regulatory updates, research reports, and economic analysis — all in one place.
                 </p>
-                <div className="mt-6 grid grid-cols-3 gap-6 border-t border-neutral-200 pt-6">
-                  <div>
-                    <p className="text-2xl font-bold text-black">1,200+</p>
-                    <p className="mt-1 text-xs text-neutral-400">Subscribers</p>
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold text-black">48</p>
-                    <p className="mt-1 text-xs text-neutral-400">Reports</p>
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold text-black">12</p>
-                    <p className="mt-1 text-xs text-neutral-400">Podcast Episodes</p>
-                  </div>
-                </div>
+                <SiteStats />
               </div>
             </div>
           </div>
@@ -171,19 +159,11 @@ export default function Home() {
                 View all →
               </Link>
             </div>
-            <div className="space-y-3">
-              {[
-                { text: "FSC issues updated guidance on AML/CFT compliance.", date: "Jun 2026", type: "warning" },
-                { text: "Bank of Mauritius maintains the Key Rate at 4.50%.", date: "Jun 2026", type: "info" },
-                { text: "New consultation paper released on virtual assets.", date: "May 2026", type: "positive" },
-              ].map((item, i) => (
-                <div key={i} className={`flex items-start gap-4 border border-l-4 bg-white p-5 ${item.type === "warning" ? "border-amber-100 border-l-amber-400" : item.type === "positive" ? "border-green-100 border-l-green-500" : "border-neutral-200 border-l-black"}`}>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-black">{item.text}</p>
-                    <p className="mt-1 text-xs text-neutral-400">{item.date}</p>
-                  </div>
-                </div>
-              ))}
+            <div className="flex items-start gap-4 border border-l-4 border-neutral-200 border-l-black bg-white p-5">
+              <div className="flex-1">
+                <p className="text-sm font-medium text-black">Regulatory updates coming soon. Check back for FSC, Bank of Mauritius, and FATF alerts.</p>
+                <p className="mt-1 text-xs text-neutral-400">Stay tuned</p>
+              </div>
             </div>
           </div>
         </section>
@@ -202,22 +182,8 @@ export default function Home() {
                 View all →
               </Link>
             </div>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {[
-                { title: "Financial Crime Society Networking Night", date: "Jul 15, 2026", location: "Curtin Mauritius", type: "in-person" },
-                { title: "FinRisk Webinar: Understanding AML", date: "Aug 5, 2026", location: "Online", type: "online" },
-                { title: "MPC Meeting — Bank of Mauritius", date: "Sep 10, 2026", location: "Port Louis", type: "in-person" },
-              ].map((event, i) => (
-                <Link key={i} href="/events" className="group border border-neutral-200 bg-white p-5 transition hover:border-black hover:shadow-md">
-                  <span className={`inline-block border px-2 py-0.5 text-xs font-semibold ${event.type === "online" ? "border-green-200 bg-green-50 text-green-700" : "border-neutral-200 bg-neutral-50 text-neutral-600"}`}>
-                    {event.type === "online" ? "Online" : "In Person"}
-                  </span>
-                  <h3 className="mt-3 text-sm font-bold text-black group-hover:text-neutral-600 transition leading-snug">
-                    {event.title}
-                  </h3>
-                  <p className="mt-2 text-xs text-neutral-400">{event.date} · {event.location}</p>
-                </Link>
-              ))}
+            <div className="border border-neutral-200 bg-white p-5 text-sm text-neutral-500">
+              No upcoming events yet — check back soon.
             </div>
           </div>
         </section>
@@ -259,7 +225,7 @@ export default function Home() {
               The Financial Platform of Mauritius
             </h2>
             <p className="mt-4 text-neutral-400">
-              Join thousands of finance professionals, compliance officers, and investors who rely on FinRisk Insights.
+              Join finance professionals, compliance officers, and investors who rely on FinRisk Insights.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link href="/sign-up" className="inline-flex items-center gap-2 bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-neutral-100">
