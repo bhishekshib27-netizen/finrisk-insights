@@ -7,20 +7,15 @@ export type SanityArticle = {
   excerpt: string
   body: any[]
   publishedAt: string
-  readTime?: string
   categories?: { title: string }[]
-  author?: { name: string; role?: string }
+  author?: { name: string }
 }
 
 export async function getAllPosts(): Promise<SanityArticle[]> {
+  if (!client) return []
   return client.fetch(`
     *[_type == "post"] | order(publishedAt desc) {
-      _id,
-      title,
-      slug,
-      excerpt,
-      body,
-      publishedAt,
+      _id, title, slug, excerpt, body, publishedAt,
       "categories": categories[]->{ title },
       "author": author->{ name }
     }
@@ -28,14 +23,10 @@ export async function getAllPosts(): Promise<SanityArticle[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<SanityArticle | null> {
+  if (!client) return null
   return client.fetch(`
     *[_type == "post" && slug.current == $slug][0] {
-      _id,
-      title,
-      slug,
-      excerpt,
-      body,
-      publishedAt,
+      _id, title, slug, excerpt, body, publishedAt,
       "categories": categories[]->{ title },
       "author": author->{ name }
     }
@@ -43,9 +34,6 @@ export async function getPostBySlug(slug: string): Promise<SanityArticle | null>
 }
 
 export async function getAllPostSlugs(): Promise<{ slug: string }[]> {
-  return client.fetch(`
-    *[_type == "post"] {
-      "slug": slug.current
-    }
-  `)
+  if (!client) return []
+  return client.fetch(`*[_type == "post"] { "slug": slug.current }`)
 }
