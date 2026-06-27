@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: "/logo.jpeg",
+    shortcut: "/logo.jpeg",
+    apple: "/apple-touch-icon.png",
   },
 };
 
