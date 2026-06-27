@@ -27,13 +27,13 @@ export const metadata: Metadata = {
     siteName: "FinRisk Insights",
     title: "FinRisk Insights — The Financial Platform of Mauritius",
     description: "FinRisk Insights is Mauritius's leading financial platform — live markets, FX rates, regulatory updates, research, compliance news, and finance jobs. All in one place.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "FinRisk Insights" }],
+    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "FinRisk Insights" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "FinRisk Insights — The Financial Platform of Mauritius",
     description: "FinRisk Insights is Mauritius's leading financial platform — live markets, FX rates, regulatory updates, research, compliance news, and finance jobs. All in one place.",
-    images: ["/og-image.png"],
+    images: ["/og-image.svg"],
   },
   robots: { index: true, follow: true },
   icons: {
