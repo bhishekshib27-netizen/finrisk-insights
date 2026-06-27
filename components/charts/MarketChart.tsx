@@ -17,10 +17,10 @@ const metrics = ["SEMDEX", "USD_MUR", "EUR_MUR", "GBP_MUR"] as const;
 type Metric = (typeof metrics)[number];
 
 const colors: Record<Metric, string> = {
-  SEMDEX: "#0891b2",
-  USD_MUR: "#7c3aed",
-  EUR_MUR: "#059669",
-  GBP_MUR: "#d97706",
+  SEMDEX: "#0a0a0a",
+  USD_MUR: "#16a34a",
+  EUR_MUR: "#737373",
+  GBP_MUR: "#404040",
 };
 
 const labels: Record<Metric, string> = {
@@ -30,6 +30,9 @@ const labels: Record<Metric, string> = {
   GBP_MUR: "GBP/MUR",
 };
 
+type SEMDEXPoint = { date: string; SEMDEX: number };
+type ChartPoint = FXHistoricalPoint | SEMDEXPoint;
+
 interface MarketChartProps {
   fxHistory: FXHistoricalPoint[] | null;
 }
@@ -37,8 +40,7 @@ interface MarketChartProps {
 export default function MarketChart({ fxHistory }: MarketChartProps) {
   const [active, setActive] = useState<Metric>("USD_MUR");
 
-  // Use live FX data for FX metrics, mock data for SEMDEX
-  const chartData =
+  const chartData: ChartPoint[] =
     active === "SEMDEX"
       ? semdexData
       : fxHistory ?? semdexData;
@@ -46,31 +48,27 @@ export default function MarketChart({ fxHistory }: MarketChartProps) {
   const isLive = active !== "SEMDEX" && fxHistory !== null;
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div className="border border-neutral-200 bg-white p-6">
 
-      {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <h2 className="text-lg font-semibold text-slate-900">
-            Market Chart
-          </h2>
+          <h2 className="text-lg font-bold text-black">Market Chart</h2>
           {isLive && (
-            <span className="rounded-full bg-cyan-50 px-2 py-0.5 text-xs font-medium text-cyan-600">
+            <span className="bg-green-50 border border-green-200 px-2 py-0.5 text-xs font-semibold text-green-600">
               Live
             </span>
           )}
         </div>
 
-        {/* Toggle buttons */}
         <div className="flex gap-2">
           {metrics.map((m) => (
             <button
               key={m}
               onClick={() => setActive(m)}
-              className={`rounded-lg px-3 py-1 text-xs font-medium transition ${
+              className={`px-3 py-1 text-xs font-semibold transition ${
                 active === m
-                  ? "bg-cyan-600 text-white"
-                  : "bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-900"
+                  ? "bg-black text-white"
+                  : "border border-neutral-200 bg-neutral-50 text-neutral-500 hover:border-black hover:text-black"
               }`}
             >
               {labels[m]}
@@ -79,51 +77,34 @@ export default function MarketChart({ fxHistory }: MarketChartProps) {
         </div>
       </div>
 
-      {/* Chart */}
       <ResponsiveContainer width="100%" height={280}>
-        <LineChart data={chartData}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-
-          <XAxis
-            dataKey="date"
-            stroke="#cbd5e1"
-            tick={{ fill: "#64748b", fontSize: 12 }}
-          />
-
-          <YAxis
-            stroke="#cbd5e1"
-            tick={{ fill: "#64748b", fontSize: 12 }}
-            domain={["auto", "auto"]}
-          />
-
+        <LineChart data={chartData as any[]}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
+          <XAxis dataKey="date" stroke="#d4d4d4" tick={{ fill: "#737373", fontSize: 12 }} />
+          <YAxis stroke="#d4d4d4" tick={{ fill: "#737373", fontSize: 12 }} domain={["auto", "auto"]} />
           <Tooltip
             contentStyle={{
               backgroundColor: "#ffffff",
-              border: "1px solid #e2e8f0",
-              borderRadius: "8px",
-              color: "#0f172a",
+              border: "1px solid #e5e5e5",
+              borderRadius: "0px",
+              color: "#0a0a0a",
               boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
             }}
           />
-
           <Line
             type="monotone"
             dataKey={active}
             stroke={colors[active]}
-            strokeWidth={2.5}
-            dot={{ fill: colors[active], r: 4, strokeWidth: 0 }}
-            activeDot={{ r: 6, strokeWidth: 0 }}
+            strokeWidth={2}
+            dot={{ fill: colors[active], r: 3, strokeWidth: 0 }}
+            activeDot={{ r: 5, strokeWidth: 0 }}
           />
         </LineChart>
       </ResponsiveContainer>
 
-      {/* Footer */}
-      <p className="mt-4 text-xs text-slate-400">
-        {isLive
-          ? "Source: Frankfurter API · Updated hourly"
-          : "SEMDEX data is indicative · Source: SEM"}
+      <p className="mt-4 text-xs text-neutral-400">
+        {isLive ? "Source: Frankfurter API · Updated hourly" : "SEMDEX data is indicative · Source: SEM"}
       </p>
-
     </div>
   );
 }
