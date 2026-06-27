@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   authors: [{ name: "FinRisk Insights" }],
   creator: "FinRisk Insights",
   metadataBase: new URL("https://finriskinsight.com"),
+  verification: {
+    google: "gaV2yYf5x2JY-Mmj0WEZb3QQsY1uNMgdfRJ3s8IuYqE",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
