@@ -27,7 +27,7 @@ export default function EventsPage() {
   const upcoming = events.filter((e) => !e.featured);
 
   return (
-    <div className="space-y-10">
+    <div className="mx-auto max-w-5xl px-8 sm:px-12 py-10 space-y-10">
 
       <div>
         <p className="text-xs uppercase tracking-widest text-cyan-600">Calendar</p>

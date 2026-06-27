@@ -10,8 +10,7 @@ export const metadata = {
 export default async function MarketsPage() {
   let rates = { USD_MUR: 45.12, EUR_MUR: 49.84, GBP_MUR: 58.33 };
   try {
-    const { getFXRates: fetch } = await import("@/lib/api/fx");
-    rates = await fetch();
+    rates = await getFXRates();
   } catch {}
 
   const fxTable = [
@@ -26,7 +25,7 @@ export default async function MarketsPage() {
   ];
 
   return (
-    <div className="space-y-10 py-6">
+    <div className="mx-auto max-w-5xl px-8 sm:px-12 py-10 space-y-10">
 
       {/* Header */}
       <div className="border-b border-neutral-200 pb-6">
@@ -38,12 +37,12 @@ export default async function MarketsPage() {
       {/* FX Rate Cards */}
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {[
-          { label: "USD / MUR", value: rates.USD_MUR.toFixed(2), live: true, color: "border-t-black" },
-          { label: "EUR / MUR", value: rates.EUR_MUR.toFixed(2), live: true, color: "border-t-green-500" },
-          { label: "GBP / MUR", value: rates.GBP_MUR.toFixed(2), live: true, color: "border-t-neutral-400" },
-          { label: "Repo Rate", value: "4.50%", live: false, color: "border-t-neutral-300" },
+          { label: "USD / MUR", value: rates.USD_MUR.toFixed(2), live: true, accent: "border-t-black" },
+          { label: "EUR / MUR", value: rates.EUR_MUR.toFixed(2), live: true, accent: "border-t-green-500" },
+          { label: "GBP / MUR", value: rates.GBP_MUR.toFixed(2), live: true, accent: "border-t-neutral-400" },
+          { label: "Repo Rate", value: "4.50%", live: false, accent: "border-t-neutral-300" },
         ].map((card) => (
-          <div key={card.label} className={`relative border border-neutral-200 bg-white p-6 border-t-4 ${card.color}`}>
+          <div key={card.label} className={`relative border border-neutral-200 bg-white p-6 border-t-4 ${card.accent}`}>
             <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400">{card.label}</p>
             <p className="mt-3 font-mono text-3xl font-bold text-black">{card.value}</p>
             {card.live ? (
@@ -72,7 +71,6 @@ export default async function MarketsPage() {
         <h2 className="mb-4 border-b border-neutral-200 pb-2 text-sm font-semibold uppercase tracking-wider text-neutral-400">
           Market Summary
         </h2>
-
         <div className="overflow-hidden border border-neutral-200 bg-white">
           <table className="w-full text-sm">
             <thead>

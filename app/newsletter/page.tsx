@@ -23,7 +23,7 @@ const pastIssues = [
 
 export default function NewsletterPage() {
   return (
-    <div className="space-y-12">
+    <div className="mx-auto max-w-5xl px-8 sm:px-12 py-10 space-y-12">
       <div className="border-b border-neutral-200 pb-6">
         <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Weekly Briefing</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-4xl">FinRisk Intelligence Briefing</h1>

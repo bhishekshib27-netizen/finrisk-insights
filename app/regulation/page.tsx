@@ -65,7 +65,7 @@ function StatusBadge({ status }: { status: string }) {
 
 export default function RegulationPage() {
   return (
-    <div className="space-y-10">
+    <div className="mx-auto max-w-5xl px-8 sm:px-12 py-10 space-y-10">
       <div>
         <p className="text-xs uppercase tracking-widest text-cyan-600">Compliance and Law</p>
         <h1 className="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">Regulation</h1>

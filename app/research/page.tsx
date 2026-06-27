@@ -32,7 +32,7 @@ export default async function ResearchPage() {
   const premium = reports.filter((r) => r.premium);
 
   return (
-    <div className="space-y-10">
+    <div className="mx-auto max-w-5xl px-8 sm:px-12 py-10 space-y-10">
 
       <div>
         <p className="text-xs uppercase tracking-widest text-cyan-600">Intelligence</p>
