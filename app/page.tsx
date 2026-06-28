@@ -94,7 +94,7 @@ export default function Home() {
                 <h2 className="mt-3 text-3xl font-bold tracking-tight text-black sm:text-4xl">
                   Intelligence across every dimension
                 </h2>
-                <div className="mt-8 space-y-5">
+                <div className="mt-8 divide-y divide-neutral-100">
                   {[
                     { title: "Markets", description: "Live SEMDEX, FX rates, and economic indicators for Mauritius.", href: "/markets" },
                     { title: "Research", description: "In-depth reports on banking, regulation, and the Mauritian economy.", href: "/research" },
@@ -102,7 +102,7 @@ export default function Home() {
                     { title: "Insights", description: "Analysis and commentary from our editorial team.", href: "/insights" },
                     { title: "Careers", description: "Curated finance, compliance, and accounting jobs in Mauritius.", href: "/careers" },
                   ].map((item, i) => (
-                    <Link key={i} href={item.href} className="group flex items-start justify-between border-b border-neutral-100 pb-5 last:border-0 last:pb-0 transition hover:border-blue-200">
+                    <Link key={i} href={item.href} className="group flex items-center justify-between py-4 transition hover:bg-neutral-50 px-2 -mx-2">
                       <div>
                         <h3 className="font-bold text-black group-hover:text-blue-900 transition">{item.title}</h3>
                         <p className="mt-1 text-sm text-neutral-500">{item.description}</p>
