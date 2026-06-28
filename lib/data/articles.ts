@@ -103,104 +103,13 @@ The continued moderation gives the MPC room to maintain the Key Rate at 4.50% at
 ## Our View
 
 We expect headline inflation to remain in the 3.0 to 3.5% range through the remainder of 2026, assuming no major external shocks.`,
-  },
-  {
-    slug: "mur-exchange-rate-outlook",
-    title: "MUR exchange rate outlook: pressures and opportunities",
-    category: "FX",
-    date: "June 15, 2026",
-    readTime: "5 min",
-    author: "FinRisk Insights",
-    authorRole: "FX Desk",
-    excerpt: "The Mauritian rupee has faced mild depreciation pressure against the USD in Q2 2026. We examine the drivers and what to watch in the months ahead.",
-    content: `The Mauritian rupee has depreciated by approximately 1.2% against the US dollar in Q2 2026, trading around 45.12 per USD at the time of writing.
-
-## Global Dollar Strength
-
-The primary driver of MUR weakness has been broad US dollar strength, driven by resilient US economic data and expectations that the Federal Reserve will maintain higher interest rates for longer.
-
-## Domestic Factors
-
-Mauritius's current account deficit creates persistent demand for foreign currency. Tourism receipts have remained strong but have not been sufficient to fully offset import payments.
-
-## Bank of Mauritius Intervention
-
-The Bank of Mauritius has been selectively intervening in the foreign exchange market to smooth excessive volatility. Foreign exchange reserves remain comfortable at approximately USD 7.2 billion.
-
-## Outlook
-
-We expect the MUR to remain range-bound at 44.50 to 46.00 against the USD for the remainder of 2026. For businesses with USD or EUR exposures, we recommend reviewing hedging strategies.`,
-  },
-  {
-    slug: "bank-of-mauritius-repo-rate",
-    title: "Understanding the Bank of Mauritius Repo Rate decision",
-    category: "Monetary Policy",
-    date: "June 10, 2026",
-    readTime: "4 min",
-    author: "FinRisk Insights",
-    authorRole: "Economics Desk",
-    excerpt: "The Monetary Policy Committee held the Key Rate at 4.50% at its latest meeting. We analyse the committee's reasoning and implications for borrowers and savers.",
-    content: `The Monetary Policy Committee of the Bank of Mauritius met on June 10, 2026 and unanimously resolved to maintain the Key Rate at 4.50%.
-
-## MPC Statement Key Points
-
-**Inflation Trajectory**
-The committee noted that headline inflation has moderated to 3.2%, consistent with the BOM's medium-term inflation objective.
-
-**Growth Outlook**
-The Mauritian economy is expected to grow at approximately 4.2% in 2026, supported by strong tourism performance and government infrastructure investment.
-
-**External Environment**
-The MPC flagged global uncertainty as a key risk, including potential dollar strength and commodity price volatility.
-
-## What This Means for Borrowers
-
-With the Key Rate unchanged at 4.50%, lending rates at commercial banks are expected to remain stable.
-
-## Next MPC Meeting
-
-The next MPC meeting is scheduled for September 2026. We will be watching for any shift in the committee's language that could signal a policy change.`,
-  },
-  {
-    slug: "virtual-assets-regulation-mauritius",
-    title: "Virtual assets regulation in Mauritius: where things stand",
-    category: "Regulation",
-    date: "June 5, 2026",
-    readTime: "7 min",
-    author: "FinRisk Insights",
-    authorRole: "Regulatory Desk",
-    excerpt: "Mauritius has positioned itself as a forward-thinking jurisdiction for virtual asset regulation. Here is the current framework and what is expected next.",
-    content: `Mauritius has emerged as one of the more progressive jurisdictions for virtual asset regulation, with a comprehensive framework that balances innovation with investor protection and AML/CFT compliance.
-
-## The Current Framework
-
-The Virtual Asset and Initial Token Offering Services Act provides the primary legislative foundation. License categories include:
-
-- Virtual Asset Broker-Dealer
-- Virtual Asset Custodian
-- Virtual Asset Market Place
-- Virtual Asset Manager
-
-## FSC Consultation Paper
-
-The FSC has released a new consultation paper proposing updates, with comments accepted until July 31, 2026.
-
-**Travel Rule Compliance**
-VASPs will be required to implement Travel Rule compliance for all virtual asset transfers above a de minimis threshold.
-
-**Stablecoin Regulation**
-A new sub-category of licence is proposed for issuers of stablecoins, with specific reserve and disclosure requirements.
-
-## Our View
-
-Mauritius is well-positioned to attract quality virtual asset businesses. The regulatory framework is credible, proportionate, and continues to evolve in line with international standards.`,
-  },
+  
 ];
-
-export function getArticleBySlug(slug: string): Article | undefined {
-  return articles.find((a) => a.slug === slug);
-}
 
 export function getAllArticles(): Article[] {
   return articles;
+}
+
+export function getArticleBySlug(slug: string): Article | undefined {
+  return articles.find((a) => a.slug === slug);
 }

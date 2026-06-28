@@ -52,7 +52,7 @@ export default async function InsightsPage() {
     excerpt: a.excerpt,
   }))
 
-  const allArticles = [...sanityFormatted, ...hardcodedFormatted]
+  const allArticles = sanityFormatted.length > 0 ? sanityFormatted : hardcodedFormatted
 
   return (
     <div className="space-y-0">
