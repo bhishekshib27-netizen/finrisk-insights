@@ -266,23 +266,23 @@ export default function Home() {
         </section>
       </AnimatedLayout>
 
-      {/* NEWSLETTER */}
+            {/* NEWSLETTER */}
       <AnimatedLayout delay={0.4}>
-        <section className="border-b border-neutral-200 bg-neutral-50">
+        <section className="border-b border-blue-950" style={{background:"#0f2654"}}>
           <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
             <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Weekly Briefing</p>
-                <h2 className="mt-3 text-3xl font-bold tracking-tight text-black">
+                <p className="text-xs font-semibold uppercase tracking-widest text-blue-300">Weekly Briefing</p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
                   Stay ahead of Mauritius finance
                 </h2>
-                <p className="mt-3 text-neutral-500">
+                <p className="mt-3 text-blue-200">
                   Get the FinRisk Intelligence Briefing every week — markets, regulation, research, and events delivered to your inbox.
                 </p>
                 <div className="mt-6 space-y-2">
                   {["Live market updates", "Regulatory alerts", "Exclusive research", "Upcoming events"].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-neutral-600">
-                      <span className="h-1.5 w-1.5 shrink-0 bg-blue-900" />
+                    <div key={i} className="flex items-center gap-2 text-sm text-blue-100">
+                      <span className="h-1.5 w-1.5 shrink-0 bg-blue-300" />
                       {item}
                     </div>
                   ))}
