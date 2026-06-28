@@ -82,11 +82,11 @@ export default async function MarketsPage() {
         <div className="overflow-hidden border border-neutral-200 bg-white">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-neutral-200 bg-neutral-50">
-                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-neutral-500">Instrument</th>
-                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider text-neutral-500">Value</th>
-                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider text-neutral-500">Change</th>
-                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider text-neutral-500">Trend</th>
+              <tr style={{background:"#1e3a8a"}}>
+                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-white">Instrument</th>
+                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider text-white">Value</th>
+                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider text-white">Change</th>
+                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider text-white">Trend</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-neutral-100">
