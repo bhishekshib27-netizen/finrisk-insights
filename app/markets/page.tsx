@@ -25,14 +25,22 @@ export default async function MarketsPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-5xl px-8 sm:px-12 py-10 space-y-10">
+    <div className="space-y-0">
 
-      {/* Header */}
-      <div className="border-b border-neutral-200 pb-6">
-        <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Live Data</p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-4xl">Markets</h1>
-        <p className="mt-2 text-neutral-500">Live FX rates, equity indices, and key economic indicators for Mauritius.</p>
+      {/* Hero Banner */}
+      <div className="relative overflow-hidden" style={{height: "280px"}}>
+        <img src="/category-markets.jpg" alt="Markets" className="w-full h-full object-cover object-center" />
+        <div className="absolute inset-0" style={{background: "linear-gradient(to right, rgba(10,25,60,0.85) 50%, rgba(10,25,60,0.5) 100%)"}} />
+        <div className="absolute inset-0 flex items-center">
+          <div className="mx-auto max-w-5xl px-8 sm:px-12 w-full">
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-300">Live Data</p>
+            <h1 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">Markets</h1>
+            <p className="mt-3 max-w-xl text-blue-100">Live FX rates, equity indices, and key economic indicators for Mauritius.</p>
+          </div>
+        </div>
       </div>
+
+      <div className="mx-auto max-w-5xl px-8 sm:px-12 py-10 space-y-10">
 
       {/* FX Rate Cards */}
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -108,6 +116,7 @@ export default async function MarketsPage() {
         </p>
       </div>
 
+      </div>
     </div>
   );
 }
