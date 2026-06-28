@@ -127,7 +127,7 @@ export default function Home() {
                 <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Live Data</p>
                 <h2 className="mt-1 text-2xl font-bold text-black">Market Overview</h2>
               </div>
-              <Link href="/markets" className="text-xs font-semibold text-black hover:text-neutral-600 transition">
+              <Link href="/markets" className="text-xs font-semibold text-blue-200 hover:text-white transition">
                 Full Markets →
               </Link>
             </div>

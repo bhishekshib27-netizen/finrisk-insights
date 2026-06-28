@@ -67,7 +67,7 @@ export default function MarketChart({ fxHistory }: MarketChartProps) {
               onClick={() => setActive(m)}
               className={`px-3 py-1 text-xs font-semibold transition ${
                 active === m
-                  ? "bg-black text-white"
+                  ? "text-white" style={{background:"#1e3a8a"}}"
                   : "border border-neutral-200 bg-neutral-50 text-neutral-500 hover:border-black hover:text-black"
               }`}
             >
