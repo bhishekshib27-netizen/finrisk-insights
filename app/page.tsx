@@ -73,30 +73,48 @@ export default function Home() {
         </section>
       </AnimatedLayout>
 
-      {/* WHAT WE DO */}
+            {/* WHAT WE DO */}
       <AnimatedLayout delay={0.15}>
-        <section className="border-b border-neutral-200 bg-white">
-          <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
-            <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">What We Do</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-black sm:text-4xl">
-              Intelligence across every dimension
-            </h2>
-            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                { icon: <BarChart2 size={20} />, title: "Markets", description: "Live SEMDEX, FX rates, and economic indicators for Mauritius.", href: "/markets" },
-                { icon: <BookOpen size={20} />, title: "Research", description: "In-depth reports on banking, regulation, and the Mauritian economy.", href: "/research" },
-                { icon: <Shield size={20} />, title: "Regulation", description: "Real-time alerts from FSC, Bank of Mauritius, and FATF.", href: "/regulation" },
-                { icon: <Zap size={20} />, title: "Insights", description: "Analysis and commentary from our editorial team.", href: "/insights" },
-              ].map((item, i) => (
-                <Link key={i} href={item.href} className="group border border-neutral-200 bg-white p-6 transition hover:border-black hover:shadow-md">
-                  <div className="mb-4 text-black">{item.icon}</div>
-                  <h3 className="font-bold text-black group-hover:text-neutral-600 transition">{item.title}</h3>
-                  <p className="mt-2 text-sm text-neutral-500">{item.description}</p>
-                  <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-black group-hover:text-neutral-600 transition">
-                    Explore <ArrowUpRight size={12} />
-                  </div>
-                </Link>
-              ))}
+        <section className="border-b border-neutral-200 bg-white overflow-hidden">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid lg:grid-cols-2 min-h-[600px]">
+
+              {/* Left - Image */}
+              <div className="relative hidden lg:block">
+                <img
+                  src="/what-we-do-bg.jpg"
+                  alt="Financial district"
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                />
+                <div className="absolute inset-0" style={{background: "linear-gradient(to right, transparent 70%, white 100%)"}} />
+              </div>
+
+              {/* Right - Content */}
+              <div className="px-8 py-16 sm:px-12 lg:px-16">
+                <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">What We Do</p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight text-black sm:text-4xl">
+                  Intelligence across every dimension
+                </h2>
+                <div className="mt-8 space-y-6">
+                  {[
+                    { icon: "📊", title: "Markets", description: "Live SEMDEX, FX rates, and economic indicators for Mauritius.", href: "/markets" },
+                    { icon: "📖", title: "Research", description: "In-depth reports on banking, regulation, and the Mauritian economy.", href: "/research" },
+                    { icon: "🛡️", title: "Regulation", description: "Real-time alerts from FSC, Bank of Mauritius, and FATF.", href: "/regulation" },
+                    { icon: "⚡", title: "Insights", description: "Analysis and commentary from our editorial team.", href: "/insights" },
+                    { icon: "💼", title: "Careers", description: "Curated finance, compliance, and accounting jobs in Mauritius.", href: "/careers" },
+                  ].map((item, i) => (
+                    <Link key={i} href={item.href} className="group flex items-start gap-4 border-b border-neutral-100 pb-6 last:border-0 last:pb-0 hover:border-blue-200 transition">
+                      <span className="text-2xl">{item.icon}</span>
+                      <div>
+                        <h3 className="font-bold text-black group-hover:text-blue-900 transition">{item.title}</h3>
+                        <p className="mt-1 text-sm text-neutral-500">{item.description}</p>
+                      </div>
+                      <span className="ml-auto text-neutral-300 group-hover:text-blue-900 transition">→</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
             </div>
           </div>
         </section>
