@@ -75,41 +75,39 @@ export default function Home() {
 
             {/* WHAT WE DO */}
       <AnimatedLayout delay={0.15}>
-        <section className="border-b border-neutral-200 bg-white overflow-hidden">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid lg:grid-cols-2 min-h-[600px]">
+        <section className="border-b border-neutral-200 bg-white">
+          <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
+            <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
 
               {/* Left - Image */}
-              <div className="relative hidden lg:block">
+              <div className="hidden lg:block">
                 <img
                   src="/what-we-do-bg.jpg"
                   alt="Financial district"
-                  className="absolute inset-0 w-full h-full object-cover object-center"
+                  className="w-full h-[480px] object-cover object-center"
                 />
-                <div className="absolute inset-0" style={{background: "linear-gradient(to right, transparent 70%, white 100%)"}} />
               </div>
 
               {/* Right - Content */}
-              <div className="px-8 py-16 sm:px-12 lg:px-16">
+              <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">What We Do</p>
                 <h2 className="mt-3 text-3xl font-bold tracking-tight text-black sm:text-4xl">
                   Intelligence across every dimension
                 </h2>
-                <div className="mt-8 space-y-6">
+                <div className="mt-8 space-y-5">
                   {[
-                    { icon: "📊", title: "Markets", description: "Live SEMDEX, FX rates, and economic indicators for Mauritius.", href: "/markets" },
-                    { icon: "📖", title: "Research", description: "In-depth reports on banking, regulation, and the Mauritian economy.", href: "/research" },
-                    { icon: "🛡️", title: "Regulation", description: "Real-time alerts from FSC, Bank of Mauritius, and FATF.", href: "/regulation" },
-                    { icon: "⚡", title: "Insights", description: "Analysis and commentary from our editorial team.", href: "/insights" },
-                    { icon: "💼", title: "Careers", description: "Curated finance, compliance, and accounting jobs in Mauritius.", href: "/careers" },
+                    { title: "Markets", description: "Live SEMDEX, FX rates, and economic indicators for Mauritius.", href: "/markets" },
+                    { title: "Research", description: "In-depth reports on banking, regulation, and the Mauritian economy.", href: "/research" },
+                    { title: "Regulation", description: "Real-time alerts from FSC, Bank of Mauritius, and FATF.", href: "/regulation" },
+                    { title: "Insights", description: "Analysis and commentary from our editorial team.", href: "/insights" },
+                    { title: "Careers", description: "Curated finance, compliance, and accounting jobs in Mauritius.", href: "/careers" },
                   ].map((item, i) => (
-                    <Link key={i} href={item.href} className="group flex items-start gap-4 border-b border-neutral-100 pb-6 last:border-0 last:pb-0 hover:border-blue-200 transition">
-                      <span className="text-2xl">{item.icon}</span>
+                    <Link key={i} href={item.href} className="group flex items-start justify-between border-b border-neutral-100 pb-5 last:border-0 last:pb-0 transition hover:border-blue-200">
                       <div>
                         <h3 className="font-bold text-black group-hover:text-blue-900 transition">{item.title}</h3>
                         <p className="mt-1 text-sm text-neutral-500">{item.description}</p>
                       </div>
-                      <span className="ml-auto text-neutral-300 group-hover:text-blue-900 transition">→</span>
+                      <span className="ml-6 shrink-0 text-neutral-300 group-hover:text-blue-900 transition text-lg">→</span>
                     </Link>
                   ))}
                 </div>
