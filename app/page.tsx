@@ -186,25 +186,35 @@ export default function Home() {
         </section>
       </AnimatedLayout>
 
-      {/* REGULATION */}
+            {/* REGULATION */}
       <AnimatedLayout delay={0.3}>
-        <section className="border-b border-neutral-200 bg-neutral-50">
+        <section className="border-b border-blue-950" style={{background:"#0f2654"}}>
           <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
             <div className="mb-8 flex items-center justify-between">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Compliance</p>
-                <h2 className="mt-1 text-2xl font-bold text-black">Regulatory Updates</h2>
+                <p className="text-xs font-semibold uppercase tracking-widest text-blue-300">Compliance</p>
+                <h2 className="mt-1 text-2xl font-bold text-white">Regulatory Updates</h2>
               </div>
-              <Link href="/regulation" className="text-xs font-semibold text-black hover:text-neutral-600 transition">
+              <Link href="/regulation" className="text-xs font-semibold text-blue-300 hover:text-white transition">
                 View all →
               </Link>
             </div>
-            <div className="flex items-start gap-4 border border-l-4 border-neutral-200 border-l-black bg-white p-5">
-              <div className="flex-1">
-                <p className="text-sm font-medium text-black">Regulatory updates coming soon. Check back for FSC, Bank of Mauritius, and FATF alerts.</p>
-                <p className="mt-1 text-xs text-neutral-400">Stay tuned</p>
-              </div>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {[
+                { source: "FSC Mauritius", label: "Financial Services Commission", color: "bg-blue-800" },
+                { source: "Bank of Mauritius", label: "Central Bank Updates", color: "bg-blue-800" },
+                { source: "FATF", label: "Financial Action Task Force", color: "bg-blue-800" },
+              ].map((item, i) => (
+                <div key={i} className="border border-blue-800 p-6" style={{background:"rgba(255,255,255,0.05)"}}>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-blue-300">{item.source}</p>
+                  <p className="mt-2 text-sm text-blue-100">{item.label}</p>
+                  <p className="mt-4 text-xs text-blue-400">Updates coming soon</p>
+                </div>
+              ))}
             </div>
+            <p className="mt-6 text-xs text-blue-400">
+              We are monitoring FSC circulars, Bank of Mauritius guidance notes, and FATF developments. Subscribe to receive alerts by email.
+            </p>
           </div>
         </section>
       </AnimatedLayout>
