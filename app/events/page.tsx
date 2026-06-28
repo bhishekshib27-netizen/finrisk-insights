@@ -17,7 +17,7 @@ export default function EventsPage() {
     <div className="mx-auto max-w-5xl px-8 sm:px-12 py-10 space-y-10">
 
       <div className="border-b border-neutral-200 pb-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Calendar</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Calendar</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-4xl">Upcoming Events</h1>
         <p className="mt-3 max-w-xl text-neutral-500">
           Finance, compliance, and regulatory events in Mauritius and beyond — curated and updated as they are confirmed.
@@ -32,7 +32,7 @@ export default function EventsPage() {
             <p className="mt-1 text-sm text-neutral-500">
               We are curating a calendar of finance, compliance, AML, and regulatory events across Mauritius. Check back soon or subscribe to our newsletter to be notified when events are added.
             </p>
-            <a href="/newsletter" className="mt-4 inline-flex items-center gap-2 bg-black px-4 py-2 text-xs font-semibold text-white transition hover:bg-neutral-800">
+            <a href="/newsletter" className="mt-4 inline-flex items-center gap-2 bg-blue-900 px-4 py-2 text-xs font-semibold text-white transition hover:bg-blue-800">
               Subscribe for updates
             </a>
           </div>
@@ -59,7 +59,7 @@ export default function EventsPage() {
         <p className="text-sm text-neutral-500 mb-4">
           If you are organising or know of a finance or compliance event in Mauritius, get in touch and we will add it to the calendar.
         </p>
-        <a href="mailto:hello@finriskinsight.com?subject=Event Listing" className="inline-flex items-center gap-2 border border-black px-4 py-2 text-sm font-semibold text-black transition hover:bg-black hover:text-white">
+        <a href="mailto:hello@finriskinsight.com?subject=Event Listing" className="inline-flex items-center gap-2 border border-black px-4 py-2 text-sm font-semibold text-black transition hover:bg-blue-900 hover:text-white">
           Submit an Event <ExternalLink size={13} />
         </a>
       </div>

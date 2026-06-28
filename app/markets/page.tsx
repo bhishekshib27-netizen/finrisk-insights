@@ -29,7 +29,7 @@ export default async function MarketsPage() {
 
       {/* Header */}
       <div className="border-b border-neutral-200 pb-6">
-        <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Live Data</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Live Data</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-4xl">Markets</h1>
         <p className="mt-2 text-neutral-500">Live FX rates, equity indices, and key economic indicators for Mauritius.</p>
       </div>
@@ -37,16 +37,16 @@ export default async function MarketsPage() {
       {/* FX Rate Cards */}
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {[
-          { label: "USD / MUR", value: rates.USD_MUR.toFixed(2), live: true, accent: "border-t-black" },
-          { label: "EUR / MUR", value: rates.EUR_MUR.toFixed(2), live: true, accent: "border-t-green-500" },
-          { label: "GBP / MUR", value: rates.GBP_MUR.toFixed(2), live: true, accent: "border-t-neutral-400" },
-          { label: "Repo Rate", value: "4.50%", live: false, accent: "border-t-neutral-300" },
+          { label: "USD / MUR", value: rates.USD_MUR.toFixed(2), live: true, accent: "border-t-blue-900" },
+          { label: "EUR / MUR", value: rates.EUR_MUR.toFixed(2), live: true, accent: "border-t-blue-700" },
+          { label: "GBP / MUR", value: rates.GBP_MUR.toFixed(2), live: true, accent: "border-t-blue-500" },
+          { label: "Repo Rate", value: "4.50%", live: false, accent: "border-t-blue-300" },
         ].map((card) => (
           <div key={card.label} className={`relative border border-neutral-200 bg-white p-6 border-t-4 ${card.accent}`}>
             <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400">{card.label}</p>
             <p className="mt-3 font-mono text-3xl font-bold text-black">{card.value}</p>
             {card.live ? (
-              <span className="mt-2 inline-flex items-center gap-1 bg-green-50 px-2 py-0.5 text-xs font-semibold text-green-600">
+              <span className="mt-2 inline-flex items-center gap-1 bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-700">
                 ● Live
               </span>
             ) : (
