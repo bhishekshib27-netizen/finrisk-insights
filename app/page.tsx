@@ -219,21 +219,48 @@ export default function Home() {
         </section>
       </AnimatedLayout>
 
-      {/* EVENTS */}
+            {/* EVENTS */}
       <AnimatedLayout delay={0.35}>
-        <section className="border-b border-neutral-200 bg-white">
+        <section className="border-b border-neutral-200 bg-white overflow-hidden">
           <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
-            <div className="mb-8 flex items-center justify-between">
+            <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+
+              {/* Left - Content */}
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Calendar</p>
-                <h2 className="mt-1 text-2xl font-bold text-black">Upcoming Events</h2>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight text-black sm:text-4xl">Upcoming Events</h2>
+                <p className="mt-3 text-neutral-500 text-sm">Finance, compliance, and regulatory events in Mauritius — curated and updated as they are confirmed.</p>
+                <div className="mt-8 divide-y divide-neutral-100">
+                  {[
+                    { type: "Conference", org: "FSC Mauritius", desc: "Annual regulatory summit and industry briefings." },
+                    { type: "MPC Meeting", org: "Bank of Mauritius", desc: "Monetary Policy Committee rate decisions." },
+                    { type: "Workshop", org: "ESAAMLG", desc: "Regional AML/CFT typologies and compliance workshops." },
+                    { type: "Networking", org: "FinRisk Insights", desc: "Finance professionals networking evenings in Mauritius." },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-4 py-4">
+                      <span className="mt-0.5 shrink-0 inline-block bg-blue-900 px-2 py-0.5 text-xs font-semibold text-white">{item.type}</span>
+                      <div>
+                        <p className="font-bold text-black text-sm">{item.org}</p>
+                        <p className="mt-0.5 text-xs text-neutral-500">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-6 text-xs text-neutral-400">
+                  No confirmed dates yet — <Link href="/newsletter" className="text-blue-900 underline">subscribe</Link> to be notified when events are added.
+                </p>
               </div>
-              <Link href="/events" className="text-xs font-semibold text-black hover:text-neutral-600 transition">
-                View all →
-              </Link>
-            </div>
-            <div className="border border-neutral-200 bg-white p-5 text-sm text-neutral-500">
-              No upcoming events yet — check back soon.
+
+              {/* Right - Image */}
+              <div className="hidden lg:block">
+                <img
+                  src="/events-bg.jpg"
+                  alt="Events"
+                  className="w-full object-cover object-center"
+                  style={{height: "480px"}}
+                />
+              </div>
+
             </div>
           </div>
         </section>
