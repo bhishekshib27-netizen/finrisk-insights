@@ -139,7 +139,7 @@ export default function Home() {
         </section>
       </AnimatedLayout>
 
-      {/* LATEST INSIGHTS */}
+            {/* LATEST INSIGHTS */}
       <AnimatedLayout delay={0.25}>
         <section className="border-b border-neutral-200 bg-white">
           <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
@@ -148,26 +148,36 @@ export default function Home() {
                 <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Intelligence</p>
                 <h2 className="mt-1 text-2xl font-bold text-black">Latest Insights</h2>
               </div>
-              <Link href="/insights" className="text-xs font-semibold text-black hover:text-neutral-600 transition">
+              <Link href="/insights" className="text-xs font-semibold text-blue-900 hover:text-blue-700 transition">
                 View all →
               </Link>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-3">
               {[
-                { category: "Markets", title: "SEMDEX closes higher amid strong banking performance", date: "Jun 25, 2026", readTime: "4 min", slug: "semdex-closes-higher-banking-performance" },
-                { category: "Compliance", title: "Key AML developments every compliance officer should know", date: "Jun 22, 2026", readTime: "6 min", slug: "aml-developments-compliance-officers" },
-                { category: "Economy", title: "What the latest inflation figures mean for Mauritius", date: "Jun 18, 2026", readTime: "5 min", slug: "inflation-figures-mauritius" },
+                { category: "Markets", title: "SEMDEX closes higher amid strong banking performance", date: "Jun 25, 2026", readTime: "4 min", slug: "semdex-closes-higher-banking-performance", image: "/category-markets.jpg" },
+                { category: "Compliance", title: "Key AML developments every compliance officer should know", date: "Jun 22, 2026", readTime: "6 min", slug: "aml-developments-compliance-officers", image: "/category-compliance.jpg" },
+                { category: "Economy", title: "What the latest inflation figures mean for Mauritius", date: "Jun 18, 2026", readTime: "5 min", slug: "inflation-figures-mauritius", image: "/category-economy.jpg" },
               ].map((item, i) => (
-                <Link key={i} href={`/insights/${item.slug}`} className="group border border-neutral-200 bg-white p-5 transition hover:border-black hover:shadow-md">
-                  <span className="inline-block border border-neutral-200 bg-neutral-50 px-2.5 py-0.5 text-xs font-semibold text-neutral-600">
-                    {item.category}
-                  </span>
-                  <h3 className="mt-3 text-sm font-bold text-black group-hover:text-neutral-600 transition leading-snug">
-                    {item.title}
-                  </h3>
-                  <div className="mt-3 flex items-center gap-3 text-xs text-neutral-400">
-                    <span>{item.date}</span>
-                    <span className="flex items-center gap-1"><Clock size={10} />{item.readTime}</span>
+                <Link key={i} href={`/insights/${item.slug}`} className="group overflow-hidden border border-neutral-200 hover:border-blue-900 transition hover:shadow-md">
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.category}
+                      className="w-full h-full object-cover object-center transition group-hover:scale-105 duration-500"
+                    />
+                    <div className="absolute inset-0" style={{background: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%)"}} />
+                    <span className="absolute bottom-3 left-3 bg-blue-900 px-2 py-0.5 text-xs font-semibold text-white">
+                      {item.category}
+                    </span>
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-sm font-bold text-black group-hover:text-blue-900 transition leading-snug">
+                      {item.title}
+                    </h3>
+                    <div className="mt-3 flex items-center gap-3 text-xs text-neutral-400">
+                      <span>{item.date}</span>
+                      <span>· {item.readTime} read</span>
+                    </div>
                   </div>
                 </Link>
               ))}
