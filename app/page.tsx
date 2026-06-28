@@ -12,12 +12,12 @@ export default function Home() {
 
       {/* HERO */}
       <AnimatedLayout delay={0}>
-        <section className="relative overflow-hidden" style={{minHeight: "85vh", display: "flex", alignItems: "center"}}>
+        <section className="relative overflow-hidden" style={{minHeight: "60vh", display: "flex", alignItems: "center"}}>
           <div className="absolute inset-0 z-0">
             <img src="/hero-bg.jpg" alt="Mauritius" className="w-full h-full object-cover object-center" />
             <div className="absolute inset-0" style={{background: "linear-gradient(to right, rgba(5,15,40,0.75) 0%, rgba(5,15,40,0.4) 100%)"}} />
           </div>
-          <div className="relative z-10 mx-auto max-w-5xl px-8 py-20 sm:px-12 md:py-36">
+          <div className="relative z-10 mx-auto max-w-5xl px-8 py-12 sm:px-12 md:py-20">
             <p className="text-xs font-semibold uppercase tracking-widest" style={{color: "#93c5fd"}}>
               Est. 2026 — Mauritius
             </p>
