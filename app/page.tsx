@@ -15,7 +15,7 @@ export default function Home() {
         <section className="relative overflow-hidden" style={{minHeight: "85vh", display: "flex", alignItems: "center"}}>
           <div className="absolute inset-0 z-0">
             <img src="/hero-bg.jpg" alt="Mauritius" className="w-full h-full object-cover object-center" />
-            <div className="absolute inset-0" style={{background: "linear-gradient(to right, rgba(10,25,60,0.92) 40%, rgba(10,25,60,0.6) 100%)"}} />
+            <div className="absolute inset-0" style={{background: "linear-gradient(to right, rgba(5,15,40,0.75) 0%, rgba(5,15,40,0.4) 100%)"}} />
           </div>
           <div className="relative z-10 mx-auto max-w-5xl px-8 py-20 sm:px-12 md:py-36">
             <p className="text-xs font-semibold uppercase tracking-widest" style={{color: "#93c5fd"}}>
@@ -23,10 +23,10 @@ export default function Home() {
             </p>
             <h1 className="mt-4 text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl xl:text-7xl">
               FinRisk Insights
-              <span className="block" style={{color: "#93c5fd"}}>The Financial Platform</span>
-              <span className="block" style={{color: "#93c5fd"}}>of Mauritius</span>
+              <span className="block text-white opacity-80">The Financial Platform</span>
+              <span className="block text-white opacity-80">of Mauritius</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg" style={{color: "#cbd5e1"}}>
+            <p className="mt-6 max-w-xl text-lg" style={{color: "#e2e8f0"}}>
               Live markets, regulatory intelligence, research, and finance jobs — all in one place.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
