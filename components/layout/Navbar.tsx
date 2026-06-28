@@ -58,7 +58,7 @@ export default function Navbar() {
                 >
                   {link.name}
                   {isActive(link.href) && (
-                    <span className="absolute -bottom-[21px] left-0 h-0.5 w-full bg-black" />
+                    <span className="absolute -bottom-[21px] left-0 h-0.5 w-full bg-blue-900" />
                   )}
                 </Link>
               ))}
@@ -94,7 +94,7 @@ export default function Navbar() {
                     </button>
                   </SignInButton>
                   <SignUpButton mode="modal">
-                    <button className="bg-black px-4 py-1.5 text-sm font-semibold text-white hover:bg-neutral-800 transition">
+                    <button className="bg-blue-900 px-4 py-1.5 text-sm font-semibold text-white hover:bg-neutral-800 transition">
                       Get Access
                     </button>
                   </SignUpButton>
@@ -166,7 +166,7 @@ export default function Navbar() {
                   </button>
                 </SignInButton>
                 <SignUpButton mode="modal">
-                  <button className="w-full bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800 transition">
+                  <button className="w-full bg-blue-900 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800 transition">
                     Get Access
                   </button>
                 </SignUpButton>

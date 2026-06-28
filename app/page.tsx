@@ -47,7 +47,7 @@ export default function Home() {
           <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
             <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Who We Are</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Who We Are</p>
                 <h2 className="mt-3 text-3xl font-bold tracking-tight text-black sm:text-4xl">
                   About FinRisk Insights
                 </h2>
@@ -67,7 +67,7 @@ export default function Home() {
       <AnimatedLayout delay={0.15}>
         <section className="border-b border-neutral-200 bg-white">
           <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
-            <p className="text-xs font-semibold uppercase tracking-widest text-green-600">What We Do</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">What We Do</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-black sm:text-4xl">
               Intelligence across every dimension
             </h2>
@@ -98,7 +98,7 @@ export default function Home() {
           <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
             <div className="mb-8 flex items-center justify-between">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Live Data</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Live Data</p>
                 <h2 className="mt-1 text-2xl font-bold text-black">Market Overview</h2>
               </div>
               <Link href="/markets" className="text-xs font-semibold text-black hover:text-neutral-600 transition">
@@ -119,7 +119,7 @@ export default function Home() {
           <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
             <div className="mb-8 flex items-center justify-between">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Intelligence</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Intelligence</p>
                 <h2 className="mt-1 text-2xl font-bold text-black">Latest Insights</h2>
               </div>
               <Link href="/insights" className="text-xs font-semibold text-black hover:text-neutral-600 transition">
@@ -156,7 +156,7 @@ export default function Home() {
           <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
             <div className="mb-8 flex items-center justify-between">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Compliance</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Compliance</p>
                 <h2 className="mt-1 text-2xl font-bold text-black">Regulatory Updates</h2>
               </div>
               <Link href="/regulation" className="text-xs font-semibold text-black hover:text-neutral-600 transition">
@@ -179,7 +179,7 @@ export default function Home() {
           <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
             <div className="mb-8 flex items-center justify-between">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Calendar</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Calendar</p>
                 <h2 className="mt-1 text-2xl font-bold text-black">Upcoming Events</h2>
               </div>
               <Link href="/events" className="text-xs font-semibold text-black hover:text-neutral-600 transition">
@@ -199,7 +199,7 @@ export default function Home() {
           <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
             <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Weekly Briefing</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Weekly Briefing</p>
                 <h2 className="mt-3 text-3xl font-bold tracking-tight text-black">
                   Stay ahead of Mauritius finance
                 </h2>
@@ -209,7 +209,7 @@ export default function Home() {
                 <div className="mt-6 space-y-2">
                   {["Live market updates", "Regulatory alerts", "Exclusive research", "Upcoming events"].map((item, i) => (
                     <div key={i} className="flex items-center gap-2 text-sm text-neutral-600">
-                      <span className="h-1.5 w-1.5 shrink-0 bg-green-500" />
+                      <span className="h-1.5 w-1.5 shrink-0 bg-blue-900" />
                       {item}
                     </div>
                   ))}
@@ -223,7 +223,7 @@ export default function Home() {
 
       {/* FOOTER CTA */}
       <AnimatedLayout delay={0.45}>
-        <section className="bg-black">
+        <section className="bg-blue-900">
           <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12 text-center">
             <h2 className="text-3xl font-bold text-white sm:text-4xl">
               The Financial Platform of Mauritius
