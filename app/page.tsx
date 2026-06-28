@@ -80,11 +80,11 @@ export default function Home() {
             <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
 
               {/* Left - Image */}
-              <div className="hidden lg:block">
+              <div className="hidden lg:block" style={{minHeight: "480px"}}>
                 <img
                   src="/what-we-do-bg.jpg"
                   alt="Financial district"
-                  className="w-full h-[480px] object-cover object-center"
+                  className="w-full h-full object-cover object-center" style={{minHeight: "480px"}}
                 />
               </div>
 
