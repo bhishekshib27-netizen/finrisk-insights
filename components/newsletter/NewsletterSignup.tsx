@@ -36,8 +36,8 @@ export default function NewsletterSignup() {
 
   if (status === "success") {
     return (
-      <div className="border border-blue-800 p-8 text-center" style={{background:"rgba(255,255,255,0.08)"}}>
-        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center border border-blue-400 bg-blue-900">
+      <div className="border border-neutral-200 bg-white p-8 text-center">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center border border-green-200 bg-green-50">
           <CheckCircle size={24} className="text-green-600" />
         </div>
         <h3 className="text-lg font-bold text-black">You are subscribed</h3>
@@ -47,9 +47,9 @@ export default function NewsletterSignup() {
   }
 
   return (
-    <div className="border border-blue-800 p-8" style={{background:"rgba(255,255,255,0.08)"}}>
+    <div className="border border-neutral-200 bg-white p-8">
       <div className="mb-6 flex items-center gap-3">
-        <div className="border border-blue-700 p-2" style={{background:"rgba(255,255,255,0.1)"}}>
+        <div className="border border-neutral-200 bg-neutral-50 p-2">
           <Mail size={18} className="text-black" />
         </div>
         <div>
@@ -66,7 +66,7 @@ export default function NewsletterSignup() {
           "Upcoming events and MPC decisions",
         ].map((item, i) => (
           <li key={i} className="flex items-center gap-2 text-sm text-neutral-600">
-            <span className="h-1.5 w-1.5 shrink-0 bg-blue-300" />
+            <span className="h-1.5 w-1.5 shrink-0 bg-green-500" />
             {item}
           </li>
         ))}
@@ -78,7 +78,7 @@ export default function NewsletterSignup() {
           placeholder="Your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full border border-blue-700 px-4 py-2.5 text-sm text-white placeholder:text-blue-400 outline-none focus:border-blue-300 transition" style={{background:"rgba(255,255,255,0.08)"}}
+          className="w-full border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-sm text-black placeholder:text-neutral-400 outline-none focus:border-black transition"
         />
         <input
           type="email"
@@ -86,7 +86,7 @@ export default function NewsletterSignup() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-          className="w-full border border-blue-700 px-4 py-2.5 text-sm text-white placeholder:text-blue-400 outline-none focus:border-blue-300 transition" style={{background:"rgba(255,255,255,0.08)"}}
+          className="w-full border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-sm text-black placeholder:text-neutral-400 outline-none focus:border-black transition"
         />
 
         {status === "error" && <p className="text-xs text-red-500">{message}</p>}
