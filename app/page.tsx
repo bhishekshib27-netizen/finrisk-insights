@@ -41,22 +41,32 @@ export default function Home() {
         </section>
       </AnimatedLayout>
 
-      {/* ABOUT */}
+            {/* ABOUT */}
       <AnimatedLayout delay={0.1}>
-        <section className="border-b border-neutral-200 bg-neutral-50">
-          <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
-            <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+        <section className="border-b border-neutral-200 bg-white">
+          <div className="mx-auto max-w-4xl px-8 py-20 sm:px-12 text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Who We Are</p>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-black sm:text-4xl lg:text-5xl leading-tight">
+              FinRisk Insights is Mauritius's leading financial intelligence platform
+            </h2>
+            <p className="mt-6 text-lg text-neutral-500 max-w-2xl mx-auto leading-relaxed">
+              We deliver live market data, regulatory updates, research reports, and economic analysis — built for finance professionals, compliance officers, regulators, and investors.
+            </p>
+            <p className="mt-6 text-sm font-bold tracking-widest text-blue-900 uppercase">
+              Mauritius &nbsp;|&nbsp; Zimbabwe
+            </p>
+            <div className="mt-10 grid grid-cols-3 gap-8 border-t border-neutral-200 pt-10 max-w-md mx-auto">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Who We Are</p>
-                <h2 className="mt-3 text-3xl font-bold tracking-tight text-black sm:text-4xl">
-                  About FinRisk Insights
-                </h2>
+                <p className="text-3xl font-bold text-black">400+</p>
+                <p className="mt-1 text-xs text-neutral-400 uppercase tracking-wider">Subscribers</p>
               </div>
               <div>
-                <p className="text-base leading-relaxed text-neutral-600">
-                  FinRisk Insights is Mauritius's emerging financial intelligence platform, built for finance professionals, compliance officers, regulators, and investors. We deliver live market data, regulatory updates, research reports, and economic analysis — all in one place.
-                </p>
-                <SiteStats />
+                <p className="text-3xl font-bold text-black">3</p>
+                <p className="mt-1 text-xs text-neutral-400 uppercase tracking-wider">Reports</p>
+              </div>
+              <div>
+                <p className="text-3xl font-bold text-black">2026</p>
+                <p className="mt-1 text-xs text-neutral-400 uppercase tracking-wider">Founded</p>
               </div>
             </div>
           </div>
