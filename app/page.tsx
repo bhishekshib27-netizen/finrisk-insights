@@ -12,7 +12,7 @@ export default function Home() {
 
       {/* HERO */}
       <AnimatedLayout delay={0}>
-        <section className="relative overflow-hidden" style={{minHeight: "60vh", display: "flex", alignItems: "center"}}>
+        <section className="relative overflow-hidden" style={{minHeight: "50vh", display: "flex", alignItems: "center"}}>
           <div className="absolute inset-0 z-0">
             <img src="/hero-bg.jpg" alt="Mauritius" className="w-full h-full object-cover object-center" />
             <div className="absolute inset-0" style={{background: "linear-gradient(to right, rgba(5,15,40,0.75) 0%, rgba(5,15,40,0.4) 100%)"}} />
