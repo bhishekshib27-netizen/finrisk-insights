@@ -91,12 +91,12 @@ export default async function MarketsPage() {
             </thead>
             <tbody className="divide-y divide-neutral-100">
               {fxTable.map((row) => (
-                <tr key={row.pair} className="hover:bg-neutral-50 transition">
+                <tr key={row.pair} className="hover:bg-blue-50 transition even:bg-slate-50">
                   <td className="px-6 py-4 font-semibold text-black">{row.pair}</td>
-                  <td className="px-6 py-4 text-right font-mono font-bold text-black">{row.value}</td>
+                  <td className="px-6 py-4 text-right font-mono font-bold text-blue-900">{row.value}</td>
                   <td className="px-6 py-4 text-right">
                     <span className={`text-xs font-semibold ${
-                      row.change === "Live" ? "text-green-600" :
+                      row.change === "Live" ? "text-blue-600" :
                       row.change === "Stable" ? "text-neutral-400" :
                       row.change.startsWith("-") ? "text-red-500" : "text-green-600"
                     }`}>{row.change}</span>
@@ -112,7 +112,7 @@ export default async function MarketsPage() {
           </table>
         </div>
         <p className="mt-3 text-xs text-neutral-400">
-          FX rates sourced from Frankfurter API · Updated hourly · SEMDEX and macro data are indicative
+          FX rates sourced from Open Exchange Rates API · Updated hourly · SEMDEX and macro data are indicative
         </p>
       </div>
 
