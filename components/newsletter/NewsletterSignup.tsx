@@ -94,7 +94,7 @@ export default function NewsletterSignup() {
         <button
           onClick={handleSubmit}
           disabled={status === "loading" || !email}
-          className="flex w-full items-center justify-center gap-2 bg-black px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-neutral-800 disabled:opacity-50"
+          className="flex w-full items-center justify-center gap-2 bg-blue-900 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-800 disabled:opacity-50"
         >
           {status === "loading" ? (
             <Loader2 size={16} className="animate-spin" />
