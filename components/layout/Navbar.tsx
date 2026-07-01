@@ -130,7 +130,7 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className={`px-3 py-2.5 text-sm font-medium transition ${
                     isActive(link.href)
-                      ? "bg-neutral-50 text-black font-semibold border-l-2 border-black"
+                      ? "bg-blue-50 text-blue-900 font-semibold border-l-2 border-blue-900"
                       : "text-neutral-700 hover:bg-neutral-50 hover:text-black"
                   }`}
                 >
@@ -149,7 +149,7 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className={`px-3 py-2.5 text-sm font-medium transition ${
                     isActive("/dashboard")
-                      ? "bg-neutral-50 text-black font-semibold border-l-2 border-black"
+                      ? "bg-blue-50 text-blue-900 font-semibold border-l-2 border-blue-900"
                       : "text-neutral-700 hover:bg-neutral-50 hover:text-black"
                   }`}
                 >
