@@ -103,7 +103,7 @@ The continued moderation gives the MPC room to maintain the Key Rate at 4.50% at
 ## Our View
 
 We expect headline inflation to remain in the 3.0 to 3.5% range through the remainder of 2026, assuming no major external shocks.`,
-  
+  },
 ];
 
 export function getAllArticles(): Article[] {
