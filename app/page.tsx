@@ -73,7 +73,25 @@ export default function Home() {
         </section>
       </AnimatedLayout>
 
-            {/* WHAT WE DO */}
+            {/* PARTNERS */}
+      <AnimatedLayout delay={0.12}>
+        <section className="border-b border-neutral-200 bg-neutral-50">
+          <div className="mx-auto max-w-5xl px-8 sm:px-12 py-8">
+            <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 text-center mb-6">Our Partners</p>
+            <div className="flex flex-wrap items-center justify-center gap-12">
+              <a href="https://www.wallstreetoasis.com" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 opacity-60 hover:opacity-100 transition">
+                <img src="/partner-wso.png" alt="Wall Street Oasis" className="h-10 w-10 object-contain" />
+                <div>
+                  <p className="font-bold text-black text-sm group-hover:text-blue-900 transition">Wall Street Oasis</p>
+                  <p className="text-xs text-neutral-400">wallstreetoasis.com</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+      </AnimatedLayout>
+
+      {/* WHAT WE DO */}
       <AnimatedLayout delay={0.15}>
         <section className="border-b border-neutral-200 bg-white">
           <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
