@@ -1,5 +1,4 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
 import { BookOpen, Bell, Calendar, ArrowUpRight, Shield, BarChart2, Briefcase, Mic } from "lucide-react";
 import Link from "next/link";
 import { getFXRates } from "@/lib/api/fx";
@@ -11,9 +10,7 @@ export const metadata = {
 
 export default async function DashboardPage() {
   const { userId } = await auth();
-  if (!userId) redirect("/sign-in");
-
-  const user = await currentUser();
+  const user = userId ? await currentUser() : null;
   const firstName = user?.firstName ?? "there";
 
   let rates = { USD_MUR: 47.99, EUR_MUR: 54.67, GBP_MUR: 63.38 };
