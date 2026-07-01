@@ -37,7 +37,7 @@ export default function Navbar() {
           <div className="flex items-center gap-10">
             <Link href="/" className="flex items-center">
               <Image
-                src="/logo.jpeg"
+                src="/logo.png"
                 alt="FinRisk Insights"
                 width={140}
                 height={40}
