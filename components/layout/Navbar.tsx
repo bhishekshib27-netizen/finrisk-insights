@@ -17,6 +17,7 @@ const links = [
   { name: "Events", href: "/events" },
   { name: "Podcast", href: "/podcast" },
   { name: "Careers", href: "/careers" },
+  { name: "Testimonials", href: "/testimonials" },
 ];
 
 export default function Navbar() {
