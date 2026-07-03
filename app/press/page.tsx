@@ -9,14 +9,18 @@ export default function PressPage() {
   return (
     <div className="space-y-0">
 
-      {/* Navy Hero */}
-      <div className="border-b border-blue-950" style={{background:"#0f2654"}}>
-        <div className="mx-auto max-w-5xl px-6 sm:px-12 py-16">
-          <p className="text-xs font-semibold uppercase tracking-widest text-blue-300">Press & Media</p>
-          <h1 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">In the Press</h1>
-          <p className="mt-3 max-w-xl text-blue-200">
-            Media mentions, coverage, and resources for journalists writing about Mauritius finance and FinRisk Insights.
-          </p>
+      {/* Hero Banner */}
+      <div className="relative overflow-hidden" style={{height: "280px"}}>
+        <img src="/press-bg.png" alt="FinRisk Insights" className="w-full h-full object-cover object-center" />
+        <div className="absolute inset-0" style={{background: "linear-gradient(to right, rgba(5,15,45,0.85) 50%, rgba(5,15,45,0.5) 100%)"}} />
+        <div className="absolute inset-0 flex items-center">
+          <div className="mx-auto max-w-5xl px-6 sm:px-12 w-full">
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-300">Press & Media</p>
+            <h1 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">In the Press</h1>
+            <p className="mt-3 max-w-xl text-blue-100">
+              Media mentions, coverage, and resources for journalists writing about Mauritius finance and FinRisk Insights.
+            </p>
+          </div>
         </div>
       </div>
 
