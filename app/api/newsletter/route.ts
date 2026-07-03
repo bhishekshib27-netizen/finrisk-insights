@@ -19,10 +19,11 @@ export async function POST(req: NextRequest) {
       .insert([{ name: name || null, email, source: "website", active: true }]);
 
     if (error) {
+      console.error("Supabase error:", JSON.stringify(error));
       if (error.code === "23505") {
         return NextResponse.json({ error: "Already subscribed" }, { status: 409 });
       }
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      return NextResponse.json({ error: error.message, code: error.code, details: error.details }, { status: 500 });
     }
 
     return NextResponse.json({ success: true }, { status: 200 });
