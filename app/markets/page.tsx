@@ -52,7 +52,7 @@ export default async function MarketsPage() {
         ].map((card) => (
           <div key={card.label} className={`relative border border-neutral-200 bg-white p-6 border-t-4 ${card.accent}`}>
             <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400">{card.label}</p>
-            <p className="mt-3 font-mono text-3xl font-bold text-black">{card.value}</p>
+            <p className="mt-3 text-3xl font-bold text-black" style={{fontFamily:"var(--font-mono)"}}>{card.value}</p>
             {card.live ? (
               <span className="mt-2 inline-flex items-center gap-1 bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-700">
                 ● Live
@@ -93,7 +93,7 @@ export default async function MarketsPage() {
               {fxTable.map((row) => (
                 <tr key={row.pair} className="hover:bg-blue-50 transition even:bg-slate-50">
                   <td className="px-6 py-4 font-semibold text-black">{row.pair}</td>
-                  <td className="px-6 py-4 text-right font-mono font-bold text-blue-900">{row.value}</td>
+                  <td className="px-6 py-4 text-right font-bold text-blue-900" style={{fontFamily:"var(--font-mono)"}}>{row.value}</td>
                   <td className="px-6 py-4 text-right">
                     <span className={`text-xs font-semibold ${
                       row.change === "Live" ? "text-blue-600" :

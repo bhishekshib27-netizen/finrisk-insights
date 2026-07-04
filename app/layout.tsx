@@ -1,4 +1,7 @@
 import "./globals.css";
+import { IBM_Plex_Mono } from "next/font/google";
+
+const ibmPlexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "600"], variable: "--font-mono" });
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import JsonLd from "@/components/JsonLd";
 import "@clerk/ui/themes/shadcn.css";
@@ -52,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <ClerkProvider appearance={{ theme: shadcn }}>
       <html lang="en">
-        <body className="bg-white text-neutral-900">
+        <body className={`bg-white text-neutral-900 ${ibmPlexMono.variable}`}>
           <Navbar />
           <main>
             {children}

@@ -55,7 +55,7 @@ export default async function DashboardPage() {
             ].map((item, i) => (
               <div key={i} className="border border-neutral-200 bg-white p-5 border-t-4 border-t-blue-900">
                 <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400">{item.name}</p>
-                <p className="mt-2 font-mono text-2xl font-bold text-black">{item.value}</p>
+                <p className="mt-2 text-2xl font-bold text-black" style={{fontFamily:"var(--font-mono)"}}>{item.value}</p>
                 <span className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-blue-600">
                   <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
                   {item.change}
