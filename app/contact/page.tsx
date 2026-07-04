@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail, Linkedin } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 
 export const metadata = {
   title: "Contact | FinRisk Insights",
@@ -53,7 +53,7 @@ export default function ContactPage() {
             <p className="text-sm text-neutral-500 mt-1">Stay updated with our latest posts and announcements.</p>
           </div>
           <a href="https://www.linkedin.com/company/finrisk-insights" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-blue-900 px-5 py-2.5 text-sm font-semibold text-blue-900 transition hover:bg-blue-900 hover:text-white shrink-0">
-            <Linkedin size={14} /> FinRisk Insights <ArrowUpRight size={14} />
+            FinRisk Insights <ArrowUpRight size={14} />
           </a>
         </div>
         <p className="text-center text-xs text-neutral-400">We aim to respond to all enquiries within 48 hours.</p>
