@@ -13,12 +13,9 @@ import { usePathname } from "next/navigation";
 const links = [
   { name: "Dashboard", href: "/" },
   { name: "Markets", href: "/markets" },
-  { name: "Regulation", href: "/regulation" },
-  { name: "Events", href: "/events" },
-  { name: "Podcast", href: "/podcast" },
   { name: "Careers", href: "/careers" },
+  { name: "Insights", href: "/insights" },
   { name: "About", href: "/about" },
-  { name: "Press", href: "/press" },
 ];
 
 export default function Navbar() {
