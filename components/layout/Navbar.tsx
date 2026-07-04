@@ -19,7 +19,6 @@ const links = [
   { name: "Careers", href: "/careers" },
   { name: "About", href: "/about" },
   { name: "Press", href: "/press" },
-  { name: "Pricing", href: "/pricing" },
 ];
 
 export default function Navbar() {
