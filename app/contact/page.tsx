@@ -1,62 +1,152 @@
-import { ArrowUpRight, Mail } from "lucide-react";
+"use client";
 
-export const metadata = {
-  title: "Contact | FinRisk Insights",
-  description: "Get in touch with the FinRisk Insights team.",
-};
+import { useState } from "react";
+import { ArrowUpRight, Check } from "lucide-react";
 
-const contacts = [
-  { title: "General Enquiries", desc: "Questions about the platform, partnerships, or anything else.", email: "hello@finriskinsight.com", subject: "General Enquiry" },
-  { title: "Press & Media", desc: "Interviews, data requests, or comment on Mauritius financial markets.", email: "hello@finriskinsight.com", subject: "Press Enquiry" },
-  { title: "Post a Job", desc: "Feature a finance, compliance, or accounting role on our careers hub.", email: "hello@finriskinsight.com", subject: "Post a Job on FinRisk" },
-  { title: "Partnerships", desc: "Sponsorships, content partnerships, or data collaborations.", email: "hello@finriskinsight.com", subject: "Partnership Enquiry" },
-  { title: "Premium Interest", desc: "Interested in FinRisk Premium when it launches.", email: "hello@finriskinsight.com", subject: "FinRisk Premium Interest" },
-  { title: "Podcast Guest", desc: "Apply to be a guest on The FinRisk Podcast.", email: "hello@finriskinsight.com", subject: "FinRisk Podcast Guest Application" },
+const subjects = [
+  "General Enquiry",
+  "Press & Media",
+  "Post a Job",
+  "Partnership",
+  "Premium Interest",
+  "Podcast Guest",
+  "Other",
 ];
 
 export default function ContactPage() {
+  const [form, setForm] = useState({ name: "", email: "", subject: "General Enquiry", message: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async () => {
+    if (!form.name || !form.email || !form.message) return;
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      setStatus(res.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <div className="space-y-0">
       <div className="border-b border-blue-950" style={{background:"#0f2654"}}>
         <div className="mx-auto max-w-5xl px-6 sm:px-12 py-16">
           <p className="text-xs font-semibold uppercase tracking-widest text-blue-300">Get in Touch</p>
           <h1 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">Contact Us</h1>
-          <p className="mt-3 max-w-xl text-blue-200">We are a small team — we read and respond to every message personally.</p>
+          <p className="mt-3 max-w-xl text-blue-200">We are a small team — we read and respond to every message personally within 48 hours.</p>
         </div>
       </div>
-      <div className="mx-auto max-w-5xl px-6 sm:px-12 py-12 space-y-10">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {contacts.map((item, i) => (
-            <a key={i} href={`mailto:${item.email}?subject=${encodeURIComponent(item.subject)}`} className="group border border-neutral-200 bg-white p-6 flex flex-col justify-between hover:border-blue-900 transition hover:shadow-sm">
-              <div>
-                <p className="font-bold text-black group-hover:text-blue-900 transition text-sm">{item.title}</p>
-                <p className="mt-2 text-xs text-neutral-500 leading-relaxed">{item.desc}</p>
+
+      <div className="mx-auto max-w-5xl px-6 sm:px-12 py-12">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+
+          {/* Left - info */}
+          <div className="space-y-8">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-4">What we can help with</p>
+              <div className="space-y-3">
+                {[
+                  { title: "Press & Media", desc: "Interviews, data requests, or comment on Mauritius finance." },
+                  { title: "Post a Job", desc: "Feature a role on our finance careers hub." },
+                  { title: "Partnerships", desc: "Sponsorships, content, or data collaborations." },
+                  { title: "Premium Interest", desc: "Be first to know when Premium launches." },
+                  { title: "Podcast Guest", desc: "Apply to appear on The FinRisk Podcast." },
+                  { title: "General Enquiries", desc: "Anything else — we are happy to help." },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3 border-b border-neutral-100 pb-3 last:border-0">
+                    <div className="mt-1 h-1.5 w-1.5 shrink-0 bg-blue-900" />
+                    <div>
+                      <p className="text-sm font-bold text-black">{item.title}</p>
+                      <p className="text-xs text-neutral-400">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-blue-900">
-                <Mail size={12} /> Send email <ArrowUpRight size={11} />
+            </div>
+            <div className="border border-neutral-200 bg-neutral-50 p-5">
+              <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-2">Direct Email</p>
+              <a href="mailto:hello@finriskinsight.com" className="text-sm font-bold text-blue-900 hover:text-blue-700 transition">
+                hello@finriskinsight.com
+              </a>
+            </div>
+          </div>
+
+          {/* Right - form */}
+          <div className="border border-neutral-200 bg-white p-8">
+            {status === "success" ? (
+              <div className="text-center py-8 space-y-4">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center bg-blue-50 border border-blue-200">
+                  <Check size={22} className="text-blue-900" />
+                </div>
+                <p className="font-bold text-black">Message sent!</p>
+                <p className="text-sm text-neutral-500">We will get back to you within 48 hours.</p>
+                <button onClick={() => { setStatus("idle"); setForm({ name: "", email: "", subject: "General Enquiry", message: "" }); }} className="text-xs text-blue-900 underline">
+                  Send another message
+                </button>
               </div>
-            </a>
-          ))}
-        </div>
-        <div className="border border-neutral-200 bg-neutral-50 p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <p className="font-bold text-black">Direct Email</p>
-            <p className="text-sm text-neutral-500 mt-1">Reach us directly at any time.</p>
+            ) : (
+              <div className="space-y-4">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">Name *</label>
+                    <input
+                      type="text"
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      placeholder="Your name"
+                      className="mt-1 w-full border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-sm text-black placeholder:text-neutral-400 outline-none focus:border-blue-900 transition"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">Email *</label>
+                    <input
+                      type="email"
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      placeholder="your@email.com"
+                      className="mt-1 w-full border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-sm text-black placeholder:text-neutral-400 outline-none focus:border-blue-900 transition"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">Subject</label>
+                  <select
+                    value={form.subject}
+                    onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                    className="mt-1 w-full border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-sm text-black outline-none focus:border-blue-900 transition"
+                  >
+                    {subjects.map((s) => <option key={s}>{s}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">Message *</label>
+                  <textarea
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    placeholder="Tell us how we can help..."
+                    rows={5}
+                    className="mt-1 w-full border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-sm text-black placeholder:text-neutral-400 outline-none focus:border-blue-900 transition resize-none"
+                  />
+                </div>
+                <button
+                  onClick={handleSubmit}
+                  disabled={status === "loading" || !form.name || !form.email || !form.message}
+                  className="flex w-full items-center justify-center gap-2 bg-blue-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-800 disabled:opacity-50"
+                >
+                  {status === "loading" ? "Sending..." : <>Send Message <ArrowUpRight size={16} /></>}
+                </button>
+                {status === "error" && <p className="text-xs text-red-500 text-center">Something went wrong. Please try again.</p>}
+                <p className="text-xs text-neutral-400 text-center">We aim to respond within 48 hours.</p>
+              </div>
+            )}
           </div>
-          <a href="mailto:hello@finriskinsight.com" className="inline-flex items-center gap-2 bg-blue-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-800 shrink-0">
-            hello@finriskinsight.com <ArrowUpRight size={14} />
-          </a>
+
         </div>
-        <div className="border border-neutral-200 bg-white p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <p className="font-bold text-black">Follow on LinkedIn</p>
-            <p className="text-sm text-neutral-500 mt-1">Stay updated with our latest posts and announcements.</p>
-          </div>
-          <a href="https://www.linkedin.com/company/finrisk-insights" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-blue-900 px-5 py-2.5 text-sm font-semibold text-blue-900 transition hover:bg-blue-900 hover:text-white shrink-0">
-            FinRisk Insights <ArrowUpRight size={14} />
-          </a>
-        </div>
-        <p className="text-center text-xs text-neutral-400">We aim to respond to all enquiries within 48 hours.</p>
       </div>
     </div>
   );
