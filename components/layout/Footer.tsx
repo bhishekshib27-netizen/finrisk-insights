@@ -22,6 +22,7 @@ export default function Footer() {
             <Link href="/insights" className="hover:text-black transition">Insights</Link>
             <Link href="/careers" className="hover:text-black transition">Careers</Link>
             <Link href="/newsletter" className="hover:text-black transition">Newsletter</Link>
+            <Link href="/about" className="hover:text-black transition">About</Link>
             <Link href="/contact" className="hover:text-black transition">Contact</Link>
             <Link href="/press" className="hover:text-black transition">Press</Link>
             <a href="https://www.linkedin.com/company/finrisk-insights" target="_blank" rel="noopener noreferrer" className="hover:text-black transition">LinkedIn</a>

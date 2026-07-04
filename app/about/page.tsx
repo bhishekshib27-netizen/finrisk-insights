@@ -1,177 +1,124 @@
-import { ArrowUpRight, Target, Eye, Heart, Users, BookOpen, BarChart2, Shield, Mic } from "lucide-react";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 export const metadata = {
   title: "About | FinRisk Insights",
-  description: "Learn about FinRisk Insights — Mauritius's emerging financial intelligence platform.",
+  description: "About FinRisk Insights — Mauritius\'s emerging financial intelligence platform.",
 };
-
-const values = [
-  { icon: <Target size={20} />, title: "Mission", description: "To make professional-grade financial intelligence accessible to everyone in Mauritius — from seasoned bankers to young finance professionals just starting out." },
-  { icon: <Eye size={20} />, title: "Vision", description: "To become the most trusted source of financial intelligence in Mauritius and the wider Indian Ocean region." },
-  { icon: <Heart size={20} />, title: "Values", description: "Accuracy, independence, and accessibility. We are not affiliated with any financial institution. Our analysis is our own." },
-];
-
-const pillars = [
-  { icon: <BarChart2 size={18} />, title: "Markets", description: "Live SEMDEX, FX rates, repo rate, and economic indicators.", href: "/markets" },
-  { icon: <BookOpen size={18} />, title: "Research", description: "In-depth reports on banking, regulation, and the Mauritian economy.", href: "/research" },
-  { icon: <Shield size={18} />, title: "Regulation", description: "Real-time alerts from FSC, Bank of Mauritius, FATF, and ESAAMLG.", href: "/regulation" },
-  { icon: <Mic size={18} />, title: "Podcast", description: "Conversations with finance professionals, regulators, and economists.", href: "/podcast" },
-];
-
-const team = [
-  { name: "FinRisk Editorial Team", role: "Markets & Research", description: "Our editorial team covers Mauritius financial markets, economic analysis, and investment intelligence." },
-  { name: "FinRisk Regulatory Desk", role: "Compliance & Regulation", description: "Specialists in FSC, Bank of Mauritius, FATF, and AML/CFT developments across the financial sector." },
-  { name: "FinRisk Economics Desk", role: "Macroeconomics", description: "Focused on monetary policy, inflation, exchange rates, and the broader Mauritian economic outlook." },
-];
-
-const milestones = [
-  { year: "2024", event: "FinRisk Insights founded in Mauritius" },
-  { year: "2024", event: "First research report published" },
-  { year: "2025", event: "Podcast launched — The FinRisk Podcast" },
-  { year: "2025", event: "1,000 newsletter subscribers reached" },
-  { year: "2026", event: "Platform redesigned as a full intelligence hub" },
-  { year: "2026", event: "Live market data and regulatory alerts launched" },
-];
 
 export default function AboutPage() {
   return (
     <div className="space-y-0">
 
       {/* Hero */}
-      <section className="border-b border-neutral-200 bg-white px-8 py-16 md:px-12 md:py-24">
-        <div className="mx-auto max-w-4xl">
-          <p className="text-xs font-semibold uppercase tracking-widest text-green-600">About Us</p>
-          <h1 className="mt-3 text-4xl font-bold leading-tight tracking-tight text-black sm:text-5xl">
-            Mauritius's emerging financial intelligence platform
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg text-neutral-500 leading-relaxed">
-            FinRisk Insights is Mauritius's emerging financial intelligence platform, built for finance professionals, compliance officers, regulators, and investors. We deliver live market data, regulatory updates, research reports, and economic analysis — all in one place. Our mission is to make professional-grade financial intelligence accessible to everyone in Mauritius.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link href="/research" className="inline-flex items-center gap-2 bg-black px-6 py-3 text-sm font-semibold text-white transition hover:bg-neutral-800">
-              Browse Research <ArrowUpRight size={16} />
-            </Link>
-            <Link href="/newsletter" className="inline-flex items-center gap-2 border border-neutral-300 px-6 py-3 text-sm font-semibold text-black transition hover:border-black">
-              Subscribe to Newsletter
-            </Link>
+      <div className="relative overflow-hidden" style={{height: "300px"}}>
+        <img src="/what-we-do-bg.jpg" alt="About FinRisk Insights" className="w-full h-full object-cover object-center" />
+        <div className="absolute inset-0" style={{background: "linear-gradient(to right, rgba(10,25,60,0.88) 50%, rgba(10,25,60,0.5) 100%)"}} />
+        <div className="absolute inset-0 flex items-center">
+          <div className="mx-auto max-w-5xl px-6 sm:px-12 w-full">
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-300">Who We Are</p>
+            <h1 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">About FinRisk Insights</h1>
+            <p className="mt-3 max-w-xl text-blue-100">Mauritius | Zimbabwe — Est. 2026</p>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Stats */}
-      <section className="border-b border-neutral-200 bg-neutral-50 px-8 py-12 md:px-12">
-        <div className="mx-auto max-w-4xl">
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+      <div className="mx-auto max-w-5xl px-6 sm:px-12 py-12 space-y-12">
+
+        {/* Mission */}
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-900 mb-3">Our Mission</p>
+            <h2 className="text-3xl font-bold tracking-tight text-black">Built to become the number one financial platform of Mauritius</h2>
+            <p className="mt-4 text-neutral-500 leading-relaxed">
+              FinRisk Insights is Mauritius's emerging financial intelligence platform — delivering live market data, regulatory intelligence, AML and compliance analysis, research, and finance jobs, all in one place.
+            </p>
+            <p className="mt-4 text-neutral-500 leading-relaxed">
+              We built FinRisk because Mauritius has one of the most dynamic financial centres in Africa and the Indian Ocean region, yet there was no single platform bringing it all together for the professionals who work in it every day. That changes with FinRisk Insights.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
             {[
-              { value: "1,200+", label: "Newsletter Subscribers" },
-              { value: "48", label: "Research Reports" },
-              { value: "12", label: "Podcast Episodes" },
-              { value: "2024", label: "Year Founded" },
+              { value: "400+", label: "Subscribers" },
+              { value: "10+", label: "Team members" },
+              { value: "2026", label: "Founded" },
+              { value: "2", label: "Countries" },
             ].map((stat, i) => (
-              <div key={i} className="border border-neutral-200 bg-white p-6 text-center">
+              <div key={i} className="border border-neutral-200 bg-white p-6 text-center hover:border-blue-900 transition">
                 <p className="text-3xl font-bold text-black">{stat.value}</p>
-                <p className="mt-1 text-xs text-neutral-400">{stat.label}</p>
+                <p className="mt-1 text-xs text-neutral-400 uppercase tracking-wider">{stat.label}</p>
               </div>
             ))}
           </div>
         </div>
-      </section>
 
-      {/* Mission Vision Values */}
-      <section className="border-b border-neutral-200 bg-white px-8 py-16 md:px-12">
-        <div className="mx-auto max-w-4xl">
-          <p className="text-xs font-semibold uppercase tracking-widest text-green-600">What Drives Us</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-black">Mission, Vision & Values</h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {values.map((v, i) => (
-              <div key={i} className="border border-neutral-200 bg-white p-6">
-                <div className="mb-4 text-black">{v.icon}</div>
-                <h3 className="font-bold text-black">{v.title}</h3>
-                <p className="mt-2 text-sm text-neutral-500 leading-relaxed">{v.description}</p>
+        {/* Founder */}
+        <div className="border border-neutral-200 bg-white p-8 lg:p-10">
+          <p className="text-xs font-semibold uppercase tracking-widest text-blue-900 mb-6">Founder</p>
+          <div className="grid gap-8 lg:grid-cols-3 lg:items-start">
+            <div className="flex flex-col items-center lg:items-start gap-4">
+              <div className="flex h-20 w-20 items-center justify-center rounded-full text-white text-2xl font-bold" style={{background:"#1e3a8a"}}>
+                BS
+              </div>
+              <div>
+                <p className="font-bold text-black text-lg">Bhishek Shibdeen</p>
+                <p className="text-sm text-blue-900 font-semibold mt-0.5">Founder & CEO</p>
+                <p className="text-xs text-neutral-400 mt-1">Curtin University Mauritius</p>
+                <p className="text-xs text-neutral-400">Business Law · Applied Finance</p>
+              </div>
+              <a href="https://www.linkedin.com/in/bhishekshibdeen" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-blue-900 px-4 py-2 text-xs font-semibold text-blue-900 transition hover:bg-blue-900 hover:text-white">
+                LinkedIn <ArrowUpRight size={12} />
+              </a>
+            </div>
+            <div className="lg:col-span-2 space-y-4 text-neutral-500 leading-relaxed text-sm">
+              <p>
+                Bhishek Shibdeen is a Year 1 student of Business Law with a specialisation in Applied Finance at Curtin University Mauritius. He founded FinRisk Insights with a clear ambition — to build the number one financial intelligence platform in Mauritius.
+              </p>
+              <p>
+                With a background spanning AML compliance simulation, financial risk analysis, and regulatory intelligence, Bhishek identified a gap in the Mauritius financial ecosystem: there was no dedicated platform aggregating live market data, regulatory alerts, compliance intelligence, and finance careers in one place.
+              </p>
+              <p>
+                FinRisk Insights is his answer to that gap — built from the ground up, with a team of 10+ contributors across Mauritius and Zimbabwe, and a growing community of 400+ finance professionals.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* What we cover */}
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-6">What We Cover</p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { title: "Live Markets", desc: "SEMDEX, MUR FX rates, and key economic indicators updated hourly." },
+              { title: "Regulatory Intelligence", desc: "FSC, Bank of Mauritius, FATF, and ESAAMLG updates and alerts." },
+              { title: "AML & Compliance", desc: "In-depth analysis of AML/CFT developments for Mauritius practitioners." },
+              { title: "Research & Insights", desc: "Articles, reports, and commentary on Mauritius finance and economy." },
+              { title: "Finance Jobs", desc: "Curated finance, compliance, accounting, and legal roles in Mauritius." },
+              { title: "The FinRisk Podcast", desc: "Conversations with finance professionals, economists, and regulators." },
+            ].map((item, i) => (
+              <div key={i} className="border border-neutral-200 bg-white p-5 hover:border-blue-900 transition">
+                <p className="font-bold text-black text-sm">{item.title}</p>
+                <p className="mt-1 text-xs text-neutral-500 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
-      </section>
 
-      {/* What We Cover */}
-      <section className="border-b border-neutral-200 bg-neutral-50 px-8 py-16 md:px-12">
-        <div className="mx-auto max-w-4xl">
-          <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Coverage</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-black">What We Cover</h2>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {pillars.map((p, i) => (
-              <Link key={i} href={p.href} className="group border border-neutral-200 bg-white p-5 transition hover:border-black hover:shadow-md">
-                <div className="mb-3 text-black">{p.icon}</div>
-                <h3 className="font-bold text-black group-hover:text-neutral-600 transition">{p.title}</h3>
-                <p className="mt-2 text-xs text-neutral-500">{p.description}</p>
-                <div className="mt-3 flex items-center gap-1 text-xs font-semibold text-black">
-                  Explore <ArrowUpRight size={11} />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="border-b border-neutral-200 bg-white px-8 py-16 md:px-12">
-        <div className="mx-auto max-w-4xl">
-          <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Our Team</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-black">The People Behind FinRisk</h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {team.map((member, i) => (
-              <div key={i} className="border border-neutral-200 bg-white p-6">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center border border-neutral-200 bg-neutral-50">
-                  <Users size={20} className="text-black" />
-                </div>
-                <h3 className="font-bold text-black">{member.name}</h3>
-                <p className="text-xs font-semibold text-green-600">{member.role}</p>
-                <p className="mt-2 text-sm text-neutral-500 leading-relaxed">{member.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className="border-b border-neutral-200 bg-neutral-50 px-8 py-16 md:px-12">
-        <div className="mx-auto max-w-4xl">
-          <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Our Journey</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-black">Milestones</h2>
-          <div className="mt-10 space-y-0">
-            {milestones.map((m, i) => (
-              <div key={i} className="flex items-start gap-6 border-b border-neutral-200 py-5 last:border-0">
-                <div className="w-16 shrink-0">
-                  <p className="text-sm font-bold text-black">{m.year}</p>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="h-2 w-2 shrink-0 rounded-full bg-green-500" />
-                  <p className="text-sm text-neutral-700">{m.event}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-black px-8 py-16 md:px-12">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold text-white">Join the FinRisk Community</h2>
-          <p className="mt-4 text-neutral-400">Get access to live markets, research, and regulatory intelligence — free forever.</p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link href="/sign-up" className="inline-flex items-center gap-2 bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-neutral-100">
-              Get Started Free <ArrowUpRight size={16} />
+        {/* CTA */}
+        <div className="border border-blue-900 p-8 text-center" style={{background:"#0f2654"}}>
+          <h2 className="text-xl font-bold text-white mb-2">Join the FinRisk community</h2>
+          <p className="text-blue-200 text-sm mb-6">Subscribe to the weekly Intelligence Briefing — free, no spam, unsubscribe anytime.</p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/newsletter" className="inline-flex items-center gap-2 bg-white px-5 py-2.5 text-sm font-semibold text-blue-900 transition hover:bg-blue-50">
+              Subscribe Free <ArrowUpRight size={14} />
             </Link>
-            <Link href="/newsletter" className="inline-flex items-center gap-2 border border-white px-6 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-black">
-              Subscribe to Newsletter
+            <Link href="/contact" className="inline-flex items-center gap-2 border border-blue-400 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-white">
+              Get in Touch
             </Link>
           </div>
         </div>
-      </section>
 
+      </div>
     </div>
   );
 }
