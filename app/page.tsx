@@ -312,23 +312,38 @@ export default function Home() {
         </section>
       </AnimatedLayout>
 
-      {/* FOOTER CTA */}
+            {/* FOOTER CTA */}
       <AnimatedLayout delay={0.45}>
-        <section className="bg-blue-900">
-          <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12 text-center">
-            <h2 className="text-3xl font-bold text-white sm:text-4xl">
-              The Financial Platform of Mauritius
-            </h2>
-            <p className="mt-4 text-neutral-400">
-              Join finance professionals, compliance officers, and investors who rely on FinRisk Insights.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link href="/sign-up" className="inline-flex items-center gap-2 bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-neutral-100">
-                Get Started Free <ArrowRight size={16} />
-              </Link>
-              <Link href="/markets" className="inline-flex items-center gap-2 border border-white px-6 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-black">
-                Explore Markets
-              </Link>
+        <section className="overflow-hidden" style={{background:"#0f2654"}}>
+          <div className="mx-auto max-w-7xl">
+            <div className="grid lg:grid-cols-2 min-h-[420px]">
+              <div className="hidden lg:block relative">
+                <img src="/contact-bg.jpg" alt="Contact FinRisk Insights" className="absolute inset-0 w-full h-full object-cover object-center" />
+                <div className="absolute inset-0" style={{background:"linear-gradient(to right, transparent 60%, #0f2654 100%)"}} />
+              </div>
+              <div className="px-8 py-16 sm:px-12 lg:px-16">
+                <p className="text-xs font-semibold uppercase tracking-widest text-blue-300 mb-3">Get in Touch</p>
+                <h2 className="text-3xl font-bold text-white sm:text-4xl">Contact Us</h2>
+                <p className="mt-4 text-blue-200 text-sm leading-relaxed">
+                  We are a small team — we read and respond to every message personally within 48 hours.
+                </p>
+                <div className="mt-6 space-y-2">
+                  {["Press & Media enquiries", "Post a job listing", "Partnerships & sponsorships", "Podcast guest applications", "General questions"].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 text-sm text-blue-100">
+                      <span className="h-1.5 w-1.5 shrink-0 bg-blue-300" />
+                      {item}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-white px-6 py-3 text-sm font-semibold text-blue-900 transition hover:bg-blue-50">
+                    Contact Us →
+                  </Link>
+                  <a href="mailto:hello@finriskinsight.com" className="inline-flex items-center justify-center gap-2 border border-blue-400 px-6 py-3 text-sm font-semibold text-white transition hover:border-white">
+                    hello@finriskinsight.com
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
