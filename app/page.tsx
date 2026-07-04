@@ -312,16 +312,24 @@ export default function Home() {
         </section>
       </AnimatedLayout>
 
-            {/* FOOTER CTA */}
+                  {/* FOOTER CTA */}
       <AnimatedLayout delay={0.45}>
-        <section className="overflow-hidden border-t border-neutral-200 bg-white">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid lg:grid-cols-2 min-h-[420px]">
-              <div className="hidden lg:block relative" style={{maxHeight:"380px"}}>
-                <img src="/contact-bg.jpg" alt="Contact FinRisk Insights" className="absolute inset-0 w-full h-full object-cover object-center" />
-                <div className="absolute inset-0" style={{background:"linear-gradient(to right, transparent 60%, white 100%)"}} />
+        <section className="bg-white">
+          <div className="mx-auto max-w-5xl px-6 sm:px-12 py-12">
+            <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+
+              {/* Left - Image */}
+              <div className="hidden lg:block">
+                <img
+                  src="/contact-bg.jpg"
+                  alt="Contact FinRisk Insights"
+                  className="w-full object-cover object-center"
+                  style={{height: "320px"}}
+                />
               </div>
-              <div className="px-8 py-16 sm:px-12 lg:px-16">
+
+              {/* Right - Content */}
+              <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-blue-900 mb-3">Get in Touch</p>
                 <h2 className="text-3xl font-bold text-black sm:text-4xl">Contact Us</h2>
                 <p className="mt-4 text-neutral-500 text-sm leading-relaxed">
@@ -336,7 +344,7 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-white px-6 py-3 text-sm font-semibold text-blue-900 transition hover:bg-blue-50">
+                  <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-blue-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-800">
                     Contact Us →
                   </Link>
                   <a href="mailto:hello@finriskinsight.com" className="inline-flex items-center justify-center gap-2 border border-blue-900 px-6 py-3 text-sm font-semibold text-blue-900 transition hover:bg-blue-900 hover:text-white">
@@ -344,6 +352,7 @@ export default function Home() {
                   </a>
                 </div>
               </div>
+
             </div>
           </div>
         </section>
