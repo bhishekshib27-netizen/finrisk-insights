@@ -314,23 +314,23 @@ export default function Home() {
 
             {/* FOOTER CTA */}
       <AnimatedLayout delay={0.45}>
-        <section className="overflow-hidden" style={{background:"#0f2654"}}>
+        <section className="overflow-hidden border-t border-neutral-200 bg-white">
           <div className="mx-auto max-w-7xl">
             <div className="grid lg:grid-cols-2 min-h-[420px]">
-              <div className="hidden lg:block relative">
+              <div className="hidden lg:block relative" style={{maxHeight:"380px"}}>
                 <img src="/contact-bg.jpg" alt="Contact FinRisk Insights" className="absolute inset-0 w-full h-full object-cover object-center" />
-                <div className="absolute inset-0" style={{background:"linear-gradient(to right, transparent 60%, #0f2654 100%)"}} />
+                <div className="absolute inset-0" style={{background:"linear-gradient(to right, transparent 60%, white 100%)"}} />
               </div>
               <div className="px-8 py-16 sm:px-12 lg:px-16">
-                <p className="text-xs font-semibold uppercase tracking-widest text-blue-300 mb-3">Get in Touch</p>
-                <h2 className="text-3xl font-bold text-white sm:text-4xl">Contact Us</h2>
-                <p className="mt-4 text-blue-200 text-sm leading-relaxed">
+                <p className="text-xs font-semibold uppercase tracking-widest text-blue-900 mb-3">Get in Touch</p>
+                <h2 className="text-3xl font-bold text-black sm:text-4xl">Contact Us</h2>
+                <p className="mt-4 text-neutral-500 text-sm leading-relaxed">
                   We are a small team — we read and respond to every message personally within 48 hours.
                 </p>
                 <div className="mt-6 space-y-2">
                   {["Press & Media enquiries", "Post a job listing", "Partnerships & sponsorships", "Podcast guest applications", "General questions"].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-blue-100">
-                      <span className="h-1.5 w-1.5 shrink-0 bg-blue-300" />
+                    <div key={i} className="flex items-center gap-2 text-sm text-neutral-600">
+                      <span className="h-1.5 w-1.5 shrink-0 bg-blue-900" />
                       {item}
                     </div>
                   ))}
@@ -339,7 +339,7 @@ export default function Home() {
                   <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-white px-6 py-3 text-sm font-semibold text-blue-900 transition hover:bg-blue-50">
                     Contact Us →
                   </Link>
-                  <a href="mailto:hello@finriskinsight.com" className="inline-flex items-center justify-center gap-2 border border-blue-400 px-6 py-3 text-sm font-semibold text-white transition hover:border-white">
+                  <a href="mailto:hello@finriskinsight.com" className="inline-flex items-center justify-center gap-2 border border-blue-900 px-6 py-3 text-sm font-semibold text-blue-900 transition hover:bg-blue-900 hover:text-white">
                     hello@finriskinsight.com
                   </a>
                 </div>
