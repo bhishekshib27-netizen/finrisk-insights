@@ -76,7 +76,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const author = sanityPost?.author?.name ?? hardcoded?.author ?? "FinRisk Insights"
   const authorRole = hardcoded?.authorRole ?? "FinRisk Insights"
   const date = isSanity
-    ? new Date(sanityPost!.publishedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })
+    ? new Date(sanityPost!.publishedAt || sanityPost!._createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })
     : hardcoded?.date ?? ""
 
   return (

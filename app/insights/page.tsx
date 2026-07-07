@@ -40,7 +40,7 @@ export default async function InsightsPage() {
     slug: post.slug.current,
     title: post.title,
     category: post.categories?.[0]?.title ?? "Insights",
-    date: new Date(post.publishedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+    date: new Date(post.publishedAt || post._createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
     readTime: "5 min",
     excerpt: post.excerpt ?? "",
   }))

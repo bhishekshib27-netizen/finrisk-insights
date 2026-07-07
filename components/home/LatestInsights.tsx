@@ -32,7 +32,7 @@ export default async function LatestInsights() {
             const category = post.categories?.[0]?.title ?? "Insights";
             const image = imageMap[category] ?? "/category-economy.jpg";
             const slug = post.slug?.current ?? "";
-            const date = new Date(post.publishedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+            const date = new Date(post.publishedAt || post._createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
             return (
               <Link key={i} href={`/insights/${slug}`} className="group overflow-hidden border border-neutral-200 hover:border-blue-900 transition hover:shadow-md">
                 <div className="relative h-48 overflow-hidden">
