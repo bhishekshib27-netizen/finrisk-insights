@@ -19,19 +19,13 @@ export default async function RegulationPanel() {
         {updates.map((item) => {
           const config = sourceConfig[item.source] ?? sourceConfig.BOM;
           return (
-            
-              key={item.id}
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-start gap-4 border border-neutral-200 border-l-4 ${config.border} bg-white p-5 transition hover:shadow-sm`}
-            >
+            <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className={`flex items-start gap-4 border border-neutral-200 border-l-4 ${config.border} bg-white p-5 transition hover:shadow-sm`}>
               <div className={`mt-0.5 shrink-0 ${config.iconColor}`}>{config.icon}</div>
               <div className="flex-1">
                 <p className="text-sm font-medium text-black">{item.title}</p>
                 <div className="mt-1.5 flex items-center gap-1.5">
                   <Shield size={10} className="text-neutral-400" />
-                  <p className="text-xs text-neutral-400">{item.source} · {item.date}</p>
+                  <p className="text-xs text-neutral-400">{item.source} &middot; {item.date}</p>
                 </div>
               </div>
             </a>
