@@ -1,23 +1,12 @@
 import { Calendar, ExternalLink } from "lucide-react";
+import { getUpcomingEvents } from "@/lib/data/events";
 
 export const metadata = {
   title: "Events | FinRisk Insights",
   description: "Upcoming finance, compliance, and regulatory events in Mauritius.",
 };
 
-const upcomingEvents = [
-  {
-    date: "12 Aug 2026",
-    day: "12",
-    month: "AUG",
-    title: "79th MPC Meeting — Bank of Mauritius",
-    org: "Bank of Mauritius",
-    type: "Monetary Policy",
-    location: "Port Louis",
-    desc: "The Monetary Policy Committee will convene to assess domestic and global economic developments and determine the appropriate monetary policy stance.",
-    url: "https://www.bom.mu/monetary-policy/monetary-policy-committee/meetings",
-  },
-];
+
 
 const pastEvents = [
   {
@@ -52,6 +41,7 @@ const typeColors: Record<string, string> = {
 };
 
 export default function EventsPage() {
+  const upcomingEvents = getUpcomingEvents();
   return (
     <div className="space-y-0">
 
