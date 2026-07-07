@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowRight } from "lucide-react";
 
 export const metadata = {
   title: "Podcast | FinRisk Insights",
@@ -72,8 +72,8 @@ export default function PodcastPage() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:items-end">
-              <a href="mailto:hello@finriskinsight.com?subject=FinRisk Podcast Guest" className="inline-flex items-center gap-2 bg-blue-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-800">
-                Apply to be a Guest <ExternalLink size={14} />
+              <a href="/contact" className="inline-flex items-center gap-2 bg-blue-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-800">
+                Apply to be a Guest <ArrowRight size={14} />
               </a>
               <p className="text-xs text-neutral-400">We review all applications and reach out within 5 business days.</p>
             </div>
