@@ -308,7 +308,7 @@ export default function Home() {
                   <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-blue-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-800">
                     Contact Us →
                   </Link>
-                  <a href="mailto:hello@finriskinsight.com" className="inline-flex items-center justify-center gap-2 border border-blue-900 px-6 py-3 text-sm font-semibold text-blue-900 transition hover:bg-blue-900 hover:text-white">
+                  <a href="/contact" className="inline-flex items-center justify-center gap-2 border border-blue-900 px-6 py-3 text-sm font-semibold text-blue-900 transition hover:bg-blue-900 hover:text-white">
                     hello@finriskinsight.com
                   </a>
                 </div>

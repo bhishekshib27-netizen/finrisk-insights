@@ -45,7 +45,7 @@ export default function PressPage() {
             <p className="text-sm text-neutral-500 leading-relaxed mb-6">
               For interviews, data requests, comment on Mauritius financial markets, or press enquiries about FinRisk Insights, contact us directly.
             </p>
-            <a href="mailto:hello@finriskinsight.com?subject=Press Enquiry" className="inline-flex items-center gap-2 bg-blue-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-800">
+            <a href="/contact" className="inline-flex items-center gap-2 bg-blue-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-800">
               Contact Press Team <ExternalLink size={14} />
             </a>
           </div>
