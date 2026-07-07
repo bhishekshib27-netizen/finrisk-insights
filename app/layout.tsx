@@ -8,6 +8,7 @@ import "@clerk/ui/themes/shadcn.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { shadcn } from "@clerk/ui/themes";
 import Navbar from "@/components/layout/Navbar";
+import { getNotifications } from "@/lib/notifications";
 import Footer from "@/components/layout/Footer";
 import type { Metadata } from "next";
 
@@ -51,12 +52,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const notifications = await getNotifications();
   return (
     <ClerkProvider appearance={{ theme: shadcn }}>
       <html lang="en">
         <body className={`bg-white text-neutral-900 ${ibmPlexMono.variable}`}>
-          <Navbar />
+          <Navbar notifications={notifications} />
           <main>
             {children}
           </main>

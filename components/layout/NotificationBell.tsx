@@ -1,22 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Bell, X, ExternalLink } from "lucide-react";
+import type { Notification } from "@/lib/notifications";
 
-const notifications = [
-  { id: "1", title: "FSC issues updated AML/CFT guidance", time: "2 hours ago", url: "https://www.fscmauritius.org", unread: true },
-  { id: "2", title: "USD/MUR rate moved above 45.20", time: "4 hours ago", url: "/markets", unread: true },
-  { id: "3", title: "New FinRisk report: Banking Outlook 2026", time: "1 day ago", url: "/research", unread: true },
-  { id: "4", title: "MPC Meeting scheduled for September 2026", time: "2 days ago", url: "/events", unread: false },
-  { id: "5", title: "FATF grey list update published", time: "3 days ago", url: "/regulation", unread: false },
-];
+const READ_STORAGE_KEY = "finrisk-notifications-read";
 
-export default function NotificationBell() {
+export default function NotificationBell({ notifications }: { notifications: Notification[] }) {
   const [open, setOpen] = useState(false);
   const [read, setRead] = useState<string[]>([]);
+  const [hydrated, setHydrated] = useState(false);
 
-  const unreadCount = notifications.filter((n) => n.unread && !read.includes(n.id)).length;
-  const markAllRead = () => setRead(notifications.map((n) => n.id));
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(READ_STORAGE_KEY);
+      if (stored) setRead(JSON.parse(stored));
+    } catch {
+      // localStorage unavailable, fall back to in-memory only
+    }
+    setHydrated(true);
+  }, []);
+
+  const persistRead = (ids: string[]) => {
+    setRead(ids);
+    try {
+      localStorage.setItem(READ_STORAGE_KEY, JSON.stringify(ids));
+    } catch {
+      // ignore
+    }
+  };
+
+  const unreadCount = hydrated ? notifications.filter((n) => !read.includes(n.id)).length : 0;
+  const markAllRead = () => persistRead(notifications.map((n) => n.id));
+  const markRead = (id: string) => persistRead([...read, id]);
 
   return (
     <div className="relative">
@@ -44,10 +60,13 @@ export default function NotificationBell() {
             </div>
 
             <div className="max-h-80 overflow-y-auto">
+              {notifications.length === 0 && (
+                <p className="px-4 py-6 text-center text-xs text-neutral-400">No notifications yet.</p>
+              )}
               {notifications.map((n) => {
-                const isUnread = n.unread && !read.includes(n.id);
+                const isUnread = hydrated && !read.includes(n.id);
                 return (
-                  <a key={n.id} href={n.url} onClick={() => setRead((prev) => [...prev, n.id])} className={`flex items-start gap-3 border-b border-neutral-100 px-4 py-3 transition hover:bg-neutral-50 ${isUnread ? "bg-neutral-50" : "bg-white"}`}>
+                  <a key={n.id} href={n.url} target={n.url.startsWith("http") ? "_blank" : undefined} rel={n.url.startsWith("http") ? "noopener noreferrer" : undefined} onClick={() => markRead(n.id)} className={`flex items-start gap-3 border-b border-neutral-100 px-4 py-3 transition hover:bg-neutral-50 ${isUnread ? "bg-neutral-50" : "bg-white"}`}>
                     <div className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${isUnread ? "bg-black" : "bg-transparent"}`} />
                     <div className="flex-1">
                       <p className={`text-xs leading-snug ${isUnread ? "font-semibold text-black" : "text-neutral-500"}`}>{n.title}</p>

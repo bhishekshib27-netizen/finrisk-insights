@@ -6,6 +6,7 @@ import { Menu, X, LayoutDashboard } from "lucide-react";
 import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
 import SearchModal from "@/components/search/SearchModal";
 import NotificationBell from "@/components/layout/NotificationBell";
+import type { Notification } from "@/lib/notifications";
 import NewsletterModal from "@/components/newsletter/NewsletterModal";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
@@ -20,7 +21,7 @@ const links = [
   { name: "About", href: "/about" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ notifications }: { notifications: Notification[] }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [newsletterOpen, setNewsletterOpen] = useState(false);
   const { isSignedIn } = useUser();
@@ -75,7 +76,7 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <div className="hidden md:flex items-center gap-4">
               <SearchModal />
-              <NotificationBell />
+              <NotificationBell notifications={notifications} />
               {isSignedIn ? (
                 <div className="flex items-center gap-3">
                   <Link
@@ -175,7 +176,7 @@ export default function Navbar() {
             )}
 
             <div className="mt-4">
-              <NotificationBell />
+              <NotificationBell notifications={notifications} />
             </div>
           </div>
         )}
