@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
 
     await resend.emails.send({
       from: "FinRisk Insights <hello@finriskinsight.com>",
-      to: "hello@finriskinsight.com",
+      to: "bhishekshib27@gmail.com",
       replyTo: email,
       subject: `[FinRisk Contact] ${subject || "New Enquiry"} — from ${name}`,
       html: `
