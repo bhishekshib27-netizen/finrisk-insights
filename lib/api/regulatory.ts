@@ -46,7 +46,21 @@ export async function getBOMUpdates(): Promise<RegulatoryUpdate[]> {
   ];
 }
 
+export async function getFATFUpdates(): Promise<RegulatoryUpdate[]> {
+  return [
+    { id: "fatf-1", title: "FATF publishes updated guidance on virtual assets and VASPs", source: "FATF", date: "18 Jun 2026", url: "https://www.fatf-gafi.org", category: "Virtual Assets" },
+    { id: "fatf-2", title: "FATF plenary outcomes: jurisdictions under increased monitoring", source: "FATF", date: "22 May 2026", url: "https://www.fatf-gafi.org", category: "Monitoring" },
+  ];
+}
+
+export async function getESAAMLGUpdates(): Promise<RegulatoryUpdate[]> {
+  return [
+    { id: "esaamlg-1", title: "ESAAMLG releases regional mutual evaluation follow-up report", source: "ESAAMLG", date: "12 Jun 2026", url: "https://www.esaamlg.org", category: "Mutual Evaluation" },
+    { id: "esaamlg-2", title: "ESAAMLG typologies report on trade-based money laundering", source: "ESAAMLG", date: "28 Apr 2026", url: "https://www.esaamlg.org", category: "AML/CFT" },
+  ];
+}
+
 export async function getAllRegulatoryUpdates(): Promise<RegulatoryUpdate[]> {
-  const [fsc, bom] = await Promise.all([getFSCUpdates(), getBOMUpdates()]);
-  return [...fsc, ...bom].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const [fsc, bom, fatf, esaamlg] = await Promise.all([getFSCUpdates(), getBOMUpdates(), getFATFUpdates(), getESAAMLGUpdates()]);
+  return [...fsc, ...bom, ...fatf, ...esaamlg].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }

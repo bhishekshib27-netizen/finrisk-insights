@@ -1,4 +1,7 @@
 import { Shield, ExternalLink } from "lucide-react";
+import { getAllRegulatoryUpdates } from "@/lib/api/regulatory";
+
+export const revalidate = 3600;
 
 export const metadata = {
   title: "Regulation | FinRisk Insights",
@@ -12,7 +15,9 @@ const sources = [
   { name: "ESAAMLG", href: "https://www.esaamlg.org", description: "Regional AML Body" },
 ];
 
-export default function RegulationPage() {
+export default async function RegulationPage() {
+  const updates = await getAllRegulatoryUpdates();
+
   return (
     <div className="space-y-0">
 
@@ -27,31 +32,33 @@ export default function RegulationPage() {
         </div>
       </div>
 
-      {/* Split: Gavel photo + Coming soon */}
+      {/* Updates List */}
       <div className="border-b border-neutral-200 bg-white">
         <div className="mx-auto max-w-5xl px-8 sm:px-12 py-16">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-
-            <div>
-              <img
-                src="/category-compliance.jpg"
-                alt="Regulation"
-                className="w-full object-cover"
-                style={{height: "380px", objectPosition: "center"}}
-              />
-            </div>
-
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Regulatory Alerts</p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-black">Coming soon</h2>
-              <p className="mt-4 text-neutral-500 leading-relaxed">
-                We are building a live feed of FSC circulars, Bank of Mauritius guidance notes, FATF updates, and AML/CFT developments. Check back regularly or subscribe to receive alerts by email.
-              </p>
-              <a href="/newsletter" className="mt-6 inline-flex items-center gap-2 bg-blue-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-800">
-                Subscribe for alerts
+          <p className="text-xs font-semibold uppercase tracking-widest text-blue-900 mb-8">Latest Updates</p>
+          <div className="space-y-3">
+            {updates.map((item) => (
+              
+                key={item.id}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-start gap-4 border border-neutral-200 border-l-4 border-l-blue-900 bg-white p-5 transition hover:shadow-sm"
+              >
+                <Shield size={14} className="mt-0.5 shrink-0 text-blue-900" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-black group-hover:text-blue-900 transition">{item.title}</p>
+                  <div className="mt-1.5 flex items-center gap-2 text-xs text-neutral-400">
+                    <span className="font-semibold text-neutral-500">{item.source}</span>
+                    <span>·</span>
+                    <span>{item.category}</span>
+                    <span>·</span>
+                    <span>{item.date}</span>
+                  </div>
+                </div>
+                <ExternalLink size={13} className="mt-0.5 shrink-0 text-neutral-300 group-hover:text-blue-900 transition" />
               </a>
-            </div>
-
+            ))}
           </div>
         </div>
       </div>
