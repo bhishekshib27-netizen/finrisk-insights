@@ -71,7 +71,7 @@ export default function CareersPage() {
             <Briefcase size={12} />
             {jobs.length} open roles
           </div>
-          <a href="mailto:hello@finriskinsight.com?subject=Post a Job on FinRisk" className="inline-flex items-center gap-2 border border-black bg-blue-900 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-blue-800">
+          <a href="/contact" className="inline-flex items-center gap-2 border border-black bg-blue-900 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-blue-800">
             Post a Job <ArrowUpRight size={12} />
           </a>
         </div>
@@ -121,7 +121,7 @@ export default function CareersPage() {
       <div className="border border-neutral-200 bg-neutral-50 p-8 text-center">
         <h2 className="text-lg font-bold text-black">Hiring in Finance, Compliance or Accounting?</h2>
         <p className="mt-2 text-sm text-neutral-500">Reach Mauritius's most engaged finance audience. Get in touch to feature your role on FinRisk Insights.</p>
-        <a href="mailto:hello@finriskinsight.com?subject=Post a Job on FinRisk" className="mt-4 inline-flex items-center gap-2 bg-blue-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-800">
+        <a href="/contact" className="mt-4 inline-flex items-center gap-2 bg-blue-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-800">
           Get in Touch <ArrowUpRight size={14} />
         </a>
       </div>
