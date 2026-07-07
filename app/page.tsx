@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LatestInsights from "@/components/home/LatestInsights";
 import FXRatesServer from "@/components/dashboard/FXRatesServer";
 import MarketChartServer from "@/components/charts/MarketChartServer";
 import AnimatedLayout from "@/components/dashboard/AnimatedLayout";
