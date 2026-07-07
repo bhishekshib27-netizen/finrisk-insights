@@ -159,7 +159,7 @@ export default function Home() {
         </section>
       </AnimatedLayout>
 
-            {/* LATEST INSIGHTS */}
+                  {/* LATEST INSIGHTS */}
       <AnimatedLayout delay={0.25}>
         <section className="border-b border-neutral-200 bg-white">
           <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
@@ -173,40 +173,41 @@ export default function Home() {
               </Link>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
-              {[
-                { category: "Markets", title: "SEMDEX closes higher amid strong banking performance", date: "Jun 25, 2026", readTime: "4 min", slug: "semdex-closes-higher-banking-performance", image: "/category-markets.jpg" },
-                { category: "Compliance", title: "Key AML developments every compliance officer should know", date: "Jun 22, 2026", readTime: "6 min", slug: "aml-developments-compliance-officers", image: "/category-compliance.jpg" },
-                { category: "Economy", title: "What the latest inflation figures mean for Mauritius", date: "Jun 18, 2026", readTime: "5 min", slug: "inflation-figures-mauritius", image: "/category-economy.jpg" },
-              ].map((item, i) => (
-                <Link key={i} href={`/insights/${item.slug}`} className="group overflow-hidden border border-neutral-200 hover:border-blue-900 transition hover:shadow-md">
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.category}
-                      className="w-full h-full object-cover object-center transition group-hover:scale-105 duration-500"
-                    />
-                    <div className="absolute inset-0" style={{background: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%)"}} />
-                    <span className="absolute bottom-3 left-3 bg-blue-900 px-2 py-0.5 text-xs font-semibold text-white">
-                      {item.category}
-                    </span>
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-sm font-bold text-black group-hover:text-blue-900 transition leading-snug">
-                      {item.title}
-                    </h3>
-                    <div className="mt-3 flex items-center gap-3 text-xs text-neutral-400">
-                      <span>{item.date}</span>
-                      <span>· {item.readTime} read</span>
+              {sanityPosts.slice(0, 3).map((post, i) => {
+                const category = post.categories?.[0]?.title ?? "Insights";
+                const imageMap: Record<string, string> = {
+                  "Markets": "/category-markets.jpg",
+                  "Compliance": "/category-compliance.jpg",
+                  "Economy": "/category-economy.jpg",
+                  "Regulation": "/category-compliance.jpg",
+                  "FX": "/category-markets.jpg",
+                };
+                const image = imageMap[category] ?? "/category-economy.jpg";
+                const slug = post.slug?.current ?? "";
+                const date = new Date(post.publishedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+                return (
+                  <Link key={i} href={`/insights/${slug}`} className="group overflow-hidden border border-neutral-200 hover:border-blue-900 transition hover:shadow-md">
+                    <div className="relative h-48 overflow-hidden">
+                      <img src={image} alt={category} className="w-full h-full object-cover object-center transition group-hover:scale-105 duration-500" />
+                      <div className="absolute inset-0" style={{background: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%)"}} />
+                      <span className="absolute bottom-3 left-3 bg-blue-900 px-2 py-0.5 text-xs font-semibold text-white">{category}</span>
                     </div>
-                  </div>
-                </Link>
-              ))}
+                    <div className="p-4">
+                      <h3 className="text-sm font-bold text-black group-hover:text-blue-900 transition leading-snug">{post.title}</h3>
+                      <div className="mt-3 flex items-center gap-3 text-xs text-neutral-400">
+                        <span>{date}</span>
+                        <span>· 5 min read</span>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>
       </AnimatedLayout>
 
-            {/* REGULATION */}
+      {/* REGULATION */}
       <AnimatedLayout delay={0.3}>
         <section className="border-b border-blue-950" style={{background:"#0f2654"}}>
           <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
