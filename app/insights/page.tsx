@@ -3,6 +3,8 @@ import { getAllArticles } from "@/lib/data/articles";
 import Link from "next/link";
 import { ArrowUpRight, Clock } from "lucide-react";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Insights | FinRisk Insights",
   description: "Financial analysis, market commentary and intelligence for Mauritius.",

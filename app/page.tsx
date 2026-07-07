@@ -6,6 +6,8 @@ import NewsletterSignup from "@/components/newsletter/NewsletterSignup";
 import SiteStats from "@/components/dashboard/SiteStats";
 import { ArrowRight, BarChart2, BookOpen, Shield, Zap, ArrowUpRight, Clock } from "lucide-react";
 
+export const revalidate = 60;
+
 export default function Home() {
   return (
     <div className="space-y-0">
