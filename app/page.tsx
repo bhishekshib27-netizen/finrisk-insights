@@ -6,10 +6,14 @@ import AnimatedLayout from "@/components/dashboard/AnimatedLayout";
 import NewsletterSignup from "@/components/newsletter/NewsletterSignup";
 import SiteStats from "@/components/dashboard/SiteStats";
 import { ArrowRight, BarChart2, BookOpen, Shield, Zap, ArrowUpRight, Clock } from "lucide-react";
+import { getAllRegulatoryUpdates } from "@/lib/api/regulatory";
+import { getUpcomingEvents } from "@/lib/data/events";
 
 export const revalidate = 60;
 
-export default function Home() {
+export default async function Home() {
+  const regulatoryUpdates = (await getAllRegulatoryUpdates()).slice(0, 3);
+  const upcomingEvents = getUpcomingEvents();
   return (
     <div className="space-y-0">
 
@@ -186,16 +190,12 @@ export default function Home() {
               </Link>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
-              {[
-                { source: "FSC Mauritius", label: "Financial Services Commission", color: "bg-blue-800" },
-                { source: "Bank of Mauritius", label: "Central Bank Updates", color: "bg-blue-800" },
-                { source: "FATF", label: "Financial Action Task Force", color: "bg-blue-800" },
-              ].map((item, i) => (
-                <div key={i} className="border border-blue-800 p-6" style={{background:"rgba(255,255,255,0.05)"}}>
+              {regulatoryUpdates.map((item) => (
+                <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className="border border-blue-800 p-6 transition hover:bg-white/10" style={{background:"rgba(255,255,255,0.05)"}}>
                   <p className="text-xs font-semibold uppercase tracking-wider text-blue-300">{item.source}</p>
-                  <p className="mt-2 text-sm text-blue-100">{item.label}</p>
-                  <p className="mt-4 text-xs text-blue-400">Updates coming soon</p>
-                </div>
+                  <p className="mt-2 text-sm text-blue-100">{item.title}</p>
+                  <p className="mt-4 text-xs text-blue-400">{item.category} · {item.date}</p>
+                </a>
               ))}
             </div>
             <p className="mt-6 text-xs text-blue-400">
@@ -217,23 +217,19 @@ export default function Home() {
                 <h2 className="mt-3 text-3xl font-bold tracking-tight text-black sm:text-4xl">Upcoming Events</h2>
                 <p className="mt-3 text-neutral-500 text-sm">Finance, compliance, and regulatory events in Mauritius — curated and updated as they are confirmed.</p>
                 <div className="mt-8 divide-y divide-neutral-100">
-                  {[
-                    { type: "Conference", org: "FSC Mauritius", desc: "Annual regulatory summit and industry briefings." },
-                    { type: "MPC Meeting", org: "Bank of Mauritius", desc: "Monetary Policy Committee rate decisions." },
-                    { type: "Workshop", org: "ESAAMLG", desc: "Regional AML/CFT typologies and compliance workshops." },
-                    { type: "Networking", org: "FinRisk Insights", desc: "Finance professionals networking evenings in Mauritius." },
-                  ].map((item, i) => (
+                  {upcomingEvents.map((item, i) => (
                     <div key={i} className="flex items-start gap-4 py-4">
                       <span className="mt-0.5 shrink-0 inline-block bg-blue-900 px-2 py-0.5 text-xs font-semibold text-white">{item.type}</span>
                       <div>
-                        <p className="font-bold text-black text-sm">{item.org}</p>
-                        <p className="mt-0.5 text-xs text-neutral-500">{item.desc}</p>
+                        <p className="font-bold text-black text-sm">{item.title}</p>
+                        <p className="mt-0.5 text-xs text-neutral-500">{item.org} · {item.date}</p>
+                        <p className="mt-1 text-xs text-neutral-400">{item.desc}</p>
                       </div>
                     </div>
                   ))}
                 </div>
                 <p className="mt-6 text-xs text-neutral-400">
-                  No confirmed dates yet — <Link href="/newsletter" className="text-blue-900 underline">subscribe</Link> to be notified when events are added.
+                  <Link href="/events" className="text-blue-900 underline">View all events</Link>
                 </p>
               </div>
 
