@@ -16,7 +16,7 @@ const markets = [
   },
   {
     title: "Repo Rate",
-    value: "4.50%",
+    value: "4.75%",
     change: "BoM",
   },
 ];

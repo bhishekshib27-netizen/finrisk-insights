@@ -35,7 +35,7 @@ export default async function MetricCardsServer() {
       />
       <MetricCard
         title="Repo Rate"
-        value="4.50%"
+        value="4.75%"
         change="Stable"
         positive={true}
       />

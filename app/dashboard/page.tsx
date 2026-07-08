@@ -11,7 +11,7 @@ export const metadata = {
 export default async function DashboardPage() {
   const { userId } = await auth();
   const user = userId ? await currentUser() : null;
-  const firstName = user?.firstName ?? "there";
+  const firstName = user?.firstName;
 
   let rates = { USD_MUR: 47.99, EUR_MUR: 54.67, GBP_MUR: 63.38 };
   try { rates = await getFXRates(); } catch {}
@@ -33,7 +33,7 @@ export default async function DashboardPage() {
         <div className="mx-auto max-w-5xl px-8 sm:px-12 py-12">
           <p className="text-xs font-semibold uppercase tracking-widest text-blue-300">My Account</p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Welcome back, {firstName}
+            Welcome back{firstName ? `, ${firstName}` : ""}
           </h1>
           <p className="mt-2 text-blue-200">Your FinRisk Insights dashboard.</p>
         </div>

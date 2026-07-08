@@ -11,7 +11,7 @@ export default function MarketTicker({ rates }: MarketTickerProps) {
     { name: "USD/MUR", value: rates.USD_MUR.toFixed(2), change: "Live", trend: "neutral" },
     { name: "EUR/MUR", value: rates.EUR_MUR.toFixed(2), change: "Live", trend: "neutral" },
     { name: "GBP/MUR", value: rates.GBP_MUR.toFixed(2), change: "Live", trend: "neutral" },
-    { name: "Repo Rate", value: "4.50%", change: "Stable", trend: "neutral" },
+    { name: "Repo Rate", value: "4.75%", change: "Stable", trend: "neutral" },
     { name: "Inflation", value: "3.2%", change: "-0.4%", trend: "down" },
     { name: "Gold", value: "$2,345", change: "+1.2%", trend: "up" },
     { name: "Oil (Brent)", value: "$82.40", change: "-0.6%", trend: "down" },
