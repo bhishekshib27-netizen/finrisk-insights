@@ -92,7 +92,7 @@ export default async function DashboardPage() {
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
             {[
-              { title: "SEMDEX closes higher amid strong banking performance", category: "Markets", href: "/insights/semdex-closes-higher-banking-performance" },
+              { title: "SEMDEX closes higher amid strong banking performance", category: "Markets", href: "/insights/semdex-closes-higher-amid-strong-banking-performance" },
               { title: "Key AML developments every compliance officer should know", category: "Compliance", href: "/insights/key-aml-developments-every-compliance-officer-should-know" },
               { title: "What the latest inflation figures mean for Mauritius", category: "Economy", href: "/insights/what-the-latest-inflation-figures-mean-for-mauritius" },
             ].map((item, i) => (

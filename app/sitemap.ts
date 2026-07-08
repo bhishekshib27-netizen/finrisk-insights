@@ -1,10 +1,11 @@
 import { MetadataRoute } from "next";
+import { getAllPostSlugs } from "@/lib/sanity/queries";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.finriskinsight.com";
   const lastModified = new Date();
 
-  return [
+  const staticEntries: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified,
@@ -89,23 +90,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
-    {
-      url: `${baseUrl}/insights/semdex-closes-higher-banking-performance`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/insights/aml-developments-compliance-officers`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/insights/inflation-figures-mauritius`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
   ];
+
+  const postSlugs = await getAllPostSlugs().catch(() => []);
+  const postEntries: MetadataRoute.Sitemap = postSlugs.map((p) => ({
+    url: `${baseUrl}/insights/${p.slug}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...postEntries];
 }
