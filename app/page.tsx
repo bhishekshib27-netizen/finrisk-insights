@@ -40,7 +40,7 @@ export default async function Home() {
               <Link href="/markets" className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition" style={{background: "#1e3a8a"}}>
                 Explore Markets <ArrowRight size={16} />
               </Link>
-              <Link href="/research" className="inline-flex items-center gap-2 border border-white px-6 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-black">
+              <Link href="/insights" className="inline-flex items-center gap-2 border border-white px-6 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-black">
                 Browse Research
               </Link>
             </div>
@@ -129,7 +129,7 @@ export default async function Home() {
                 <div className="mt-8 divide-y divide-neutral-100">
                   {[
                     { title: "Markets", description: "Live SEMDEX, FX rates, and economic indicators for Mauritius.", href: "/markets" },
-                    { title: "Research", description: "In-depth reports on banking, regulation, and the Mauritian economy.", href: "/research" },
+                    { title: "Research", description: "In-depth reports on banking, regulation, and the Mauritian economy.", href: "/insights" },
                     { title: "Regulation", description: "Real-time alerts from FSC, Bank of Mauritius, and FATF.", href: "/regulation" },
                     { title: "Insights", description: "Analysis and commentary from our editorial team.", href: "/insights" },
                     { title: "Careers", description: "Curated finance, compliance, and accounting jobs in Mauritius.", href: "/careers" },
