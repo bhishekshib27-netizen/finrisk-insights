@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
 import Link from "next/link";
 import { PortableText } from "@portabletext/react";
+import Script from "next/script";
 
 export async function generateStaticParams() {
   const sanitySlugsList = await getAllPostSlugs().catch(() => [])
@@ -18,7 +19,29 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const hardcoded = getArticleBySlug(slug)
   const title = sanityPost?.title ?? hardcoded?.title ?? "Article"
   const description = sanityPost?.excerpt ?? hardcoded?.excerpt ?? ""
-  return { title: `${title} | FinRisk Insights`, description }
+  const publishedTime = sanityPost?.publishedAt ?? sanityPost?._createdAt
+  const url = `https://www.finriskinsight.com/insights/${slug}`
+
+  return {
+    title: `${title} | FinRisk Insights`,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "article",
+      publishedTime,
+      siteName: "FinRisk Insights",
+      images: ["https://www.finriskinsight.com/og-image.jpg"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["https://www.finriskinsight.com/og-image.jpg"],
+    },
+  }
 }
 
 const categoryColors: Record<string, string> = {
@@ -78,9 +101,34 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const date = isSanity
     ? new Date(sanityPost!.publishedAt || sanityPost!._createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })
     : hardcoded?.date ?? ""
+  const isoDate = isSanity ? (sanityPost!.publishedAt || sanityPost!._createdAt) : undefined
+  const canonicalUrl = `https://www.finriskinsight.com/insights/${slug}`
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: title,
+    description: excerpt,
+    url: canonicalUrl,
+    datePublished: isoDate,
+    dateModified: isoDate,
+    author: { "@type": "Person", name: author },
+    publisher: {
+      "@type": "Organization",
+      name: "FinRisk Insights",
+      logo: { "@type": "ImageObject", url: "https://www.finriskinsight.com/logo.jpeg" },
+    },
+    image: "https://www.finriskinsight.com/og-image.jpg",
+    mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+  }
 
   return (
     <div className="mx-auto max-w-3xl px-8 sm:px-12 py-10 space-y-8">
+      <Script
+        id="article-json-ld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
 
       <Link href="/insights" className="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition hover:text-black">
         <ArrowLeft size={14} /> Back to Insights
