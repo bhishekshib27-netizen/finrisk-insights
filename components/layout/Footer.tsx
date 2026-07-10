@@ -27,7 +27,16 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-neutral-100 pt-6 flex flex-col gap-1 sm:flex-row sm:justify-between">
+        <div className="mt-8 border-t border-neutral-100 pt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-neutral-400">
+          <Link href="/editorial-standards" className="hover:text-black transition">Editorial Standards</Link>
+          <Link href="/methodology" className="hover:text-black transition">Methodology</Link>
+          <Link href="/corrections" className="hover:text-black transition">Corrections</Link>
+          <Link href="/privacy" className="hover:text-black transition">Privacy</Link>
+          <Link href="/terms" className="hover:text-black transition">Terms</Link>
+          <Link href="/disclaimer" className="hover:text-black transition">Disclaimer</Link>
+        </div>
+
+        <div className="mt-4 flex flex-col gap-1 sm:flex-row sm:justify-between">
           <p className="text-xs text-neutral-400">© {new Date().getFullYear()} FinRisk Insights. All rights reserved.</p>
           <p className="text-xs text-neutral-300">Financial data is for informational purposes only and does not constitute investment advice.</p>
         </div>
