@@ -9,7 +9,7 @@ export type SanityArticle = {
   publishedAt: string
   _createdAt: string
   categories?: { title: string }[]
-  author?: { name: string }
+  author?: { name: string; slug?: string; role?: string }
 }
 
 export async function getAllPosts(): Promise<SanityArticle[]> {
@@ -18,7 +18,7 @@ export async function getAllPosts(): Promise<SanityArticle[]> {
     *[_type == "post"] | order(publishedAt desc) {
       _id, title, slug, excerpt, body, publishedAt, _createdAt,
       "categories": categories[]->{ title },
-      "author": author->{ name }
+      "author": author->{ name, "slug": slug.current, role }
     }
   `)
 }
@@ -29,7 +29,7 @@ export async function getPostBySlug(slug: string): Promise<SanityArticle | null>
     *[_type == "post" && slug.current == $slug][0] {
       _id, title, slug, excerpt, body, publishedAt, _createdAt,
       "categories": categories[]->{ title },
-      "author": author->{ name }
+      "author": author->{ name, "slug": slug.current, role }
     }
   `, { slug })
 }
@@ -75,4 +75,35 @@ export async function getJobById(id: string): Promise<SanityJob | null> {
 export async function getAllJobIds(): Promise<{ id: string }[]> {
   if (!client) return []
   return client.fetch(`*[_type == "job" && active == true] { "id": _id }`)
+}
+
+export type SanityAuthor = {
+  _id: string
+  name: string
+  slug: string
+  role?: string
+  bio?: string
+  photo?: any
+  linkedIn?: string
+}
+
+export async function getAuthorBySlug(slug: string): Promise<SanityAuthor | null> {
+  if (!client) return null
+  return client.fetch(
+    `*[_type == "author" && slug.current == $slug][0] {
+      _id, name, "slug": slug.current, role, bio, photo, linkedIn
+    }`,
+    { slug }
+  )
+}
+
+export async function getPostsByAuthor(authorId: string): Promise<SanityArticle[]> {
+  if (!client) return []
+  return client.fetch(
+    `*[_type == "post" && author._ref == $authorId] | order(publishedAt desc) {
+      _id, title, slug, excerpt, publishedAt, _createdAt,
+      "categories": categories[]->{ title }
+    }`,
+    { authorId }
+  )
 }

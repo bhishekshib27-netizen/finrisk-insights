@@ -97,6 +97,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const excerpt = sanityPost?.excerpt ?? hardcoded?.excerpt ?? ""
   const category = sanityPost?.categories?.[0]?.title ?? hardcoded?.category ?? "General"
   const author = sanityPost?.author?.name ?? hardcoded?.author ?? "FinRisk Insights"
+  const authorSlug = sanityPost?.author?.slug
+  const authorRoleReal = sanityPost?.author?.role ?? hardcoded?.authorRole ?? "Contributor"
   const authorRole = hardcoded?.authorRole ?? "FinRisk Insights"
   const date = isSanity
     ? new Date(sanityPost!.publishedAt || sanityPost!._createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })
@@ -143,7 +145,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         <h1 className="text-3xl font-bold leading-tight tracking-tight text-black sm:text-4xl">{title}</h1>
         <p className="mt-4 text-lg text-neutral-500 leading-relaxed">{excerpt}</p>
         <div className="mt-6 flex flex-wrap items-center gap-6 text-xs text-neutral-400">
-          <span className="flex items-center gap-1.5"><User size={13} />{author}</span>
+          <span className="flex items-center gap-1.5">
+            <User size={13} />
+            {authorSlug ? <Link href={`/authors/${authorSlug}`} className="hover:text-black transition">{author}</Link> : author}
+          </span>
           <span className="flex items-center gap-1.5"><Calendar size={13} />{date}</span>
         </div>
       </div>
@@ -158,8 +163,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <div className="border-t border-neutral-200 pt-8">
         <div className="border border-neutral-200 bg-neutral-50 p-6">
           <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400">About the Author</p>
-          <p className="mt-2 font-bold text-black">{author}</p>
-          <p className="text-sm text-neutral-500">{authorRole} — FinRisk Insights</p>
+          <p className="mt-2 font-bold text-black">
+            {authorSlug ? <Link href={`/authors/${authorSlug}`} className="hover:text-blue-900 transition">{author}</Link> : author}
+          </p>
+          <p className="text-sm text-neutral-500">{authorRoleReal} — FinRisk Insights</p>
         </div>
       </div>
 
