@@ -8,12 +8,14 @@ import SiteStats from "@/components/dashboard/SiteStats";
 import { ArrowRight, BarChart2, BookOpen, Shield, Zap, ArrowUpRight, Clock } from "lucide-react";
 import { getAllRegulatoryUpdates } from "@/lib/api/regulatory";
 import { getUpcomingEvents } from "@/lib/data/events";
+import { getSiteStats } from "@/lib/supabase/stats";
 
 export const revalidate = 60;
 
 export default async function Home() {
   const regulatoryUpdates = (await getAllRegulatoryUpdates()).slice(0, 3);
   const upcomingEvents = getUpcomingEvents();
+  const siteStats = await getSiteStats();
   return (
     <div className="space-y-0">
 
@@ -64,11 +66,11 @@ export default async function Home() {
             </p>
             <div className="mt-10 grid grid-cols-3 gap-8 border-t border-neutral-200 pt-10 max-w-md mx-auto">
               <div>
-                <p className="text-3xl font-bold text-black">400+</p>
+                <p className="text-3xl font-bold text-black">{siteStats.subscribers}+</p>
                 <p className="mt-1 text-xs text-neutral-400 uppercase tracking-wider">Subscribers</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-black">3</p>
+                <p className="text-3xl font-bold text-black">{siteStats.reports}</p>
                 <p className="mt-1 text-xs text-neutral-400 uppercase tracking-wider">Reports</p>
               </div>
               <div>
