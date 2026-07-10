@@ -93,13 +93,6 @@ export default async function Home() {
                   <p className="text-xs text-neutral-400">wallstreetoasis.com</p>
                 </div>
               </a>
-              <a href="https://financialcrimesociety.social" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 opacity-60 hover:opacity-100 transition">
-                <img src="/partner-fcs.png" alt="Financial Crime Society" className="h-10 w-10 object-contain" />
-                <div>
-                  <p className="font-bold text-black text-sm group-hover:text-blue-900 transition">Financial Crime Society</p>
-                  <p className="text-xs text-neutral-400">financialcrimesociety.social</p>
-                </div>
-              </a>
             </div>
           </div>
         </section>
