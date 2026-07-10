@@ -27,22 +27,27 @@ export default async function CareersPage() {
   return (
     <div className="mx-auto max-w-5xl px-8 sm:px-12 py-10 space-y-10">
 
-      <div className="border-b border-neutral-200 pb-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Career Hub</p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-4xl">
-          Finance Jobs in Mauritius
-        </h1>
-        <p className="mt-3 max-w-xl text-neutral-500">
-          Curated finance, compliance, legal and accounting roles from leading employers across Mauritius. Updated regularly from verified sources.
-        </p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <div className="flex items-center gap-2 border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-xs text-neutral-500">
-            <Briefcase size={12} />
-            {jobs.length} open role{jobs.length === 1 ? "" : "s"}
+      <div className="grid gap-8 lg:grid-cols-2 lg:items-center border-b border-neutral-200 pb-8">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Career Hub</p>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-4xl">
+            Finance Jobs in Mauritius
+          </h1>
+          <p className="mt-3 max-w-xl text-neutral-500">
+            Curated finance, compliance, legal and accounting roles from leading employers across Mauritius. Updated regularly from verified sources.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <div className="flex items-center gap-2 border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-xs text-neutral-500">
+              <Briefcase size={12} />
+              {jobs.length} open role{jobs.length === 1 ? "" : "s"}
+            </div>
+            <a href="/contact" className="inline-flex items-center gap-2 border border-black bg-blue-900 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-blue-800">
+              Post a Job <ArrowUpRight size={12} />
+            </a>
           </div>
-          <a href="/contact" className="inline-flex items-center gap-2 border border-black bg-blue-900 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-blue-800">
-            Post a Job <ArrowUpRight size={12} />
-          </a>
+        </div>
+        <div className="hidden lg:block">
+          <img src="/careers-bg.jpg" alt="Finance careers in Mauritius" className="w-full object-cover" style={{height: "320px"}} />
         </div>
       </div>
 
