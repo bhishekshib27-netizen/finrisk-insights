@@ -38,3 +38,26 @@ export async function getAllPostSlugs(): Promise<{ slug: string }[]> {
   if (!client) return []
   return client.fetch(`*[_type == "post"] { "slug": slug.current }`)
 }
+
+export type SanityJob = {
+  _id: string
+  title: string
+  company: string
+  sector: string
+  type: string
+  location: string
+  workStyle: string
+  description: string
+  requirements: string[]
+  applyUrl: string
+  postedAt: string
+}
+
+export async function getAllJobs(): Promise<SanityJob[]> {
+  if (!client) return []
+  return client.fetch(`
+    *[_type == "job" && active == true] | order(postedAt desc) {
+      _id, title, company, sector, type, location, workStyle, description, requirements, applyUrl, postedAt
+    }
+  `)
+}
