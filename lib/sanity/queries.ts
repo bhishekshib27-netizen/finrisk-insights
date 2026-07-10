@@ -61,3 +61,18 @@ export async function getAllJobs(): Promise<SanityJob[]> {
     }
   `)
 }
+
+export async function getJobById(id: string): Promise<SanityJob | null> {
+  if (!client) return null
+  return client.fetch(
+    `*[_type == "job" && _id == $id][0] {
+      _id, title, company, sector, type, location, workStyle, description, requirements, applyUrl, postedAt
+    }`,
+    { id }
+  )
+}
+
+export async function getAllJobIds(): Promise<{ id: string }[]> {
+  if (!client) return []
+  return client.fetch(`*[_type == "job" && active == true] { "id": _id }`)
+}

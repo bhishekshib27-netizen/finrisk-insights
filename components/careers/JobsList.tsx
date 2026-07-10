@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { MapPin, Clock, Building2, ArrowUpRight, Briefcase } from "lucide-react";
 
 type Job = {
@@ -78,7 +79,9 @@ export default function JobsList({ jobs }: { jobs: Job[] }) {
                           <span className="border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-xs text-neutral-500">{job.type}</span>
                           <span className="border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-xs text-neutral-500">{job.workStyle}</span>
                         </div>
-                        <h2 className="text-lg font-bold text-black">{job.title}</h2>
+                        <h2 className="text-lg font-bold text-black">
+                          <Link href={`/careers/${job._id}`} className="hover:text-blue-900 transition">{job.title}</Link>
+                        </h2>
                         <div className="mt-1 flex flex-wrap items-center gap-4 text-sm text-neutral-500">
                           <span className="flex items-center gap-1"><Building2 size={13} />{job.company}</span>
                           <span className="flex items-center gap-1"><MapPin size={13} />{job.location}, Mauritius</span>
