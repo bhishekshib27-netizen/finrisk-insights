@@ -44,3 +44,43 @@ export async function refreshRatesFromBoM() {
     return false
   }
 }
+
+export type IndexRate = {
+  value: string;
+  change: string;
+  trend: "up" | "down" | "neutral";
+};
+
+const fallbackRates: Record<string, IndexRate> = {
+  SEMDEX: { value: "2,145.32", change: "+0.42%", trend: "up" },
+  REPO_RATE: { value: "4.75%", change: "Stable", trend: "neutral" },
+};
+
+export async function getIndexRates(): Promise<Record<string, IndexRate>> {
+  if (!supabase) return fallbackRates;
+
+  try {
+    const { data, error } = await supabase
+      .from('market_rates')
+      .select('pair, value, change_label, trend')
+      .in('pair', ['SEMDEX', 'REPO_RATE']);
+
+    if (error || !data || data.length === 0) return fallbackRates;
+
+    const result: Record<string, IndexRate> = { ...fallbackRates };
+    for (const row of data) {
+      const suffix = row.pair === 'REPO_RATE' ? '%' : '';
+      const rawValue = row.pair === 'SEMDEX'
+        ? Number(row.value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+        : Number(row.value).toFixed(2);
+      result[row.pair] = {
+        value: `${rawValue}${suffix}`,
+        change: row.change_label ?? 'Live',
+        trend: (row.trend ?? 'neutral') as "up" | "down" | "neutral",
+      };
+    }
+    return result;
+  } catch {
+    return fallbackRates;
+  }
+}

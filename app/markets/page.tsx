@@ -1,4 +1,5 @@
 import { getFXRates } from "@/lib/api/fx";
+import { getIndexRates } from "@/lib/supabase/rates";
 import MarketChartServer from "@/components/charts/MarketChartServer";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 
@@ -13,12 +14,14 @@ export default async function MarketsPage() {
     rates = await getFXRates();
   } catch {}
 
+  const indexRates = await getIndexRates();
+
   const fxTable = [
     { pair: "USD / MUR", value: rates.USD_MUR.toFixed(2), change: "Live", trend: "neutral" },
     { pair: "EUR / MUR", value: rates.EUR_MUR.toFixed(2), change: "Live", trend: "neutral" },
     { pair: "GBP / MUR", value: rates.GBP_MUR.toFixed(2), change: "Live", trend: "neutral" },
-    { pair: "SEMDEX", value: "2,145.32", change: "+0.42%", trend: "up" },
-    { pair: "Repo Rate", value: "4.75%", change: "+25bps", trend: "up" },
+    { pair: "SEMDEX", value: indexRates.SEMDEX.value, change: indexRates.SEMDEX.change, trend: indexRates.SEMDEX.trend },
+    { pair: "Repo Rate", value: indexRates.REPO_RATE.value, change: indexRates.REPO_RATE.change, trend: indexRates.REPO_RATE.trend },
     { pair: "Inflation", value: "3.2%", change: "-0.4%", trend: "down" },
     { pair: "Gold (USD)", value: "$2,345", change: "+1.2%", trend: "up" },
     { pair: "Oil Brent", value: "$82.40", change: "-0.6%", trend: "down" },
@@ -48,7 +51,7 @@ export default async function MarketsPage() {
           { label: "USD / MUR", value: rates.USD_MUR.toFixed(2), live: true, accent: "border-t-blue-900" },
           { label: "EUR / MUR", value: rates.EUR_MUR.toFixed(2), live: true, accent: "border-t-blue-700" },
           { label: "GBP / MUR", value: rates.GBP_MUR.toFixed(2), live: true, accent: "border-t-blue-500" },
-          { label: "Repo Rate", value: "4.75%", live: false, accent: "border-t-blue-300" },
+          { label: "Repo Rate", value: indexRates.REPO_RATE.value, live: false, accent: "border-t-blue-300" },
         ].map((card) => (
           <div key={card.label} className={`relative border border-neutral-200 bg-white p-6 border-t-4 ${card.accent}`}>
             <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400">{card.label}</p>

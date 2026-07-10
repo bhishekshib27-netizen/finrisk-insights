@@ -1,4 +1,5 @@
 import { getFXRates, FXRates } from "@/lib/api/fx";
+import { getIndexRates } from "@/lib/supabase/rates";
 import MarketTicker from "@/components/dashboard/MarketTicker";
 
 const fallback: FXRates = {
@@ -16,5 +17,7 @@ export default async function FXRatesServer() {
     // silently fall back to static values
   }
 
-  return <MarketTicker rates={rates} />;
+  const indexRates = await getIndexRates();
+
+  return <MarketTicker rates={rates} indexRates={indexRates} />;
 }

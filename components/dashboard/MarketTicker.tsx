@@ -1,17 +1,19 @@
 import { FXRates } from "@/lib/api/fx";
+import { IndexRate } from "@/lib/supabase/rates";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 
 interface MarketTickerProps {
   rates: FXRates;
+  indexRates: Record<string, IndexRate>;
 }
 
-export default function MarketTicker({ rates }: MarketTickerProps) {
+export default function MarketTicker({ rates, indexRates }: MarketTickerProps) {
   const ticker = [
-    { name: "SEMDEX", value: "2,145.32", change: "+0.42%", trend: "up" },
+    { name: "SEMDEX", value: indexRates.SEMDEX.value, change: indexRates.SEMDEX.change, trend: indexRates.SEMDEX.trend },
     { name: "USD/MUR", value: rates.USD_MUR.toFixed(2), change: "Live", trend: "neutral" },
     { name: "EUR/MUR", value: rates.EUR_MUR.toFixed(2), change: "Live", trend: "neutral" },
     { name: "GBP/MUR", value: rates.GBP_MUR.toFixed(2), change: "Live", trend: "neutral" },
-    { name: "Repo Rate", value: "4.75%", change: "Stable", trend: "neutral" },
+    { name: "Repo Rate", value: indexRates.REPO_RATE.value, change: indexRates.REPO_RATE.change, trend: indexRates.REPO_RATE.trend },
     { name: "Inflation", value: "3.2%", change: "-0.4%", trend: "down" },
     { name: "Gold", value: "$2,345", change: "+1.2%", trend: "up" },
     { name: "Oil (Brent)", value: "$82.40", change: "-0.6%", trend: "down" },

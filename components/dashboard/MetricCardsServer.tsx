@@ -1,4 +1,5 @@
 import { getFXRates } from "@/lib/api/fx";
+import { getIndexRates } from "@/lib/supabase/rates";
 import MetricCard from "@/components/dashboard/MetricCard";
 
 export default async function MetricCardsServer() {
@@ -13,13 +14,15 @@ export default async function MetricCardsServer() {
     // fallback to static values
   }
 
+  const indexRates = await getIndexRates();
+
   return (
     <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
       <MetricCard
         title="SEMDEX"
-        value="2,145.32"
-        change="+0.42%"
-        positive={true}
+        value={indexRates.SEMDEX.value}
+        change={indexRates.SEMDEX.change}
+        positive={indexRates.SEMDEX.trend !== "down"}
       />
       <MetricCard
         title="USD / MUR"
@@ -35,8 +38,8 @@ export default async function MetricCardsServer() {
       />
       <MetricCard
         title="Repo Rate"
-        value="4.75%"
-        change="Stable"
+        value={indexRates.REPO_RATE.value}
+        change={indexRates.REPO_RATE.change}
         positive={true}
       />
     </div>
