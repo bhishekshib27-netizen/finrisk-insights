@@ -61,7 +61,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
   const { id } = await params;
   const job = await getJobById(id).catch(() => null);
 
-  if (!job) notFound();
+  if (!job || job.active === false) notFound();
 
   const canonicalUrl = `https://www.finriskinsight.com/careers/${id}`;
   const postedDate = new Date(job.postedAt);

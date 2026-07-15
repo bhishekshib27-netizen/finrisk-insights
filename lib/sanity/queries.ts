@@ -51,6 +51,7 @@ export type SanityJob = {
   requirements: string[]
   applyUrl: string
   postedAt: string
+  active?: boolean
 }
 
 export async function getAllJobs(): Promise<SanityJob[]> {
@@ -66,7 +67,7 @@ export async function getJobById(id: string): Promise<SanityJob | null> {
   if (!client) return null
   return client.fetch(
     `*[_type == "job" && _id == $id][0] {
-      _id, title, company, sector, type, location, workStyle, description, requirements, applyUrl, postedAt
+      _id, title, company, sector, type, location, workStyle, description, requirements, applyUrl, postedAt, active
     }`,
     { id }
   )
