@@ -46,8 +46,8 @@ export default async function CareersPage() {
             </a>
           </div>
         </div>
-        <div className="hidden lg:block">
-          <img src="/careers-bg.jpg" alt="Finance careers in Mauritius" className="w-full object-cover" style={{height: "320px"}} />
+        <div>
+          <img src="/careers-bg.jpg" alt="Finance careers in Mauritius" className="w-full object-cover h-[200px] lg:h-[320px]" />
         </div>
       </div>
 

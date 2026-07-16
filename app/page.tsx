@@ -107,11 +107,11 @@ export default async function Home() {
             <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
 
               {/* Left - Image */}
-              <div className="hidden lg:block" style={{minHeight: "480px"}}>
+              <div className="h-[220px] lg:h-auto" style={{minHeight: "220px"}}>
                 <img
                   src="/what-we-do-bg.jpg"
                   alt="Financial district"
-                  className="w-full h-full object-cover object-center" style={{minHeight: "480px"}}
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
 
@@ -229,12 +229,11 @@ export default async function Home() {
               </div>
 
               {/* Right - Image */}
-              <div className="hidden lg:block">
+              <div>
                 <img
                   src="/events-bg.jpg"
                   alt="Events"
-                  className="w-full object-cover object-center"
-                  style={{height: "480px"}}
+                  className="w-full object-cover object-center h-[220px] lg:h-[480px]"
                 />
               </div>
 
@@ -278,12 +277,11 @@ export default async function Home() {
             <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
 
               {/* Left - Image */}
-              <div className="hidden lg:block">
+              <div>
                 <img
                   src="/contact-bg.jpg"
                   alt="Contact FinRisk Insights"
-                  className="w-full object-cover object-center"
-                  style={{height: "320px"}}
+                  className="w-full object-cover object-center h-[200px] lg:h-[320px]"
                 />
               </div>
 

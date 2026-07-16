@@ -51,12 +51,12 @@ export default function PodcastPage() {
             </a>
           </div>
 
-          <div className="hidden lg:block">
+          <div>
             <img
               src="/podcast-bg.jpg"
               alt="Podcast"
-              className="w-full object-cover"
-              style={{height: "360px", objectPosition: "center"}}
+              className="w-full object-cover h-[200px] lg:h-[360px]"
+              style={{objectPosition: "center"}}
             />
           </div>
         </div>
