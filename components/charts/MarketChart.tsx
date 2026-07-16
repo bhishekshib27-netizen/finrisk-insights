@@ -50,7 +50,7 @@ export default function MarketChart({ fxHistory }: MarketChartProps) {
   return (
     <div className="border border-neutral-200 bg-white p-6">
 
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
           <h2 className="text-lg font-bold text-black">Market Chart</h2>
           {isLive && (
@@ -60,7 +60,7 @@ export default function MarketChart({ fxHistory }: MarketChartProps) {
           )}
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {metrics.map((m) => (
             <button
               key={m}
