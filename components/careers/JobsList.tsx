@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { MapPin, Clock, Building2, ArrowUpRight, Briefcase } from "lucide-react";
+import { MapPin, Clock, Building2, ArrowRight, Briefcase } from "lucide-react";
 
 type Job = {
   _id: string;
@@ -18,41 +18,34 @@ type Job = {
   postedLabel: string;
 };
 
-const sectorStyles: Record<string, { badge: string; accent: string; avatar: string }> = {
-  Compliance: { badge: "border-amber-200 bg-amber-50 text-amber-700", accent: "border-l-amber-400", avatar: "bg-amber-100 text-amber-700" },
-  Finance: { badge: "border-blue-200 bg-blue-50 text-blue-700", accent: "border-l-blue-400", avatar: "bg-blue-100 text-blue-700" },
-  Accounting: { badge: "border-green-200 bg-green-50 text-green-700", accent: "border-l-green-400", avatar: "bg-green-100 text-green-700" },
-  Legal: { badge: "border-violet-200 bg-violet-50 text-violet-700", accent: "border-l-violet-400", avatar: "bg-violet-100 text-violet-700" },
-  Other: { badge: "border-neutral-200 bg-neutral-50 text-neutral-600", accent: "border-l-neutral-300", avatar: "bg-neutral-100 text-neutral-600" },
-};
-
-function styleFor(sector: string) {
-  return sectorStyles[sector] ?? sectorStyles.Other;
-}
-
 export default function JobsList({ jobs }: { jobs: Job[] }) {
   const [activeSector, setActiveSector] = useState("All");
 
   const sectors = ["All", "Finance", "Compliance", "Accounting", "Legal"];
+  const counts = (s: string) => (s === "All" ? jobs.length : jobs.filter((j) => j.sector === s).length);
   const filtered = activeSector === "All" ? jobs : jobs.filter((j) => j.sector === activeSector);
 
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap gap-2">
-        {sectors.map((sector) => (
-          <button
-            key={sector}
-            onClick={() => setActiveSector(sector)}
-            className={
-              "border px-3 py-1 text-xs font-medium transition " +
-              (activeSector === sector
-                ? "border-blue-900 bg-blue-900 text-white"
-                : "border-neutral-200 text-neutral-500 hover:border-black hover:text-black")
-            }
-          >
-            {sector}
-          </button>
-        ))}
+        {sectors.map((sector) => {
+          const count = counts(sector);
+          if (sector !== "All" && count === 0) return null;
+          return (
+            <button
+              key={sector}
+              onClick={() => setActiveSector(sector)}
+              className={
+                "border px-3 py-1.5 text-xs font-medium transition " +
+                (activeSector === sector
+                  ? "border-blue-900 bg-blue-900 text-white"
+                  : "border-neutral-200 text-neutral-500 hover:border-black hover:text-black")
+              }
+            >
+              {sector} <span className={activeSector === sector ? "text-blue-200" : "text-neutral-400"}>({count})</span>
+            </button>
+          );
+        })}
       </div>
 
       {filtered.length === 0 ? (
@@ -61,48 +54,28 @@ export default function JobsList({ jobs }: { jobs: Job[] }) {
           <p className="mt-3 text-sm text-neutral-500">No open roles in {activeSector} right now — check back soon.</p>
         </div>
       ) : (
-        <div className="space-y-4">
-          {filtered.map((job) => {
-            const style = styleFor(job.sector);
-            const initial = job.company.charAt(0);
-            return (
-              <div key={job._id} className={`border border-neutral-200 border-l-4 ${style.accent} bg-white p-6 transition hover:border-black hover:shadow-md`}>
-                <div className="flex items-start gap-4">
-                  <div className={`hidden sm:flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-lg font-bold ${style.avatar}`}>
-                    {initial}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-wrap items-start justify-between gap-3">
-                      <div className="flex-1 min-w-0">
-                        <div className="flex flex-wrap items-center gap-2 mb-2">
-                          <span className={`border px-2 py-0.5 text-xs font-semibold ${style.badge}`}>{job.sector}</span>
-                          <span className="border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-xs text-neutral-500">{job.type}</span>
-                          <span className="border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-xs text-neutral-500">{job.workStyle}</span>
-                        </div>
-                        <h2 className="text-lg font-bold text-black">
-                          <Link href={`/careers/${job._id}`} className="hover:text-blue-900 transition">{job.title}</Link>
-                        </h2>
-                        <div className="mt-1 flex flex-wrap items-center gap-4 text-sm text-neutral-500">
-                          <span className="flex items-center gap-1"><Building2 size={13} />{job.company}</span>
-                          <span className="flex items-center gap-1"><MapPin size={13} />{job.location}, Mauritius</span>
-                          <span className="flex items-center gap-1"><Clock size={13} />{job.postedLabel}</span>
-                        </div>
-                        <p className="mt-3 text-sm text-neutral-600 leading-relaxed">{job.description}</p>
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          {job.requirements.map((req, i) => (
-                            <span key={i} className="border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-xs text-neutral-500">{req}</span>
-                          ))}
-                        </div>
-                      </div>
-                      <a href={job.applyUrl} target="_blank" rel="noopener noreferrer" className="shrink-0 inline-flex items-center gap-1.5 bg-blue-900 px-4 py-2 text-xs font-semibold text-white transition hover:bg-blue-800">
-                        Apply <ArrowUpRight size={12} />
-                      </a>
-                    </div>
-                  </div>
+        <div className="divide-y divide-neutral-200 border border-neutral-200">
+          {filtered.map((job) => (
+            <Link
+              key={job._id}
+              href={`/careers/${job._id}`}
+              className="group flex items-start justify-between gap-4 bg-white p-5 transition hover:bg-neutral-50"
+            >
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400">{job.sector} · {job.type} · {job.workStyle}</p>
+                <h2 className="mt-1 text-base font-bold text-black group-hover:text-blue-900 transition">{job.title}</h2>
+                <div className="mt-1 flex flex-wrap items-center gap-4 text-xs text-neutral-500">
+                  <span className="flex items-center gap-1"><Building2 size={12} />{job.company}</span>
+                  <span className="flex items-center gap-1"><MapPin size={12} />{job.location}, Mauritius</span>
+                  <span className="flex items-center gap-1"><Clock size={12} />{job.postedLabel}</span>
                 </div>
+                <p className="mt-2 text-sm text-neutral-500 line-clamp-1">{job.description}</p>
               </div>
-            );
-          })}
+              <span className="shrink-0 mt-1 inline-flex items-center gap-1 text-xs font-semibold text-blue-900 opacity-0 group-hover:opacity-100 transition">
+                View details <ArrowRight size={12} />
+              </span>
+            </Link>
+          ))}
         </div>
       )}
     </div>
