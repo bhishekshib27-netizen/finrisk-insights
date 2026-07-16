@@ -63,7 +63,7 @@ export default function PressPage() {
                 { label: "Team", value: "10+ contributors" },
                 { label: "Website", value: "finriskinsight.com" },
               ].map((item, i) => (
-                <div key={i} className="flex items-center justify-between border-b border-neutral-100 pb-3 last:border-0 last:pb-0">
+                <div key={i} className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-neutral-100 pb-3 last:border-0 last:pb-0">
                   <p className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">{item.label}</p>
                   <p className="text-sm font-semibold text-black">{item.value}</p>
                 </div>
