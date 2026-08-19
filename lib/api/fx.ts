@@ -1,3 +1,5 @@
+import { getRatesFromDB } from "@/lib/supabase/rates";
+
 export type FXRates = {
   USD_MUR: number;
   EUR_MUR: number;
@@ -37,7 +39,24 @@ const fallbackHistory: FXHistoricalPoint[] = [
   { date: "Jun 15", USD_MUR: 47.99, EUR_MUR: 54.67, GBP_MUR: 63.38 },
 ];
 
+// Prefer the rate the hourly Vercel Cron already wrote to Supabase
+// (via /api/refresh-rates) so every page reads the same number. If the
+// cron hasn't run yet (or the DB is unreachable), fall back to fetching
+// live from the FX API directly, then to a static default as a last resort.
 export async function getFXRates(): Promise<FXRates> {
+  try {
+    const db = await getRatesFromDB();
+    if (db?.USD_MUR && db?.EUR_MUR && db?.GBP_MUR) {
+      return {
+        USD_MUR: db.USD_MUR,
+        EUR_MUR: db.EUR_MUR,
+        GBP_MUR: db.GBP_MUR,
+      };
+    }
+  } catch {
+    // fall through to the direct API fetch below
+  }
+
   try {
     const res = await fetch(
       "https://open.er-api.com/v6/latest/USD",

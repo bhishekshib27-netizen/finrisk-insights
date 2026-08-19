@@ -39,13 +39,41 @@ export async function getFSCUpdates(): Promise<RegulatoryUpdate[]> {
 }
 
 export async function getBOMUpdates(): Promise<RegulatoryUpdate[]> {
-  return [
-    { id: "bom-1", title: "Bank of Mauritius maintains Key Rate at 4.50%", source: "BOM", date: "10 Jun 2026", url: "https://www.bom.mu/media/media-releases/media-release-key-rate-remains-unchanged", category: "Monetary Policy" },
-    { id: "bom-2", title: "BOM issues guidance on cyber resilience for banks", source: "BOM", date: "15 May 2026", url: "https://www.bom.mu/financial-stability/supervision/guidelines/guideline-cyber-and-technology-risk-management", category: "Cybersecurity" },
-    { id: "bom-3", title: "Foreign exchange intervention update — Q2 2026", source: "BOM", date: "1 Apr 2026", url: "https://www.bom.mu/media/media-releases/public-notice-intervention-domestic-foreign-exchange-market", category: "FX" },
-  ];
+  try {
+    const res = await fetch("https://www.bom.mu/latest-news.xml", {
+      next: { revalidate: 7200 },
+    });
+    if (!res.ok) throw new Error("BOM feed unavailable");
+    const xml = await res.text();
+    const items = xml.match(/<item>([\s\S]*?)<\/item>/g) ?? [];
+    if (items.length === 0) throw new Error("BOM feed empty");
+    return items.slice(0, 5).map((item, i) => {
+      const title = item.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>/)?.[1] ?? item.match(/<title>(.*?)<\/title>/)?.[1] ?? "BOM Update";
+      const link = item.match(/<link>(.*?)<\/link>/)?.[1] ?? "https://www.bom.mu";
+      const pubDate = item.match(/<pubDate>(.*?)<\/pubDate>/)?.[1] ?? "";
+      const date = pubDate ? new Date(pubDate).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "Recent";
+      return {
+        id: `bom-${i}`,
+        title: title.trim().replace(/&amp;/g, "&"),
+        source: "BOM" as const,
+        date,
+        url: link.trim(),
+        category: "BOM",
+      };
+    });
+  } catch {
+    return [
+      { id: "bom-1", title: "Bank of Mauritius maintains Key Rate at 4.50%", source: "BOM", date: "10 Jun 2026", url: "https://www.bom.mu/media/media-releases/media-release-key-rate-remains-unchanged", category: "Monetary Policy" },
+      { id: "bom-2", title: "BOM issues guidance on cyber resilience for banks", source: "BOM", date: "15 May 2026", url: "https://www.bom.mu/financial-stability/supervision/guidelines/guideline-cyber-and-technology-risk-management", category: "Cybersecurity" },
+      { id: "bom-3", title: "Foreign exchange intervention update — Q2 2026", source: "BOM", date: "1 Apr 2026", url: "https://www.bom.mu/media/media-releases/public-notice-intervention-domestic-foreign-exchange-market", category: "FX" },
+    ];
+  }
 }
 
+// FATF publishes no public RSS/JSON feed (confirmed Aug 2026 — their news
+// and publications pages are HTML-only, media updates go out via a manual
+// press-office mailing list). Until that changes, this list has to be
+// updated by hand rather than pretending it's live.
 export async function getFATFUpdates(): Promise<RegulatoryUpdate[]> {
   return [
     { id: "fatf-1", title: "FATF publishes updated guidance on virtual assets and VASPs", source: "FATF", date: "18 Jun 2026", url: "https://www.fatf-gafi.org/en/topics/virtual-assets.html", category: "Virtual Assets" },
@@ -53,6 +81,8 @@ export async function getFATFUpdates(): Promise<RegulatoryUpdate[]> {
   ];
 }
 
+// Same situation as FATF: ESAAMLG has no RSS/JSON feed to poll (checked
+// Aug 2026). Update this list by hand when they publish something new.
 export async function getESAAMLGUpdates(): Promise<RegulatoryUpdate[]> {
   return [
     { id: "esaamlg-1", title: "ESAAMLG releases regional mutual evaluation follow-up report", source: "ESAAMLG", date: "12 Jun 2026", url: "https://www.esaamlg.org/index.php/Mutual_Evaluations_Followup_Reports", category: "Mutual Evaluation" },
