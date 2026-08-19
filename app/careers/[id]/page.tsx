@@ -1,4 +1,4 @@
-import { getJobById, getAllJobIds } from "@/lib/sanity/queries";
+import { getJobById, getAllJobIds, isJobExpired } from "@/lib/sanity/queries";
 import { notFound } from "next/navigation";
 import { ArrowLeft, MapPin, Clock, Building2, ArrowUpRight, Briefcase } from "lucide-react";
 import Link from "next/link";
@@ -9,10 +9,14 @@ export async function generateStaticParams() {
   return ids.map((j) => ({ id: j.id }));
 }
 
+// Re-check job pages hourly so a listing that crosses the 14-day mark
+// stops being served even if it was already statically generated.
+export const revalidate = 3600;
+
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const job = await getJobById(id).catch(() => null);
-  if (!job) return { title: "Job | FinRisk Insights" };
+  if (!job || isJobExpired(job.postedAt)) return { title: "Job | FinRisk Insights" };
 
   const title = `${job.title} at ${job.company}`;
   const description = job.description || `${job.title} — ${job.company}, ${job.location}, Mauritius.`;
@@ -61,7 +65,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
   const { id } = await params;
   const job = await getJobById(id).catch(() => null);
 
-  if (!job || job.active === false) notFound();
+  if (!job || job.active === false || isJobExpired(job.postedAt)) notFound();
 
   const canonicalUrl = `https://www.finriskinsight.com/careers/${id}`;
   const postedDate = new Date(job.postedAt);

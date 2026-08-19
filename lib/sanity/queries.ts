@@ -54,13 +54,28 @@ export type SanityJob = {
   active?: boolean
 }
 
+// Job posts are hidden from the site 14 days after they were posted, so
+// stale listings don't clutter the careers page. The underlying Sanity
+// document is never touched — this only affects what the site shows.
+const JOB_EXPIRY_DAYS = 14
+
+function jobCutoffIso(): string {
+  return new Date(Date.now() - JOB_EXPIRY_DAYS * 24 * 60 * 60 * 1000).toISOString()
+}
+
+export function isJobExpired(postedAt: string): boolean {
+  const ageMs = Date.now() - new Date(postedAt).getTime()
+  return ageMs > JOB_EXPIRY_DAYS * 24 * 60 * 60 * 1000
+}
+
 export async function getAllJobs(): Promise<SanityJob[]> {
   if (!client) return []
-  return client.fetch(`
-    *[_type == "job" && active == true] | order(postedAt desc) {
+  return client.fetch(
+    `*[_type == "job" && active == true && postedAt > $cutoff] | order(postedAt desc) {
       _id, title, company, sector, type, location, workStyle, description, requirements, applyUrl, postedAt
-    }
-  `)
+    }`,
+    { cutoff: jobCutoffIso() }
+  )
 }
 
 export async function getJobById(id: string): Promise<SanityJob | null> {
@@ -75,7 +90,10 @@ export async function getJobById(id: string): Promise<SanityJob | null> {
 
 export async function getAllJobIds(): Promise<{ id: string }[]> {
   if (!client) return []
-  return client.fetch(`*[_type == "job" && active == true] { "id": _id }`)
+  return client.fetch(
+    `*[_type == "job" && active == true && postedAt > $cutoff] { "id": _id }`,
+    { cutoff: jobCutoffIso() }
+  )
 }
 
 export type SanityAuthor = {
