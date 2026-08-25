@@ -21,14 +21,14 @@ export const metadata: Metadata = {
   keywords: ["Mauritius finance", "SEMDEX", "Bank of Mauritius", "FSC Mauritius", "financial intelligence", "AML", "compliance", "MUR exchange rate"],
   authors: [{ name: "FinRisk Insights" }],
   creator: "FinRisk Insights",
-  metadataBase: new URL("https://finriskinsight.com"),
+  metadataBase: new URL("https://www.finriskinsight.com"),
   verification: {
     google: "gaV2yYf5x2JY-Mmj0WEZb3QQsY1uNMgdfRJ3s8IuYqE",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://finriskinsight.com",
+    url: "https://www.finriskinsight.com",
     siteName: "FinRisk Insights",
     title: "FinRisk Insights — The Financial Platform of Mauritius",
     description: "FinRisk Insights is Mauritius's leading financial platform — live markets, FX rates, regulatory updates, research, compliance news, and finance jobs. All in one place.",

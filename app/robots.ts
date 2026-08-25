@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/sign-in", "/sign-up", "/premium"],
     },
-    sitemap: "https://finriskinsights.mu/sitemap.xml",
+    sitemap: "https://www.finriskinsight.com/sitemap.xml",
   };
 }
