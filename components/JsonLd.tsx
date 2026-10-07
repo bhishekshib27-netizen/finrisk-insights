@@ -7,7 +7,7 @@ export default function JsonLd() {
     name: "FinRisk Insights",
     url: "https://www.finriskinsight.com",
     logo: "https://www.finriskinsight.com/logo.jpeg",
-    description: "Mauritius's leading financial intelligence platform — live markets, regulatory updates, research, compliance news, and finance jobs.",
+    description: "Mauritius's leading financial intelligence platform — regulatory updates, research, compliance news, and finance jobs.",
     foundingDate: "2026",
     areaServed: "Mauritius",
     sameAs: [

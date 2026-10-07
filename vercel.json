@@ -4,5 +4,12 @@
       "path": "/api/refresh-rates",
       "schedule": "0 5 * * *"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/markets",
+      "destination": "/",
+      "permanent": true
+    }
   ]
 }

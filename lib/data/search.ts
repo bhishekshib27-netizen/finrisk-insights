@@ -1,17 +1,12 @@
 export const searchItems = [
   // Pages
   { id: "1", title: "Dashboard", category: "Pages", href: "/" },
-  { id: "2", title: "Markets", category: "Pages", href: "/markets" },
   { id: "3", title: "Research", category: "Pages", href: "/research" },
   { id: "4", title: "Insights", category: "Pages", href: "/insights" },
   { id: "5", title: "Regulation", category: "Pages", href: "/regulation" },
   { id: "6", title: "Events", category: "Pages", href: "/events" },
 
   // Markets
-  { id: "7", title: "SEMDEX Performance", category: "Markets", href: "/markets" },
-  { id: "8", title: "USD/MUR Exchange Rate", category: "Markets", href: "/markets" },
-  { id: "9", title: "EUR/MUR Exchange Rate", category: "Markets", href: "/markets" },
-  { id: "10", title: "Repo Rate", category: "Markets", href: "/markets" },
 
   // Research
   { id: "11", title: "Mauritius Financial Stability Report 2024", category: "Research", href: "/research" },

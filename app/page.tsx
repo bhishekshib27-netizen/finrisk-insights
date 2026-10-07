@@ -1,7 +1,5 @@
 import Link from "next/link";
 import LatestInsights from "@/components/home/LatestInsights";
-import FXRatesServer from "@/components/dashboard/FXRatesServer";
-import MarketChartServer from "@/components/charts/MarketChartServer";
 import AnimatedLayout from "@/components/dashboard/AnimatedLayout";
 import NewsletterSignup from "@/components/newsletter/NewsletterSignup";
 import SiteStats from "@/components/dashboard/SiteStats";
@@ -36,12 +34,9 @@ export default async function Home() {
               <span className="block text-white opacity-80">of Mauritius</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg" style={{color: "#e2e8f0"}}>
-              Live markets, regulatory intelligence, research, and finance jobs — all in one place.
+              Regulatory intelligence, research, and finance jobs — all in one place.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/markets" className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition" style={{background: "#1e3a8a"}}>
-                Explore Markets <ArrowRight size={16} />
-              </Link>
               <Link href="/insights" className="inline-flex items-center gap-2 border border-white px-6 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-black">
                 Browse Research
               </Link>
@@ -123,7 +118,6 @@ export default async function Home() {
                 </h2>
                 <div className="mt-8 divide-y divide-neutral-100">
                   {[
-                    { title: "Markets", description: "Live SEMDEX, FX rates, and economic indicators for Mauritius.", href: "/markets" },
                     { title: "Research", description: "In-depth reports on banking, regulation, and the Mauritian economy.", href: "/insights" },
                     { title: "Regulation", description: "Real-time alerts from FSC, Bank of Mauritius, and FATF.", href: "/regulation" },
                     { title: "Insights", description: "Analysis and commentary from our editorial team.", href: "/insights" },
@@ -140,27 +134,6 @@ export default async function Home() {
                 </div>
               </div>
 
-            </div>
-          </div>
-        </section>
-      </AnimatedLayout>
-
-      {/* LIVE MARKETS */}
-      <AnimatedLayout delay={0.2}>
-        <section className="border-b border-neutral-200 bg-neutral-50">
-          <div className="mx-auto max-w-5xl px-8 py-16 sm:px-12">
-            <div className="mb-8 flex items-center justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-blue-900">Live Data</p>
-                <h2 className="mt-1 text-2xl font-bold text-black">Market Overview</h2>
-              </div>
-              <Link href="/markets" className="text-xs font-semibold text-blue-200 hover:text-white transition">
-                Full Markets →
-              </Link>
-            </div>
-            <FXRatesServer />
-            <div className="mt-6">
-              <MarketChartServer />
             </div>
           </div>
         </section>

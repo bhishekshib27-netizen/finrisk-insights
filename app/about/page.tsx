@@ -89,7 +89,6 @@ export default function AboutPage() {
           <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-6">What We Cover</p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { title: "Live Markets", desc: "SEMDEX, MUR FX rates, and key economic indicators updated hourly." },
               { title: "Regulatory Intelligence", desc: "FSC, Bank of Mauritius, FATF, and ESAAMLG updates and alerts." },
               { title: "AML & Compliance", desc: "In-depth analysis of AML/CFT developments for Mauritius practitioners." },
               { title: "Research & Insights", desc: "Articles, reports, and commentary on Mauritius finance and economy." },

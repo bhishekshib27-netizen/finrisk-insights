@@ -17,7 +17,6 @@ export default async function DashboardPage() {
   try { rates = await getFXRates(); } catch {}
 
   const quickLinks = [
-    { label: "Markets", desc: "Live SEMDEX & FX rates", href: "/markets", icon: <BarChart2 size={18} /> },
     { label: "Insights", desc: "Latest articles & analysis", href: "/insights", icon: <BookOpen size={18} /> },
     { label: "Regulation", desc: "FSC & BOM alerts", href: "/regulation", icon: <Shield size={18} /> },
     { label: "Careers", desc: "Finance jobs in Mauritius", href: "/careers", icon: <Briefcase size={18} /> },
@@ -45,7 +44,6 @@ export default async function DashboardPage() {
         <div>
           <div className="flex items-center justify-between mb-4">
             <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400">Live Market Snapshot</p>
-            <Link href="/markets" className="text-xs font-semibold text-blue-900 hover:text-blue-700 transition">Full Markets →</Link>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
             {[

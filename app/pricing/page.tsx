@@ -94,7 +94,7 @@ export default function PricingPage() {
           <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-6">Frequently Asked Questions</p>
           <div className="divide-y divide-neutral-100 border border-neutral-200">
             {[
-              { q: "Is FinRisk Insights really free?", a: "Yes. Markets, Insights, Careers, Events, and the weekly newsletter are completely free with no paywalls or hidden costs." },
+              { q: "Is FinRisk Insights really free?", a: "Yes. Insights, Careers, Events, and the weekly newsletter are completely free with no paywalls or hidden costs." },
               { q: "When will Premium launch?", a: "We are currently building the Premium tier. Express your interest and we will notify you the moment it launches." },
               { q: "What research reports will Premium include?", a: "In-depth reports on Mauritius financial markets, AML/CFT regulation, SEMDEX performance, FX outlook, and economic analysis." },
               { q: "Can I cancel anytime?", a: "Yes. Premium will be a monthly subscription with no long-term commitment. Cancel anytime." },

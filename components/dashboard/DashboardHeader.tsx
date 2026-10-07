@@ -13,13 +13,10 @@ export default function DashboardHeader() {
           </h1>
 
           <p className="mt-4 max-w-lg text-base text-neutral-500">
-            Live markets, regulatory updates, research and analysis — all in one place.
+            Regulatory updates, research and analysis — all in one place.
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href="/markets" className="bg-black px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-neutral-800">
-              View Markets
-            </a>
             <a href="/research" className="border border-neutral-300 bg-white px-6 py-2.5 text-sm font-semibold text-black transition hover:bg-neutral-50">
               Browse Research
             </a>
